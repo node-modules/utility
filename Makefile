@@ -20,4 +20,4 @@ lib-cov:
 	@rm -rf $@
 	@$(JSCOVERAGE) lib $@
 
-.PHONY: test-cov test lib-cov install
+.PHONY: install test test-cov lib-cov
