@@ -1,0 +1,26 @@
+{
+  "name": "utility",
+  "version": "0.0.1",
+  "description": "A collection of useful utilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "should": "*",
+    "jscover": "*",
+    "mocha": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fengmk2/utility.git"
+  },
+  "keywords": [
+    "utility"
+  ],
+  "author": "fengmk2 <fengmk2@gmail.com>",
+  "license": "MIT"
+}
