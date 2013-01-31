@@ -22,6 +22,14 @@ var utils = require('utility');
 utils.md5('aer'); // 'd194f6194fc458544482bbb8f0b74c6b'
 utils.md5(new Buffer('')); // 'd41d8cd98f00b204e9800998ecf8427e'
 
+// base64 encode
+utils.base64encode('你好￥'); // '5L2g5aW977+l'
+utils.base64decode('5L2g5aW977+l') // '你好￥'
+
+// urlsafe base64 encode
+utils.base64encode('你好￥', true); // '5L2g5aW977-l'
+utils.base64decode('5L2g5aW977-l', true); // '你好￥'
+
 // empty function
 process.nextTick(utils.noop);
 function foo(callback) {
