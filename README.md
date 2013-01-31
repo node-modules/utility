@@ -19,7 +19,7 @@ $ npm install utility
 var utils = require('utility');
 
 // md5 hash
-utils.md5('aer'); // 'd194f6194fc458544482bbb8f0b74c6b'
+utils.md5('@Python发烧友'); // '1369e7668bc600f0d90c06f5e395d7a9'
 utils.md5(new Buffer('')); // 'd41d8cd98f00b204e9800998ecf8427e'
 
 // base64 encode
