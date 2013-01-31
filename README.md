@@ -27,6 +27,9 @@ process.nextTick(utils.noop);
 function foo(callback) {
   callback = callback || utils.noop;
 }
+
+// html escape
+utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
 ```
 
 ## License 
