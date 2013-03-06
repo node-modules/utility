@@ -63,4 +63,18 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       utils.base64encode(s, true).should.not.include('/');
     });
   });
+
+  describe('hmac()', function () {
+    it('should return hmac-sha1', function () {
+      // $ echo -n "hello world" | openssl dgst -binary -sha1 -hmac "I am a key" | openssl base64
+      // > pO6J0LKDxRRkvSECSEdxwKx84L0=
+      utils.hmac('sha1', 'I am a key', 'hello world').should.equal('pO6J0LKDxRRkvSECSEdxwKx84L0=');
+      // $ echo -n "中文，你好" | openssl dgst -binary -sha1 -hmac "I am a key" | openssl base64
+      // > 4Vnqz+LV0qMMt/a81E+EURcQMrI=
+      utils.hmac('sha1', 'I am a key', '中文，你好', 'base64').should.equal('4Vnqz+LV0qMMt/a81E+EURcQMrI=');
+
+      // should work with buffer data
+      utils.hmac('sha1', 'I am a key', '中文，你好').should.equal(utils.hmac('sha1', 'I am a key', new Buffer('中文，你好')));
+    });
+  });
 });

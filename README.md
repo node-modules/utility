@@ -22,6 +22,10 @@ var utils = require('utility');
 utils.md5('@Python发烧友'); // '1369e7668bc600f0d90c06f5e395d7a9'
 utils.md5(new Buffer('')); // 'd41d8cd98f00b204e9800998ecf8427e'
 
+// hmac
+// hmac-sha1 with base64 output encoding
+utils.hmac('sha1', 'I am a key', 'hello world'); // 'pO6J0LKDxRRkvSECSEdxwKx84L0='
+
 // base64 encode
 utils.base64encode('你好￥'); // '5L2g5aW977+l'
 utils.base64decode('5L2g5aW977+l') // '你好￥'
