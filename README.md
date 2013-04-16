@@ -52,7 +52,8 @@ utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
 
 ## benchmark
 
-[benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
+* [jsperf: access log date format](http://jsperf.com/access-log-date-format)
+* [benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
 
 ```bash
 $ node benchmark/date_format.js 
