@@ -12,6 +12,7 @@
 
 var utils = require('../');
 var should = require('should');
+var moment = require('moment');
 
 describe('utility.test.js', function () {
   describe('md5()', function () {
@@ -82,6 +83,36 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
     it('should return an access log format date string', function () {
       // 16/Apr/2013:16:40:09 +0800
       utils.accessLogDate().should.match(/^\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}$/);
+      moment().format('DD/MMM/YYYY:HH:mm:ss ZZ').should.equal(utils.accessLogDate());
+      for (var m = 1; m <= 12; m++) {
+        for (var d = 1; d <= 28; d++) {
+          for (var h = 0; h < 24; h++) {
+            var ss = parseInt(Math.random() * 60, 10);
+            var ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            var n = new Date(ds);
+            moment(n).format('DD/MMM/YYYY:HH:mm:ss ZZ').should.equal(utils.accessLogDate(n));
+          }
+        }
+      }
+    });
+  });
+
+  describe('datestruct()', function () {
+    it('should return an date struct', function () {
+      var d = utils.datestruct();
+      d.YYYYMMDD.toString().should.equal(moment().format('YYYYMMDD'));
+      for (var m = 1; m <= 12; m++) {
+        for (var d = 1; d <= 28; d++) {
+          for (var h = 0; h < 24; h++) {
+            var ss = parseInt(Math.random() * 60, 10);
+            var ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            var n = new Date(ds);
+            var struct = utils.datestruct(n);
+            struct.YYYYMMDD.toString().should.equal(moment(n).format('YYYYMMDD'));
+            struct.H.toString().should.equal(moment(n).format('H'));
+          }
+        }
+      }
     });
   });
 });

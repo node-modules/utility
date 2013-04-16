@@ -45,27 +45,50 @@ utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
 
 // accessLogDate
 utils.accessLogDate(); // '16/Apr/2013:16:40:09 +0800'
+
+// datestruct
+utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
 ```
 
-## accessLogDate() benchmark
+## benchmark
 
 [benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
 
 ```bash
 $ node benchmark/date_format.js 
 
-moment().format(): "16/Apr/2013:18:42:50 +0800"
-utils.accessLogDate(): "16/Apr/2013:18:42:50 +0800"
-fasterAccessDate2(): "16/Apr/2013:18:42:50 +0800"
-new Date().toString(): "Tue Apr 16 2013 18:42:50 GMT+0800 (CST)"
-Date(): "Tue Apr 16 2013 18:42:50 GMT+0800 (CST)"
+moment().format("DD/MMM/YYYY:HH:mm:ss ZZ"): "16/Apr/2013:21:12:32 +0800"
+utils.accessLogDate(): "16/Apr/2013:21:12:32 +0800"
+fasterAccessDate(): "16/Apr/2013:21:12:32 +0800"
+fasterAccessDate2(): "16/Apr/2013:21:12:32 +0800"
+new Date().toString(): "Tue Apr 16 2013 21:12:32 GMT+0800 (CST)"
+Date(): "Tue Apr 16 2013 21:12:32 GMT+0800 (CST)"
+Date.now(): 1366117952162
 ------------------------
-moment().format('DD/MMM/YYYY:HH:mm:ss ZZ') x 80,772 ops/sec ±0.99% (97 runs sampled)
-utils.accessLogDate() x 341,267 ops/sec ±1.03% (96 runs sampled)
-fasterAccessDate2() x 326,496 ops/sec ±5.19% (98 runs sampled)
-new Date().toString() x 842,547 ops/sec ±0.92% (95 runs sampled)
-Date() x 834,707 ops/sec ±0.77% (95 runs sampled)
-Fastest is new Date().toString()
+moment().format('DD/MMM/YYYY:HH:mm:ss ZZ') x 68,300 ops/sec ±5.05% (91 runs sampled)
+utils.accessLogDate() x 1,341,341 ops/sec ±2.72% (90 runs sampled)
+fasterAccessDate() x 357,833 ops/sec ±1.32% (98 runs sampled)
+fasterAccessDate2() x 301,607 ops/sec ±5.03% (83 runs sampled)
+new Date().toString() x 738,499 ops/sec ±3.54% (86 runs sampled)
+Date() x 794,724 ops/sec ±2.77% (95 runs sampled)
+Date.now() x 8,327,685 ops/sec ±1.85% (94 runs sampled)
+Fastest is Date.now()
+```
+
+[benchmark/date_YYYYMMDD.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_YYYYMMDD.js)
+
+```bash
+$ node benchmark/date_YYYYMMDD.js 
+
+parseInt(moment().format("YYYYMMDD"), 10): 20130416
+utils.datestruct().YYYYMMDD: 20130416
+new Date().toString(): "Tue Apr 16 2013 21:12:02 GMT+0800 (CST)"
+------------------------
+parseInt(moment().format('YYYYMMDD'), 10) x 129,604 ops/sec ±0.46% (101 runs sampled)
+utils.datestruct().YYYYMMDD x 2,317,461 ops/sec ±1.38% (95 runs sampled)
+new Date().toString() x 816,731 ops/sec ±3.46% (93 runs sampled)
+Fastest is utils.datestruct().YYYYMMDD
+
 ```
 
 ## License 
