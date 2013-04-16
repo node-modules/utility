@@ -11,7 +11,9 @@
   },
   "devDependencies": {
     "should": "*",
+    "moment": "*",
     "jscover": "*",
+    "benchmark": "*",
     "mocha": "*"
   },
   "repository": {

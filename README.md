@@ -3,7 +3,7 @@ utility [![Build Status](https://secure.travis-ci.org/fengmk2/utility.png)](http
 
 ![logo](https://raw.github.com/fengmk2/utility/master/logo.png)
 
-Description
+A collection of useful utilities. 
 
 * jscoverage: [100%](http://fengmk2.github.com/coverage/utility.html)
 
@@ -49,22 +49,22 @@ utils.accessLogDate(); // '16/Apr/2013:16:40:09 +0800'
 
 ## accessLogDate() benchmark
 
-[benchmark/date_format.js](https://github.com/fengmk2/fengmk2.github.com/blob/master/benchmark/date_format.js)
+[benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
 
 ```bash
-$ node benchmark/date_format.js
+$ node benchmark/date_format.js 
 
-moment().format(): "16/Apr/2013:18:18:30 +0800"
-new Date().toString(): "Tue Apr 16 2013 18:18:30 GMT+0800 (CST)"
-Date(): "Tue Apr 16 2013 18:18:30 GMT+0800 (CST)"
-fasterAccessDate(): "16/Apr/2013:18:18:30 +0800"
-fasterAccessDate2(): "16/Apr/2013:18:18:30 +0800"
+moment().format(): "16/Apr/2013:18:42:50 +0800"
+utils.accessLogDate(): "16/Apr/2013:18:42:50 +0800"
+fasterAccessDate2(): "16/Apr/2013:18:42:50 +0800"
+new Date().toString(): "Tue Apr 16 2013 18:42:50 GMT+0800 (CST)"
+Date(): "Tue Apr 16 2013 18:42:50 GMT+0800 (CST)"
 ------------------------
-moment().format('DD/MMM/YYYY:HH:mm:ss ZZ') x 78,364 ops/sec ±1.01% (99 runs sampled)
-new Date().toString() x 837,714 ops/sec ±0.92% (95 runs sampled)
-Date() x 777,068 ops/sec ±4.76% (90 runs sampled)
-fasterAccessDate() x 337,151 ops/sec ±1.51% (95 runs sampled)
-fasterAccessDate2() x 335,866 ops/sec ±2.27% (92 runs sampled)
+moment().format('DD/MMM/YYYY:HH:mm:ss ZZ') x 80,772 ops/sec ±0.99% (97 runs sampled)
+utils.accessLogDate() x 341,267 ops/sec ±1.03% (96 runs sampled)
+fasterAccessDate2() x 326,496 ops/sec ±5.19% (98 runs sampled)
+new Date().toString() x 842,547 ops/sec ±0.92% (95 runs sampled)
+Date() x 834,707 ops/sec ±0.77% (95 runs sampled)
 Fastest is new Date().toString()
 ```
 
