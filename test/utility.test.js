@@ -77,4 +77,11 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       utils.hmac('sha1', 'I am a key', '中文，你好').should.equal(utils.hmac('sha1', 'I am a key', new Buffer('中文，你好')));
     });
   });
+
+  describe('accessLogDate()', function () {
+    it('should return an access log format date string', function () {
+      // 16/Apr/2013:16:40:09 +0800
+      utils.accessLogDate().should.match(/^\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}$/);
+    });
+  });
 });
