@@ -98,7 +98,7 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
   describe('accessLogDate()', function () {
     it('should return an access log format date string', function () {
       // 16/Apr/2013:16:40:09 +0800
-      utils.accessLogDate().should.match(/^\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}$/);
+      utils.accessLogDate().should.match(/^\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2} [\+\-]\d{4}$/);
       moment().format('DD/MMM/YYYY:HH:mm:ss ZZ').should.equal(utils.accessLogDate());
       for (var m = 1; m <= 12; m++) {
         for (var d = 1; d <= 28; d++) {
