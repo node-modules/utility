@@ -37,6 +37,7 @@ var fasterAccessDate2 = function () {
 
 console.log('moment().format("DD/MMM/YYYY:HH:mm:ss ZZ"): %j', moment().format('DD/MMM/YYYY:HH:mm:ss ZZ'));
 console.log('utils.accessLogDate(): %j', utils.accessLogDate());
+console.log('utils.logDate(): %j', utils.logDate());
 console.log('fasterAccessDate(): %j', fasterAccessDate());
 console.log('fasterAccessDate2(): %j', fasterAccessDate2());
 console.log('new Date().toString(): %j', new Date().toString());
@@ -50,6 +51,9 @@ suite
 })
 .add('utils.accessLogDate()', function () {
   utils.accessLogDate();
+})
+.add('utils.logDate()', function () {
+  utils.logDate();
 })
 .add('fasterAccessDate()', function () {
   fasterAccessDate();

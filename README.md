@@ -46,6 +46,9 @@ utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
 // accessLogDate
 utils.accessLogDate(); // '16/Apr/2013:16:40:09 +0800'
 
+// logDate
+utils.logDate(); // '2013-04-17 14:43:02.674'
+
 // datestruct
 utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
 ```

@@ -79,6 +79,22 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
     });
   });
 
+  describe('logDate()', function () {
+    it('should return an log format date string', function () {
+      utils.logDate().should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+      for (var m = 1; m <= 12; m++) {
+        for (var d = 1; d <= 28; d++) {
+          for (var h = 0; h < 24; h++) {
+            var ss = parseInt(Math.random() * 60, 10);
+            var ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            var n = new Date();
+            utils.logDate().should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+          }
+        }
+      }
+    });
+  });
+
   describe('accessLogDate()', function () {
     it('should return an access log format date string', function () {
       // 16/Apr/2013:16:40:09 +0800
