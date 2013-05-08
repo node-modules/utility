@@ -1,4 +1,9 @@
 
+0.0.9 / 2013-05-08 
+==================
+
+  * Safe encodeURIComponent and decodeURIComponent
+
 0.0.8 / 2013-05-06 
 ==================
 

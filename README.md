@@ -98,6 +98,20 @@ Fastest is utils.datestruct().YYYYMMDD
 
 ```
 
+## Authors
+
+```bash
+$ git summary 
+
+ project  : utility
+ repo age : 6 months
+ active   : 8 days
+ commits  : 23
+ files    : 14
+ authors  : 
+    23  fengmk2                 100.0%
+```
+
 ## License 
 
 (The MIT License)
