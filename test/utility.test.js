@@ -127,6 +127,26 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
     });
   });
 
+  describe('encodeURIComponent() and decodeURIComponent()', function () {
+    it('should encode and decode success', function () {
+      var texts = [
+        'foo', '中文', '数字', 
+        '%',
+        String.fromCharCode(0xDFFF), // http://cnodejs.org/topic/4fd6b7ba839e1e581407aac8
+        123, 0, 1, Math.pow(2, 53),
+        null, undefined, 
+        new Buffer('中文水电费'), new Buffer(100),
+      ];
+      texts.forEach(function (text) {
+        if (typeof text === 'string') {
+          utils.decodeURIComponent(utils.encodeURIComponent(text)).should.equal(text);
+        } else {
+          utils.decodeURIComponent(utils.encodeURIComponent(text)).should.equal(String(text));
+        }
+      });
+    });
+  });
+
   describe('datestruct()', function () {
     it('should return an date struct', function () {
       var d = utils.datestruct();
