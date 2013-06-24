@@ -96,13 +96,14 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
   describe('logDate()', function () {
     it('should return an log format date string', function () {
       utils.logDate().should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+      utils.logDate(new Date(1372062988014)).should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
       for (var m = 1; m <= 12; m++) {
         for (var d = 1; d <= 28; d++) {
           for (var h = 0; h < 24; h++) {
             var ss = parseInt(Math.random() * 60, 10);
             var ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
-            var n = new Date();
-            utils.logDate().should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+            var n = new Date(ds);
+            utils.logDate(n).should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
           }
         }
       }
@@ -144,6 +145,10 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
           utils.decodeURIComponent(utils.encodeURIComponent(text)).should.equal(String(text));
         }
       });
+    });
+
+    it('should return source string when decode error', function () {
+      utils.decodeURIComponent('%').should.equal('%');
     });
   });
 
