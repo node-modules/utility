@@ -10,7 +10,9 @@
  * Module dependencies.
  */
 
+var os = require('os');
 var utils = require('../');
+var mm = require('mm');
 var should = require('should');
 var moment = require('moment');
 
@@ -168,6 +170,38 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
           }
         }
       }
+    });
+  });
+
+  describe('getIP(), getIPv6(), getIPv4()', function () {
+    it('should return ip version 4 address', function () {
+      var address = utils.getIP();
+      address.should.equal(utils.getIPv4());
+      address.should.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/);
+    });
+
+    it('should return ip version 6 address', function () {
+      mm(os, 'networkInterfaces', function () {
+        return { lo0: 
+         [ { address: '::1', family: 'IPv6', internal: true },
+           { address: 'fe80::1', family: 'IPv6', internal: true },
+           { address: '127.0.0.1', family: 'IPv4', internal: true } ],
+        en0: 
+         [ { address: 'fe81::cabc:c8ff:feef:f996', family: 'IPv6',
+             internal: true },
+           { address: '10.0.1.123', family: 'IPv4', internal: false } ],
+        en7: 
+         [ { address: 'fe80::cabc:c8ff:feef:f996', family: 'IPv6',
+             internal: false },
+           { address: '10.0.1.123', family: 'IPv4', internal: false } ],
+        vmnet1: [ { address: '10.99.99.254', family: 'IPv4', internal: false } ],
+        vmnet8: [ { address: '10.88.88.1', family: 'IPv4', internal: false } ],
+        ppp0: [ { address: '10.2.0.231', family: 'IPv4', internal: false } ] 
+        };
+      });
+      var address = utils.getIPv6();
+      should.exists(address);
+      address.should.equal('fe80::cabc:c8ff:feef:f996');
     });
   });
 });

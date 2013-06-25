@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "should": "*",
+    "mm": "*",
     "moment": "*",
     "blanket": "*",
     "travis-cov": "*",
