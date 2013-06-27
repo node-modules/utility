@@ -1,4 +1,9 @@
 
+0.0.12 / 2013-06-27 
+==================
+
+  * utils.getParamNames(): get a function parameters names
+
 0.0.11 / 2013-06-25 
 ==================
 
