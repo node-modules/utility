@@ -59,6 +59,9 @@ utils.getIPv4(); // "10.7.68.72"
 utils.getIP('ppp'); // "10.2.0.231"
 
 utils.getIPv6(); // "fe80::cabc:c8ff:feef:f996"
+
+// get a function parameter's names
+utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
 ```
 
 ## benchmark

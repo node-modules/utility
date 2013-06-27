@@ -1,6 +1,6 @@
 /*!
  * utility - test/utility.test.js
- * Copyright(c) 2012 fengmk2 <fengmk2@gmail.com>
+ * Copyright(c) 2012 - 2013 fengmk2 <fengmk2@gmail.com>
  * MIT Licensed
  */
 
@@ -34,6 +34,28 @@ describe('utility.test.js', function () {
       safe.should.equal('&lt;script src=&quot;foo.js&quot;&gt;&quot;&quot;&quot;&lt;/script&gt;\'&quot;&quot;&quot;\
       $ &amp; &amp; &amp;&amp; &amp;&nbsp;\
       ');
+    });
+  });
+
+  describe('getParamNames()', function () {
+    it('should return parameter names', function () {
+      utils.getParamNames(function () {}).should.eql([]);
+      utils.getParamNames(function (key1) {}).should.eql(['key1']);
+      utils.getParamNames(function (key1,key2) {}).should.eql(['key1', 'key2']);
+      utils.getParamNames(function (key1, key2) {}).should.eql(['key1', 'key2']);
+      utils.getParamNames(function (   key1   ,   key2, key3 
+       ,key4, callback) {
+        console.log('foo');
+      }).should.eql(['key1', 'key2', 'key3', 'key4', 'callback']);
+
+      utils.getParamNames(utils.getParamNames).should.eql(['func', 'cache']);
+      utils.getParamNames(utils.getParamNames, false).should.eql(['func', 'cache']);
+      utils.getParamNames(utils.md5).should.eql(['s']);
+      utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
+      utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
+      utils.getParamNames(utils.base64encode).should.eql(['s', 'urlsafe']);
+      utils.getParamNames(utils.base64decode).should.eql(['encode', 'urlsafe']);
+      utils.getParamNames(utils.escape).should.eql(['html']);
     });
   });
 
