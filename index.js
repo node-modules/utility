@@ -1,1 +1,1 @@
-module.exports = process.env.UTILITY_COV ? require('./lib-cov/utility') : require('./lib/utility');
+module.exports = require('./lib/utility');

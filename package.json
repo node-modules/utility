@@ -9,7 +9,7 @@
     "travis-cov": { "threshold": 99 }
   },
   "dependencies": {
-
+    "address": ">=0.0.1"
   },
   "devDependencies": {
     "should": "*",

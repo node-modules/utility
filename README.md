@@ -54,11 +54,7 @@ utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
 utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equal('你好, nodejs');
 
 // get first ip
-utils.getIP(); // "10.7.68.72"
-utils.getIPv4(); // "10.7.68.72"
-utils.getIP('ppp'); // "10.2.0.231"
-
-utils.getIPv6(); // "fe80::cabc:c8ff:feef:f996"
+[WARNNING] getIP() remove, PLEASE use `https://github.com/fengmk2/address` module instead
 
 // get a function parameter's names
 utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
