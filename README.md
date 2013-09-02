@@ -58,6 +58,9 @@ utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equa
 
 // get a function parameter's names
 utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
+
+// Unix's timestamp
+utils.timestamp(); // 1378153226
 ```
 
 ## benchmark

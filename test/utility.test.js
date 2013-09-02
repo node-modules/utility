@@ -195,6 +195,14 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
     });
   });
 
+  describe('timestamp()', function () {
+    it('should return a unix timestamp', function () {
+      var ts = utils.timestamp();
+      ts.should.be.a('number').with.above(1378153366);
+      String(ts).should.length(10);
+    });
+  });
+
   describe('getIP(), getIPv6(), getIPv4()', function () {
     afterEach(mm.restore);
 
