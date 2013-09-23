@@ -21,7 +21,11 @@ describe('utility.test.js', function () {
     it('should return md5 string', function () {
       utils.md5('aer').should.equal('d194f6194fc458544482bbb8f0b74c6b');
       utils.md5(new Buffer('')).should.equal('d41d8cd98f00b204e9800998ecf8427e');
+      utils.md5(new Buffer('')).should.equal(utils.md5(''));
       utils.md5('苏千').should.equal('5f733c47c58a077d61257102b2d44481');
+      utils.md5('苏千', 'base64').should.equal('X3M8R8WKB31hJXECstREgQ==');
+      utils.md5('123', 'base64').should.equal('ICy5YqxZB1uWSwcVLSNLcA==');
+      utils.md5('', 'base64').should.equal('1B2M2Y8AsgTpgAmY7PhCfg==');
     });
   });
 
@@ -50,7 +54,7 @@ describe('utility.test.js', function () {
 
       utils.getParamNames(utils.getParamNames).should.eql(['func', 'cache']);
       utils.getParamNames(utils.getParamNames, false).should.eql(['func', 'cache']);
-      utils.getParamNames(utils.md5).should.eql(['s']);
+      utils.getParamNames(utils.md5).should.eql(['s', 'format']);
       utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
       utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
       utils.getParamNames(utils.base64encode).should.eql(['s', 'urlsafe']);

@@ -19,6 +19,8 @@ var utils = require('utility');
 // md5 hash
 utils.md5('@Python发烧友'); // '1369e7668bc600f0d90c06f5e395d7a9'
 utils.md5(new Buffer('')); // 'd41d8cd98f00b204e9800998ecf8427e'
+// md5 hase output base64
+utils.md5('苏千', 'base64'); // 'X3M8R8WKB31hJXECstREgQ=='
 
 // hmac
 // hmac-sha1 with base64 output encoding
