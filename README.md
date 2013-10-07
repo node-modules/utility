@@ -43,15 +43,6 @@ function foo(callback) {
 // html escape
 utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
 
-// accessLogDate
-utils.accessLogDate(); // '16/Apr/2013:16:40:09 +0800'
-
-// logDate
-utils.logDate(); // '2013-04-17 14:43:02.674'
-
-// datestruct
-utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
-
 // Safe encodeURIComponent and decodeURIComponent
 utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equal('你好, nodejs');
 
@@ -60,6 +51,24 @@ utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equa
 
 // get a function parameter's names
 utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
+```
+
+### Date utils
+
+```js
+// accessLogDate
+utils.accessLogDate(); // '16/Apr/2013:16:40:09 +0800'
+
+// logDate, 
+// 'YYYY-MM-DD HH:mm:ss.SSS' format date string
+utils.logDate(); // '2013-04-17 14:43:02.674'
+utils.YYYYMMDDHHmmssSSS(); // '2013-04-17 14:43:02.674'
+
+// 'YYYY-MM-DD HH:mm:ss' format date string
+utils.YYYYMMDDHHmmss(); // '2013-04-17 14:43:02'
+
+// datestruct
+utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
 
 // Unix's timestamp
 utils.timestamp(); // 1378153226

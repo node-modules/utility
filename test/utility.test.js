@@ -138,6 +138,23 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
     });
   });
 
+  describe('YYYYMMDDHHmmss()', function () {
+    it('should return an "YYYY-MM-DD HH:mm:ss" format date string', function () {
+      utils.YYYYMMDDHHmmss().should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}$/);
+      utils.YYYYMMDDHHmmss(new Date(1372062988014)).should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}$/);
+      for (var m = 1; m <= 12; m++) {
+        for (var d = 1; d <= 28; d++) {
+          for (var h = 0; h < 24; h++) {
+            var ss = parseInt(Math.random() * 60, 10);
+            var ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            var n = new Date(ds);
+            utils.YYYYMMDDHHmmss(n).should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}$/);
+          }
+        }
+      }
+    });
+  });
+
   describe('accessLogDate()', function () {
     it('should return an access log format date string', function () {
       // 16/Apr/2013:16:40:09 +0800
