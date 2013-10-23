@@ -74,6 +74,18 @@ utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
 utils.timestamp(); // 1378153226
 ```
 
+### Number utils
+
+```js
+// Detect a number string can safe convert to Javascript Number.: `-9007199254740991 ~ 9007199254740991`
+utils.isSafeNumberString('9007199254740991'); // true
+utils.isSafeNumberString('9007199254740993'); // false
+
+// Convert string to number safe:
+utils.toSafeNumber('9007199254740991'); // 9007199254740991
+utils.toSafeNumber('9007199254740993'); // '9007199254740993'
+```
+
 ## benchmark
 
 * [jsperf: access log date format](http://jsperf.com/access-log-date-format)
