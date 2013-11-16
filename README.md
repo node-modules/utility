@@ -3,7 +3,7 @@ utility [![Build Status](https://secure.travis-ci.org/fengmk2/utility.png)](http
 
 ![logo](https://raw.github.com/fengmk2/utility/master/logo.png)
 
-A collection of useful utilities. 
+A collection of useful utilities.
 
 ## Install
 
@@ -59,7 +59,7 @@ utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
 // accessLogDate
 utils.accessLogDate(); // '16/Apr/2013:16:40:09 +0800'
 
-// logDate, 
+// logDate,
 // 'YYYY-MM-DD HH:mm:ss.SSS' format date string
 utils.logDate(); // '2013-04-17 14:43:02.674'
 utils.YYYYMMDDHHmmssSSS(); // '2013-04-17 14:43:02.674'
@@ -86,13 +86,21 @@ utils.toSafeNumber('9007199254740991'); // 9007199254740991
 utils.toSafeNumber('9007199254740993'); // '9007199254740993'
 ```
 
+### Timers
+
+```js
+utils.setImmediate(function () {
+  console.log('hi');
+});
+```
+
 ## benchmark
 
 * [jsperf: access log date format](http://jsperf.com/access-log-date-format)
 * [benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
 
 ```bash
-$ node benchmark/date_format.js 
+$ node benchmark/date_format.js
 
 moment().format("DD/MMM/YYYY:HH:mm:ss ZZ"): "16/Apr/2013:21:12:32 +0800"
 utils.accessLogDate(): "16/Apr/2013:21:12:32 +0800"
@@ -115,7 +123,7 @@ Fastest is Date.now()
 [benchmark/date_YYYYMMDD.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_YYYYMMDD.js)
 
 ```bash
-$ node benchmark/date_YYYYMMDD.js 
+$ node benchmark/date_YYYYMMDD.js
 
 parseInt(moment().format("YYYYMMDD"), 10): 20130416
 utils.datestruct().YYYYMMDD: 20130416
@@ -131,18 +139,18 @@ Fastest is utils.datestruct().YYYYMMDD
 ## Authors
 
 ```bash
-$ git summary 
+$ git summary
 
  project  : utility
  repo age : 6 months
  active   : 8 days
  commits  : 23
  files    : 14
- authors  : 
+ authors  :
     23  fengmk2                 100.0%
 ```
 
-## License 
+## License
 
 (The MIT License)
 

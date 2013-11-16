@@ -31,6 +31,9 @@
   "keywords": [
     "utility"
   ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
   "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
   "license": "MIT"
 }

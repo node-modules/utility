@@ -47,7 +47,7 @@ describe('utility.test.js', function () {
       utils.getParamNames(function (key1) {}).should.eql(['key1']);
       utils.getParamNames(function (key1,key2) {}).should.eql(['key1', 'key2']);
       utils.getParamNames(function (key1, key2) {}).should.eql(['key1', 'key2']);
-      utils.getParamNames(function (   key1   ,   key2, key3 
+      utils.getParamNames(function (   key1   ,   key2, key3
        ,key4, callback) {
         console.log('foo');
       }).should.eql(['key1', 'key2', 'key3', 'key4', 'callback']);
@@ -176,11 +176,11 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
   describe('encodeURIComponent() and decodeURIComponent()', function () {
     it('should encode and decode success', function () {
       var texts = [
-        'foo', '中文', '数字', 
+        'foo', '中文', '数字',
         '%',
         String.fromCharCode(0xDFFF), // http://cnodejs.org/topic/4fd6b7ba839e1e581407aac8
         123, 0, 1, Math.pow(2, 53),
-        null, undefined, 
+        null, undefined,
         new Buffer('中文水电费'), new Buffer(100),
       ];
       texts.forEach(function (text) {
@@ -269,12 +269,18 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
     });
   });
 
+  describe('setImmediate()', function () {
+    it('should work', function (done) {
+      utils.setImmediate(done);
+    });
+  });
+
   describe('getIP(), getIPv6(), getIPv4()', function () {
     afterEach(mm.restore);
 
     it('should return ip version 4 address', function () {
       mm(os, 'networkInterfaces', function () {
-        return { lo0: 
+        return { lo0:
          [ { address: '::1', family: 'IPv6', internal: true },
            { address: 'fe80::1', family: 'IPv6', internal: true },
            { address: '127.0.0.1', family: 'IPv4', internal: true } ],
@@ -288,7 +294,7 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
            { address: '10.0.1.123', family: 'IPv4', internal: false } ],
         vmnet1: [ { address: '10.99.99.254', family: 'IPv4', internal: false } ],
         vmnet8: [ { address: '10.88.88.1', family: 'IPv4', internal: false } ],
-        ppp0: [ { address: '10.2.0.231', family: 'IPv4', internal: false } ] 
+        ppp0: [ { address: '10.2.0.231', family: 'IPv4', internal: false } ]
         };
       });
       mm(os, 'platform', function () {
@@ -302,21 +308,21 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       mm.restore();
 
       mm(os, 'networkInterfaces', function () {
-        return { lo0: 
+        return { lo0:
          [ { address: '::1', family: 'IPv6', internal: true },
            { address: 'fe80::1', family: 'IPv6', internal: true },
            { address: '127.0.0.1', family: 'IPv4', internal: true } ],
-        eth0: 
+        eth0:
          [ { address: 'fe81::cabc:c8ff:feef:f996', family: 'IPv6',
              internal: true },
            { address: '10.0.1.124', family: 'IPv4', internal: false } ],
-        eth2: 
+        eth2:
          [ { address: 'fe80::cabc:c8ff:feef:f996', family: 'IPv6',
              internal: false },
            { address: '10.0.1.123', family: 'IPv4', internal: false } ],
         vmnet1: [ { address: '10.99.99.254', family: 'IPv4', internal: false } ],
         vmnet8: [ { address: '10.88.88.1', family: 'IPv4', internal: false } ],
-        ppp0: [ { address: '10.2.0.231', family: 'IPv4', internal: false } ] 
+        ppp0: [ { address: '10.2.0.231', family: 'IPv4', internal: false } ]
         };
       });
       mm(os, 'platform', function () {
@@ -331,7 +337,7 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
 
     it('should return ip version 6 address', function () {
       mm(os, 'networkInterfaces', function () {
-        return { lo0: 
+        return { lo0:
          [ { address: '::1', family: 'IPv6', internal: true },
            { address: 'fe80::1', family: 'IPv6', internal: true },
            { address: '127.0.0.1', family: 'IPv4', internal: true } ],
@@ -345,13 +351,13 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
            { address: '10.0.1.123', family: 'IPv4', internal: false } ],
         vmnet1: [ { address: '10.99.99.254', family: 'IPv4', internal: false } ],
         vmnet8: [ { address: '10.88.88.1', family: 'IPv4', internal: false } ],
-        ppp0: [ { address: '10.2.0.231', family: 'IPv4', internal: false } ] 
+        ppp0: [ { address: '10.2.0.231', family: 'IPv4', internal: false } ]
         };
       });
       mm(os, 'platform', function () {
         return 'linux';
       });
-      
+
       var address = utils.getIPv6();
       // should.exists(address);
       // address.should.equal('fe80::cabc:c8ff:feef:f996');
