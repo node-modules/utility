@@ -1,6 +1,8 @@
 utility [![Build Status](https://secure.travis-ci.org/fengmk2/utility.png)](http://travis-ci.org/fengmk2/utility) [![Coverage Status](https://coveralls.io/repos/fengmk2/utility/badge.png)](https://coveralls.io/r/fengmk2/utility)
 =======
 
+[![NPM](https://nodei.co/npm/utility.png?downloads=true&stars=true)](https://nodei.co/npm/utility)
+
 ![logo](https://raw.github.com/fengmk2/utility/master/logo.png)
 
 A collection of useful utilities.
