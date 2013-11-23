@@ -26,6 +26,10 @@ describe('utility.test.js', function () {
       utils.md5('苏千', 'base64').should.equal('X3M8R8WKB31hJXECstREgQ==');
       utils.md5('123', 'base64').should.equal('ICy5YqxZB1uWSwcVLSNLcA==');
       utils.md5('', 'base64').should.equal('1B2M2Y8AsgTpgAmY7PhCfg==');
+
+      utils.md5({foo: 'bar', bar: 'foo'}).should.equal('63a9d72936c6f7366fa5e72fa0cac8b4');
+      utils.md5({foo: 'bar', bar: 'foo'}).should.equal(utils.md5({bar: 'foo', foo: 'bar'}));
+      utils.md5({foo: 'bar', bar: 'foo', v: [1, 2, 3]}).should.equal(utils.md5({v: [1, 2, 3], bar: 'foo', foo: 'bar'}));
     });
   });
 

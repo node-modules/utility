@@ -24,6 +24,9 @@ utils.md5(new Buffer('')); // 'd41d8cd98f00b204e9800998ecf8427e'
 // md5 hase output base64
 utils.md5('苏千', 'base64'); // 'X3M8R8WKB31hJXECstREgQ=='
 
+// Object md5 hash
+utils.md5({foo: 'bar', bar: 'foo'}).should.equal(utils.md5({bar: 'foo', foo: 'bar'}));
+
 // hmac
 // hmac-sha1 with base64 output encoding
 utils.hmac('sha1', 'I am a key', 'hello world'); // 'pO6J0LKDxRRkvSECSEdxwKx84L0='
