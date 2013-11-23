@@ -77,6 +77,12 @@ utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
 
 // Unix's timestamp
 utils.timestamp(); // 1378153226
+
+// Parse timestamp
+// seconds
+utils.timestamp(1385091596); // Fri Nov 22 2013 11:39:56 GMT+0800 (CST)
+// millseconds
+utils.timestamp(1385091596000); // Fri Nov 22 2013 11:39:56 GMT+0800 (CST)
 ```
 
 ### Number utils
