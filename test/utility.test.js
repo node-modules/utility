@@ -226,10 +226,11 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       ts.should.be.a.number;
       ts.should.above(1378153366);
       String(ts).should.length(10);
-      utils.timestamp(1385091596).toString().should.equal('Fri Nov 22 2013 11:39:56 GMT+0800 (CST)');
-      utils.timestamp('1385091596').toString().should.equal('Fri Nov 22 2013 11:39:56 GMT+0800 (CST)');
-      utils.timestamp(1385091596000).toString().should.equal('Fri Nov 22 2013 11:39:56 GMT+0800 (CST)');
-      utils.timestamp('1385091596000').toString().should.equal('Fri Nov 22 2013 11:39:56 GMT+0800 (CST)');
+
+      utils.timestamp(1385091596).getTime().should.equal(1385091596000);
+      utils.timestamp('1385091596').getTime().should.equal(1385091596000);
+      utils.timestamp(1385091596000).getTime().should.equal(1385091596000);
+      utils.timestamp('1385091596000').getTime().should.equal(1385091596000);
     });
   });
 
