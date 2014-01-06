@@ -56,6 +56,12 @@ utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equa
 
 // get a function parameter's names
 utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
+
+// get a random string, default length is 16
+utils.randomString(32, '1234567890'); //18774480824014856763726145106142
+
+// check if object has this property
+utils.has({hello: 'world'}, 'hello'); //true
 ```
 
 ### Date utils
