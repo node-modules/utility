@@ -162,12 +162,13 @@ Fastest is utils.datestruct().YYYYMMDD
 $ git summary
 
  project  : utility
- repo age : 6 months
- active   : 8 days
- commits  : 23
- files    : 14
+ repo age : 1 year, 2 months
+ active   : 24 days
+ commits  : 61
+ files    : 17
  authors  :
-    23  fengmk2                 100.0%
+    58  fengmk2                 95.1%
+     3  dead-horse              4.9%
 ```
 
 ## License

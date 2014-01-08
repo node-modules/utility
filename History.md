@@ -1,4 +1,10 @@
 
+0.1.10 / 2014-01-08 
+==================
+
+  * add randomString() and has() (@dead-horse)
+  * install from cnpm
+
 0.1.9 / 2013-12-09 
 ==================
 

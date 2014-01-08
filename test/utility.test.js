@@ -406,10 +406,11 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
 
   describe('has()', function () {
     it('should has property ok', function () {
-      utils.has({a: 1}, 'a').should.be.ok;
-      utils.has({a: 1}, 'b').should.not.be.ok;
-      utils.has({a: 1}, 'constructor').should.not.be.ok;
-      utils.has({hasOwnProperty: 1, a: 1}, 'a').should.be.ok;
+      utils.has({a: 1}, 'a').should.equal(true);
+      utils.has({a: 1}, 'b').should.equal(false);
+      utils.has({a: 1}, 'constructor').should.equal(false);
+      utils.has({hasOwnProperty: 1, a: 1}, 'a').should.equal(true);
+      utils.has({hasOwnProperty: 1, a: 1}, 'hasOwnProperty').should.equal(true);
     });
   });
 });

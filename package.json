@@ -1,6 +1,6 @@
 {
   "name": "utility",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A collection of useful utilities.",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "address": ">=0.0.1"
   },
   "devDependencies": {
+    "contributors": "*",
     "should": "*",
     "mm": "*",
     "moment": "*",
