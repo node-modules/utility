@@ -391,4 +391,25 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       // address.should.equal('fe80::cabc:c8ff:feef:f996');
     });
   });
+
+  describe('randomString()', function () {
+    it('should get random string by default', function () {
+      var str = utils.randomString();
+      str.should.match(/^[0-9a-zA-Z]{16}$/);
+    });
+
+    it('should get number random string with a length of 16', function () {
+      var str = utils.randomString(16, '0123456789');
+      str.should.match(/^\d{16}$/);
+    });
+  });
+
+  describe('has()', function () {
+    it('should has property ok', function () {
+      utils.has({a: 1}, 'a').should.be.ok;
+      utils.has({a: 1}, 'b').should.not.be.ok;
+      utils.has({a: 1}, 'constructor').should.not.be.ok;
+      utils.has({hasOwnProperty: 1, a: 1}, 'a').should.be.ok;
+    });
+  });
 });
