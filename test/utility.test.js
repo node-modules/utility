@@ -19,7 +19,7 @@ var moment = require('moment');
 describe('utility.test.js', function () {
   describe('md5()', function () {
     it('should return md5 string', function () {
-      utils.md5('aer').should.equal('d194f6194fc458544482bbb8f0b74c6b');
+      utils.md5('mk2').should.equal('a683090976ec0f04dca81f6db9ca7484');
       utils.md5(new Buffer('')).should.equal('d41d8cd98f00b204e9800998ecf8427e');
       utils.md5(new Buffer('')).should.equal(utils.md5(''));
       utils.md5('苏千').should.equal('5f733c47c58a077d61257102b2d44481');
@@ -32,6 +32,26 @@ describe('utility.test.js', function () {
       utils.md5({foo: 'bar', bar: 'foo', v: [1, 2, 3]}).should.equal(utils.md5({v: [1, 2, 3], bar: 'foo', foo: 'bar'}));
       utils.md5({foo: 'bar', bar: 'foo', args: {age: 1, name: 'foo'}, args2: {haha:'哈哈', bi: 'boo'}, v: [1, 2, 3]})
         .should.equal(utils.md5({v: [1, 2, 3], bar: 'foo', foo: 'bar', args2: {bi: 'boo', haha:'哈哈'}, args: {name: 'foo', age: 1}}));
+    });
+  });
+
+  describe('sha1()', function () {
+    it('should return sha1 string', function () {
+      utils.sha1('mk2').should.equal('0b1765f5e21e9d8a6da828ee59ce159c7d1a733e');
+      utils.sha1(new Buffer('')).should.equal('da39a3ee5e6b4b0d3255bfef95601890afd80709');
+      utils.sha1(new Buffer('')).should.equal(utils.sha1(''));
+      utils.sha1('苏千').should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
+      utils.sha1('苏千', 'base64').should.equal('Ckr/a6tjS5wvmbcfJel2kh/N5aU=');
+      utils.sha1('123', 'base64').should.equal('QL0AFWMIX8NRZTKeof9cXsvbvu8=');
+      utils.sha1('', 'base64').should.equal('2jmj7l5rSw0yVb/vlWAYkK/YBwk=');
+
+      utils.sha1({foo: 'bar', bar: 'foo'}).should.equal('91bb58051ed80d841941730c1f1399c9e0d8701b');
+      utils.sha1({foo: 'bar', bar: 'foo'}).should.equal(utils.sha1({bar: 'foo', foo: 'bar'}));
+      utils.sha1({foo: 'bar', bar: 'foo', v: [1, 2, 3]}).should.equal(utils.sha1({v: [1, 2, 3], bar: 'foo', foo: 'bar'}));
+      utils.sha1({foo: 'bar', bar: 'foo', args: {age: 1, name: 'foo'},
+        args2: {haha:'哈哈', bi: 'boo'}, v: [1, 2, 3]})
+      .should.equal(utils.sha1({v: [1, 2, 3], bar: 'foo', foo: 'bar',
+        args2: {bi: 'boo', haha:'哈哈'}, args: {name: 'foo', age: 1}}));
     });
   });
 
@@ -53,8 +73,7 @@ describe('utility.test.js', function () {
       utils.getParamNames(function (key1) {}).should.eql(['key1']);
       utils.getParamNames(function (key1,key2) {}).should.eql(['key1', 'key2']);
       utils.getParamNames(function (key1, key2) {}).should.eql(['key1', 'key2']);
-      utils.getParamNames(function (   key1   ,   key2, key3
-       ,key4, callback) {
+      utils.getParamNames(function (key1, key2, key3, key4, callback) {
         console.log('foo');
       }).should.eql(['key1', 'key2', 'key3', 'key4', 'callback']);
 
@@ -409,8 +428,10 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       utils.has({a: 1}, 'a').should.equal(true);
       utils.has({a: 1}, 'b').should.equal(false);
       utils.has({a: 1}, 'constructor').should.equal(false);
-      utils.has({hasOwnProperty: 1, a: 1}, 'a').should.equal(true);
-      utils.has({hasOwnProperty: 1, a: 1}, 'hasOwnProperty').should.equal(true);
+      /* jshint -W001 */
+      // ignore hasOwnProperty jshint error
+      utils.has({'hasOwnProperty': 1, a: 1}, 'a').should.equal(true);
+      utils.has({'hasOwnProperty': 1, a: 1}, 'hasOwnProperty').should.equal(true);
     });
   });
 });
