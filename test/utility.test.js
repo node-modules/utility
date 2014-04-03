@@ -444,5 +444,13 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       map.a = 1;
       map.a.should.equal(1);
     });
+
+    it('should get map with obj ok', function () {
+      var map = utils.map({a: 1});
+      should.not.exist(map.constructor);
+      should.not.exist(map.__proto__);
+      should.not.exist(map.toString);
+      map.a.should.equal(1);
+    });
   });
 });
