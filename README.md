@@ -117,14 +117,13 @@ utils.setImmediate(function () {
 ### map
 
 ```js
-var map = utils.map();
+var map = utils.map({a: 1});
 
 // should.not.exist(map.constractor);
 // should.not.exist(map.__proto__);
 // should.not.exist(map.toString);
 // should not exist any property
 
-map.a = 1;
 console.log(map); // {a: 1}
 ```
 
