@@ -391,4 +391,15 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       // address.should.equal('fe80::cabc:c8ff:feef:f996');
     });
   });
+
+  describe('map()', function () {
+    it('should get a new map', function () {
+      var map = utils.map();
+      should.not.exist(map.constructor);
+      should.not.exist(map.__proto__);
+      should.not.exist(map.toString);
+      map.a = 1;
+      map.a.should.equal(1);
+    });
+  });
 });
