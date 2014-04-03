@@ -114,6 +114,20 @@ utils.setImmediate(function () {
 });
 ```
 
+### map
+
+```js
+var map = utils.map();
+
+// should.not.exist(map.constractor);
+// should.not.exist(map.__proto__);
+// should.not.exist(map.toString);
+// should not exist any property
+
+map.a = 1;
+console.log(map); // {a: 1}
+```
+
 ## benchmark
 
 * [jsperf: access log date format](http://jsperf.com/access-log-date-format)
