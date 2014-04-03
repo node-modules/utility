@@ -4,13 +4,13 @@ TIMEOUT = 1000
 MOCHA_OPTS =
 
 install:
-	@npm install --registry=http://registry.cnpmjs.org --cache=${HOME}/.npm/.cache/cnpm
+	@npm install --registry=http://registry.cnpmjs.org
 
 jshint: install
 	@./node_modules/.bin/jshint .
 
 test: install
-	@NODE_ENV=test ./node_modules/mocha/bin/mocha \
+	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--reporter $(REPORTER) \
 		--timeout $(TIMEOUT) \
 		$(MOCHA_OPTS) \
@@ -25,11 +25,12 @@ test-cov cov:
 test-coveralls:
 	@$(MAKE) test
 	@echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
-	@-$(MAKE) test MOCHA_OPTS='--require blanket' REPORTER=mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
+	@-$(MAKE) test MOCHA_OPTS='--require blanket' \
+		REPORTER=mocha-lcov-reporter | ./node_modules/.bin/coveralls
 
 test-all: jshint test test-cov
 
 contributors: install
-	@./node_modules/contributors/bin/contributors -f plain -o AUTHORS
+	@./node_modules/.bin/contributors -f plain -o AUTHORS
 
 .PHONY: test

@@ -116,6 +116,8 @@ utils.setImmediate(function () {
 
 ### map
 
+Create a `real` map in javascript.
+
 ```js
 var map = utils.map({a: 1});
 
@@ -188,7 +190,7 @@ $ git summary
 
 (The MIT License)
 
-Copyright (c) 2012 - 2013 fengmk2 &lt;fengmk2@gmail.com&gt;
+Copyright (c) 2012 - 2014 fengmk2 &lt;fengmk2@gmail.com&gt; and other contributors
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

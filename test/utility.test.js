@@ -434,7 +434,6 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       utils.has({'hasOwnProperty': 1, a: 1}, 'hasOwnProperty').should.equal(true);
     });
   });
-
   describe('map()', function () {
     it('should get a new map', function () {
       var map = utils.map();
