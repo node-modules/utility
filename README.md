@@ -1,9 +1,13 @@
-utility [![Build Status](https://secure.travis-ci.org/fengmk2/utility.png)](http://travis-ci.org/fengmk2/utility) [![Coverage Status](https://coveralls.io/repos/fengmk2/utility/badge.png)](https://coveralls.io/r/fengmk2/utility)
+utility
 =======
+
+[![Build Status](https://secure.travis-ci.org/node-modules/utility.png)](http://travis-ci.org/node-modules/utility)
+
+[![Coverage Status](https://coveralls.io/repos/node-modules/utility/badge.png)](https://coveralls.io/r/node-modules/utility)
 
 [![NPM](https://nodei.co/npm/utility.png?downloads=true&stars=true)](https://nodei.co/npm/utility)
 
-![logo](https://raw.github.com/fengmk2/utility/master/logo.png)
+![logo](https://raw.github.com/node-modules/utility/master/logo.png)
 
 A collection of useful utilities.
 

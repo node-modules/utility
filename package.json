@@ -1,6 +1,6 @@
 {
   "name": "utility",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "A collection of useful utilities.",
   "main": "index.js",
   "scripts": {
@@ -26,11 +26,11 @@
     "benchmark": "*",
     "mocha": "*"
   },
-  "homepage": "https://github.com/fengmk2/utility",
+  "homepage": "https://github.com/node-modules/utility",
   "repository": {
     "type": "git",
-    "url": "git://github.com/fengmk2/utility.git",
-    "web": "https://github.com/fengmk2/utility"
+    "url": "git://github.com/node-modules/utility.git",
+    "web": "https://github.com/node-modules/utility"
   },
   "keywords": [
     "utility"
