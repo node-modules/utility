@@ -149,6 +149,8 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
   describe('logDate()', function () {
     it('should return an log format date string', function () {
       utils.logDate().should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+      utils.logDate(',').should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
+      utils.logDate(null, ',').should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
       utils.logDate(new Date(1372062988014)).should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
       for (var m = 1; m <= 12; m++) {
         for (var d = 1; d <= 28; d++) {
@@ -157,6 +159,7 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
             var ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
             var n = new Date(ds);
             utils.logDate(n).should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+            utils.logDate(n, ',').should.match(/^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
           }
         }
       }

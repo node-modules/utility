@@ -74,6 +74,7 @@ utils.accessLogDate(); // '16/Apr/2013:16:40:09 +0800'
 // 'YYYY-MM-DD HH:mm:ss.SSS' format date string
 utils.logDate(); // '2013-04-17 14:43:02.674'
 utils.YYYYMMDDHHmmssSSS(); // '2013-04-17 14:43:02.674'
+utils.YYYYMMDDHHmmssSSS(','); // '2013-04-17 14:43:02,674'
 
 // 'YYYY-MM-DD HH:mm:ss' format date string
 utils.YYYYMMDDHHmmss(); // '2013-04-17 14:43:02'
