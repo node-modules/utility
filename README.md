@@ -31,6 +31,15 @@ utils.md5('苏千', 'base64'); // 'X3M8R8WKB31hJXECstREgQ=='
 // Object md5 hash
 utils.md5({foo: 'bar', bar: 'foo'}).should.equal(utils.md5({bar: 'foo', foo: 'bar'}));
 
+// sha1 hash
+utils.sha1('@Python发烧友'); // 'ed6a2381ad20f2cf7875fc04d52257380015b574'
+utils.sha1(new Buffer('')); // 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
+// sha1 hase output base64
+utils.sha1('苏千', 'base64'); // 'Ckr/a6tjS5wvmbcfJel2kh/N5aU='
+
+// Object sha1 hash
+utils.sha1({foo: 'bar', bar: 'foo'}).should.equal(utils.sha1({bar: 'foo', foo: 'bar'}));
+
 // hmac
 // hmac-sha1 with base64 output encoding
 utils.hmac('sha1', 'I am a key', 'hello world'); // 'pO6J0LKDxRRkvSECSEdxwKx84L0='
