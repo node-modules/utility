@@ -24,6 +24,7 @@
     "coveralls": "*",
     "mocha-lcov-reporter": "*",
     "benchmark": "*",
+    "beautify-benchmark": "*",
     "mocha": "*"
   },
   "homepage": "https://github.com/node-modules/utility",
