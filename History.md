@@ -1,4 +1,12 @@
 
+0.1.14 / 2014-06-25
+==================
+
+ * support `YYYYMMDD(d, sep)`
+ * add YYYYMMDDHHmmss benchmark
+ * add sha1 to readme
+ * add random string benchmark
+
 0.1.13 / 2014-04-24
 ==================
 
