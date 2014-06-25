@@ -198,6 +198,21 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
         }
       }
     });
+
+    it('should return an "YYYYMMDD" format date string', function () {
+      utils.YYYYMMDD('').should.match(/^\d{4}\d{2}\d{2}$/);
+      utils.YYYYMMDD(new Date(1372062988014), '').should.match(/^\d{4}\d{2}\d{2}$/);
+      for (var m = 1; m <= 12; m++) {
+        for (var d = 1; d <= 28; d++) {
+          for (var h = 0; h < 24; h++) {
+            var ss = parseInt(Math.random() * 60, 10);
+            var ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            var n = new Date(ds);
+            utils.YYYYMMDD(n, '').should.match(/^\d{4}\d{2}\d{2}$/);
+          }
+        }
+      }
+    });
   });
 
   describe('accessLogDate()', function () {

@@ -94,6 +94,8 @@ utils.YYYYMMDDHHmmss(); // '2013-04-17 14:43:02'
 
 // 'YYYY-MM-DD' format date string
 utils.YYYYMMDD(); // '2013-04-17'
+utils.YYYYMMDD(''); // '20130417'
+utils.YYYYMMDD(','); // '2013,04,17'
 
 // datestruct
 utils.datestruct(); // { YYYYMMDD: 20130416, H: 8 }
