@@ -34,7 +34,7 @@ contributors: install
 	@./node_modules/.bin/contributors -f plain -o AUTHORS
 
 autod: install
-	@./node_modules/.bin/autod -w --prefix "~"
+	@./node_modules/.bin/autod -w --prefix "~" -e benchmark
 	@$(MAKE) install
 
 .PHONY: test

@@ -11,10 +11,7 @@
     "travis-cov": { "threshold": 99 }
   },
   "dependencies": {
-    "address": "~0.0.3",
-    "beautify-benchmark": "~0.2.4",
-    "benchmark": "~1.0.0",
-    "moment": "~2.7.0"
+    "address": "~0.0.3"
   },
   "devDependencies": {
     "autod": "*",
@@ -27,7 +24,7 @@
     "mm": "~0.2.1",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
-    "moment": "*",
+    "moment": "~2.7.0",
     "should": "~4.0.4",
     "travis-cov": "*"
   },
