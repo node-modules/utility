@@ -91,6 +91,7 @@ utils.YYYYMMDDHHmmssSSS(','); // '2013-04-17 14:43:02,674'
 
 // 'YYYY-MM-DD HH:mm:ss' format date string
 utils.YYYYMMDDHHmmss(); // '2013-04-17 14:43:02'
+utils.YYYYMMDDHHmmss(new Date(), {dateSep: '.'}); // '2013.04.17 14:43:02'
 
 // 'YYYY-MM-DD' format date string
 utils.YYYYMMDD(); // '2013-04-17'

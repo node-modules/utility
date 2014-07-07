@@ -11,21 +11,25 @@
     "travis-cov": { "threshold": 99 }
   },
   "dependencies": {
-    "address": ">=0.0.1"
+    "address": "~0.0.3",
+    "beautify-benchmark": "~0.2.4",
+    "benchmark": "~1.0.0",
+    "moment": "~2.7.0"
   },
   "devDependencies": {
-    "jshint": "*",
-    "contributors": "*",
-    "should": "*",
-    "mm": "*",
-    "moment": "*",
-    "blanket": "*",
-    "travis-cov": "*",
-    "coveralls": "*",
-    "mocha-lcov-reporter": "*",
-    "benchmark": "*",
+    "autod": "*",
     "beautify-benchmark": "*",
-    "mocha": "*"
+    "benchmark": "*",
+    "blanket": "*",
+    "contributors": "*",
+    "coveralls": "*",
+    "jshint": "*",
+    "mm": "~0.2.1",
+    "mocha": "*",
+    "mocha-lcov-reporter": "*",
+    "moment": "*",
+    "should": "~4.0.4",
+    "travis-cov": "*"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {

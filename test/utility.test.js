@@ -108,13 +108,13 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       utils.base64decode(expect).should.equal(s);
 
       utils.base64decode(utils.base64encode(s)).should.equal(s);
-      utils.base64encode(s).should.include('+');
-      utils.base64encode(s).should.include('/');
+      utils.base64encode(s).should.containEql('+');
+      utils.base64encode(s).should.containEql('/');
 
       // urlsafe
       utils.base64decode(utils.base64encode(s, true), true).should.equal(s);
-      utils.base64encode(s, true).should.not.include('+');
-      utils.base64encode(s, true).should.not.include('/');
+      utils.base64encode(s, true).should.not.containEql('+');
+      utils.base64encode(s, true).should.not.containEql('/');
     });
   });
 
@@ -180,6 +180,21 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
           }
         }
       }
+    });
+
+    it('should work with custom sep', function () {
+      var date = new Date('2014-02-14 01:02:03');
+      utils.YYYYMMDDHHmmss(date, {}).should.equal('2014-02-14 01:02:03');
+      utils.YYYYMMDDHHmmss(date, {
+        dateSep: '.'
+      }).should.equal('2014.02.14 01:02:03');
+      utils.YYYYMMDDHHmmss(date, {
+        dateSep: '.',
+        timeSep: ';'
+      }).should.equal('2014.02.14 01;02;03');
+      utils.YYYYMMDDHHmmss(date, {
+        timeSep: ';'
+      }).should.equal('2014-02-14 01;02;03');
     });
   });
 
