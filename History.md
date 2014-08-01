@@ -1,4 +1,9 @@
 
+1.0.0 / 2014-08-01
+==================
+
+ * remove address methods, please use `address` module
+
 0.1.16 / 2014-07-07
 ==================
 
