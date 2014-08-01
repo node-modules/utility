@@ -11,22 +11,20 @@
     "travis-cov": { "threshold": 99 }
   },
   "dependencies": {
-    "address": "~0.0.3"
   },
   "devDependencies": {
     "autod": "*",
     "beautify-benchmark": "*",
     "benchmark": "*",
-    "blanket": "*",
+    "istanbul": "*",
     "contributors": "*",
-    "coveralls": "*",
     "jshint": "*",
     "mm": "~0.2.1",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "moment": "~2.7.0",
     "should": "~4.0.4",
-    "travis-cov": "*"
+    "cov": "*"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {
@@ -38,7 +36,7 @@
     "utility"
   ],
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
   "license": "MIT"

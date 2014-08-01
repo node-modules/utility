@@ -1,11 +1,22 @@
 utility
 =======
 
-[![Build Status](https://secure.travis-ci.org/node-modules/utility.png)](http://travis-ci.org/node-modules/utility)
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![Gittip][gittip-image]][gittip-url]
+[![David deps][david-image]][david-url]
 
-[![Coverage Status](https://coveralls.io/repos/node-modules/utility/badge.png)](https://coveralls.io/r/node-modules/utility)
-
-[![NPM](https://nodei.co/npm/utility.png?downloads=true&stars=true)](https://nodei.co/npm/utility)
+[npm-image]: https://img.shields.io/npm/v/utility.svg?style=flat
+[npm-url]: https://npmjs.org/package/utility
+[travis-image]: https://img.shields.io/travis/node-modules/utility.svg?style=flat
+[travis-url]: https://travis-ci.org/node-modules/utility
+[coveralls-image]: https://img.shields.io/coveralls/node-modules/utility.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/node-modules/utility?branch=master
+[gittip-image]: https://img.shields.io/gittip/fengmk2.svg?style=flat
+[gittip-url]: https://www.gittip.com/fengmk2/
+[david-image]: https://img.shields.io/david/node-modules/utility.svg?style=flat
+[david-url]: https://david-dm.org/node-modules/utility
 
 ![logo](https://raw.github.com/node-modules/utility/master/logo.png)
 
@@ -14,7 +25,7 @@ A collection of useful utilities.
 ## Install
 
 ```bash
-$ npm install utility
+$ npm install utility --save
 ```
 
 ## Usage
@@ -65,7 +76,7 @@ utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
 utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equal('你好, nodejs');
 
 // get first ip
-[WARNNING] getIP() remove, PLEASE use `https://github.com/fengmk2/address` module instead
+[WARNNING] getIP() remove, PLEASE use `https://github.com/node-modules/address` module instead
 
 // get a function parameter's names
 utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
@@ -186,21 +197,6 @@ utils.datestruct().YYYYMMDD x 2,317,461 ops/sec ±1.38% (95 runs sampled)
 new Date().toString() x 816,731 ops/sec ±3.46% (93 runs sampled)
 Fastest is utils.datestruct().YYYYMMDD
 
-```
-
-## Authors
-
-```bash
-$ git summary
-
- project  : utility
- repo age : 1 year, 2 months
- active   : 24 days
- commits  : 61
- files    : 17
- authors  :
-    58  fengmk2                 95.1%
-     3  dead-horse              4.9%
 ```
 
 ## License
