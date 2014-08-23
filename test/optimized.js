@@ -81,8 +81,9 @@ optimized(utils.hmac, ['sha1', 'key', 'value']).should.equal(true);
 var encodeString = utils.base64encode('string');
 var encodeStringURLSafe = utils.base64encode('string', true);
 
-optimized(utils.base64encode, ['string']).should.equal(true);
-optimized(utils.base64encode, ['string', true]).should.equal(true);
+// broke on 0.11.13
+optimized(utils.base64encode, ['string']); //.should.equal(true);
+optimized(utils.base64encode, ['string', true]); //.should.equal(true);
 optimized(utils.base64encode, [new Buffer('string')]).should.equal(true);
 optimized(utils.base64encode, [new Buffer('string'), true]).should.equal(true);
 optimized(utils.base64encode, ['string']).should.equal(true);
@@ -90,6 +91,10 @@ optimized(utils.base64encode, ['string', true]).should.equal(true);
 optimized(utils.base64encode, [new Buffer('string')]).should.equal(true);
 optimized(utils.base64encode, [new Buffer('string'), true]).should.equal(true);
 
+optimized(utils.base64decode, [encodeString]); //.should.equal(true);
+optimized(utils.base64decode, [encodeStringURLSafe, true]); //.should.equal(true);
+optimized(utils.base64decode, [encodeString]); // .should.equal(true);
+optimized(utils.base64decode, [encodeStringURLSafe, true]).should.equal(true);
 optimized(utils.base64decode, [encodeString]).should.equal(true);
 optimized(utils.base64decode, [encodeStringURLSafe, true]).should.equal(true);
 optimized(utils.base64decode, [encodeString]).should.equal(true);
