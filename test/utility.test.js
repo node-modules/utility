@@ -378,6 +378,7 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       utils.has({'hasOwnProperty': 1, a: 1}, 'hasOwnProperty').should.equal(true);
     });
   });
+
   describe('map()', function () {
     it('should get a new map', function () {
       var map = utils.map();
@@ -394,6 +395,25 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       should.not.exist(map.__proto__);
       should.not.exist(map.toString);
       map.a.should.equal(1);
+    });
+  });
+
+  describe('split()', function () {
+    it('should work with default sep', function () {
+      utils.split('haha, ok  ,,,,,xxx xxx ,aaa')
+        .should.eql(['haha', 'ok', 'xxx xxx', 'aaa']);
+    });
+
+    it('should work with sep=|', function () {
+      utils.split('haha|ok |xxx xxx|,aaa', '|')
+        .should.eql(['haha', 'ok', 'xxx xxx', ',aaa']);
+    });
+
+    it('should return []', function () {
+      utils.split(',,,,').should.eql([]);
+      utils.split().should.eql([]);
+      utils.split(null).should.eql([]);
+      utils.split('').should.eql([]);
     });
   });
 });
