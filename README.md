@@ -170,6 +170,17 @@ console.log(map); // {a: 1}
 utils.split('foo,bar,,,'); // ['foo', 'bar']
 ```
 
+### Try
+
+```js
+var res = utils.try(function () {
+  return JSON.parse(str);
+});
+
+// {error: undefined, value: {foo: 'bar'}}
+// {error: Error, value: undefined}
+```
+
 ## benchmark
 
 * [jsperf: access log date format](http://jsperf.com/access-log-date-format)
