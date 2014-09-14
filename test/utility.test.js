@@ -416,4 +416,34 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       utils.split('').should.eql([]);
     });
   });
+
+  describe('try()', function () {
+    it('should work when no error', function () {
+      var str = '{"foo": "bar"}';
+      var res = utils.try(function () {
+        return JSON.parse(str);
+      });
+
+      res.should.eql({error: undefined, value: {foo: 'bar'}});
+    });
+
+    it('should work when throw err with error', function () {
+      var str = '{"foo": "bar}';
+      var res = utils.try(function () {
+        return JSON.parse(str);
+      });
+      res.error.should.be.Error;
+      should.not.exist(res.value);
+    });
+
+
+    it('should work when throw err with string', function () {
+      var res = utils.try(function () {
+        throw 'string error';
+      });
+      res.error.should.be.Error;
+      res.error.message.should.equal('string error');
+      should.not.exist(res.value);
+    });
+  });
 });
