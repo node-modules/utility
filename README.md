@@ -5,20 +5,17 @@ utility
 [![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 [![Gittip][gittip-image]][gittip-url]
-[![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/utility.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/utility.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/utility
-[travis-image]: https://img.shields.io/travis/node-modules/utility.svg?style=flat
+[travis-image]: https://img.shields.io/travis/node-modules/utility.svg?style=flat-square
 [travis-url]: https://travis-ci.org/node-modules/utility
-[coveralls-image]: https://img.shields.io/coveralls/node-modules/utility.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/node-modules/utility.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/node-modules/utility?branch=master
-[gittip-image]: https://img.shields.io/gittip/fengmk2.svg?style=flat
+[gittip-image]: https://img.shields.io/gittip/fengmk2.svg?style=flat-square
 [gittip-url]: https://www.gittip.com/fengmk2/
-[david-image]: https://img.shields.io/david/node-modules/utility.svg?style=flat
-[david-url]: https://david-dm.org/node-modules/utility
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 [download-image]: https://img.shields.io/npm/dm/utility.svg?style=flat-square
