@@ -14,7 +14,7 @@
  * Module dependencies.
  */
 
-var should = require('should');
+require('should');
 var optimized = require('optimized');
 var utils = require('../');
 

@@ -2,5 +2,5 @@ language: node_js
 node_js:
   - '0.10'
   - '0.11'
-script: "npm run test-travis && npm run test-optimized"
+script: "npm run jshint && npm run test-travis && npm run test-optimized"
 after_script: "npm install coveralls@2 && cat ./coverage/lcov.info | coveralls"
