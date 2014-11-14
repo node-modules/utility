@@ -26,5 +26,15 @@ describe('polyfill.test.js', function () {
       });
       count++;
     });
+
+    it('should pass arguments work', function (done) {
+      var count = 0;
+      utils.setImmediate(function (arg) {
+        count.should.equal(1);
+        arg.should.equal(2);
+        done();
+      }, 2);
+      count++;
+    });
   });
 });
