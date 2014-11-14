@@ -35,6 +35,6 @@ describe('polyfill.test.js', function () {
         done();
       }, 2);
       count++;
-    })
+    });
   });
 });
