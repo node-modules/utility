@@ -1,8 +1,0 @@
-test/
-Makefile
-.travis.yml
-logo.png
-.jshint*
-coverage/
-benchmark/
-Histroy.md
