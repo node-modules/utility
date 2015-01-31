@@ -56,4 +56,26 @@ describe('string.test.js', function () {
       utils.splitAlwaysOptimized('', null, null).should.eql([]);
     });
   });
+
+  describe('replace()', function () {
+    it('should replace work with special chars', function () {
+      utils.replace('{ <body> }', '<body>', 'this is body $& $` $\' $$').should.equal('{ this is body $& $` $\' $$ }');
+      utils.replace('{ <body> }', '', 'this is body $& $` $\' $$').should.equal('this is body $& $` $\' $${ <body> }');
+      utils.replace('{ <body> }', 'ddd', 'this is body $& $` $\' $$').should.equal('{ <body> }');
+    });
+
+    it('should support function', function () {
+      utils.replace('{ <body> }', '<body>', function () {
+        return 'this is body $& $` $\' $$';
+      }).should.equal('{ this is body $& $` $\' $$ }');
+    });
+
+    it('should support regex', function () {
+      utils.replace('{ <body> }', /<body>/, function () {
+        return 'this is body $& $` $\' $$';
+      }).should.equal('{ this is body $& $` $\' $$ }');
+
+      utils.replace('{ <body> }', /<body>/, 'this is body $& $` $\' $$').should.equal('{ this is body $& $` $\' $$ }');
+    });
+  });
 });
