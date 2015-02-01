@@ -39,11 +39,11 @@
     "web": "https://github.com/node-modules/utility"
   },
   "keywords": [
-    "utility"
+    "utility", "util", "utils"
   ],
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)",
+  "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)",
   "license": "MIT"
 }

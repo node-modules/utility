@@ -5,6 +5,7 @@ utility
 [![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 [![Gittip][gittip-image]][gittip-url]
+[![io.js version][iojs-image]][iojs-url]
 [![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
 
@@ -17,7 +18,9 @@ utility
 [gittip-image]: https://img.shields.io/gittip/fengmk2.svg?style=flat-square
 [gittip-url]: https://www.gittip.com/fengmk2/
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
-[node-url]: http://nodejs.org/download/
+[node-url]: https://nodejs.org/download/
+[iojs-image]: https://img.shields.io/badge/io.js-%3E=_1.0-yellow.svg?style=flat-square
+[iojs-url]: https://iojs.org/
 [download-image]: https://img.shields.io/npm/dm/utility.svg?style=flat-square
 [download-url]: https://npmjs.org/package/utility
 
