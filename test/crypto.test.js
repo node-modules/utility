@@ -68,4 +68,14 @@ describe('crypto.test.js', function () {
       utils.hmac('sha1', 'I am a key', '中文，你好').should.equal(utils.hmac('sha1', 'I am a key', new Buffer('中文，你好')));
     });
   });
+
+  describe('base64encode(), base64decode()', function () {
+    it('should encode and decode', function () {
+      var text = utils.base64encode('哈哈中文 ok', true);
+      var buf = utils.base64decode(text, true, 'buffer');
+      buf.should.be.a.Buffer;
+      buf.toString().should.equal(utils.base64decode(text, true));
+      buf.toString().should.equal(utils.base64decode(text, true, 'utf8'));
+    });
+  });
 });

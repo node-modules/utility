@@ -36,7 +36,7 @@ describe('function.test.js', function () {
       utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
       utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
       utils.getParamNames(utils.base64encode).should.eql(['s', 'urlsafe']);
-      utils.getParamNames(utils.base64decode).should.eql(['encode', 'urlsafe']);
+      utils.getParamNames(utils.base64decode).should.eql(['encodeStr', 'urlsafe', 'encoding']);
       utils.getParamNames(utils.escape).should.eql(['html']);
     });
   });
