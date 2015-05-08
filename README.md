@@ -24,8 +24,6 @@ utility
 [download-image]: https://img.shields.io/npm/dm/utility.svg?style=flat-square
 [download-url]: https://npmjs.org/package/utility
 
-![logo](https://raw.github.com/node-modules/utility/master/logo.png)
-
 A collection of useful utilities.
 
 ## Install
@@ -53,6 +51,9 @@ utils.sha1('@Python发烧友'); // 'ed6a2381ad20f2cf7875fc04d52257380015b574'
 utils.sha1(new Buffer('')); // 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
 // sha1 hase output base64
 utils.sha1('苏千', 'base64'); // 'Ckr/a6tjS5wvmbcfJel2kh/N5aU='
+
+// sha256 hash
+utils.sha256('@Python发烧友'); // '80ddd84d1453c994af764bf558c4b96adaced9dd8d7d2194705fe58e1b3162df'
 
 // Object sha1 hash
 utils.sha1({foo: 'bar', bar: 'foo'}).should.equal(utils.sha1({bar: 'foo', foo: 'bar'}));
@@ -223,9 +224,8 @@ parseInt(moment().format('YYYYMMDD'), 10) x 129,604 ops/sec ±0.46% (101 runs sa
 utils.datestruct().YYYYMMDD x 2,317,461 ops/sec ±1.38% (95 runs sampled)
 new Date().toString() x 816,731 ops/sec ±3.46% (93 runs sampled)
 Fastest is utils.datestruct().YYYYMMDD
-
 ```
 
 ## License
 
-MIT
+[MIT](LICENSE.txt)

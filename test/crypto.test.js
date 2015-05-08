@@ -55,6 +55,18 @@ describe('crypto.test.js', function () {
     });
   });
 
+  describe('sha256()', function () {
+    it('should return sha256 hex string', function () {
+      utils.sha256('').should.equal('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+      utils.sha256('123').should.equal('a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+      utils.sha256('哈哈中文').should.equal('0f9d15321510b57fc25b712de846c59cc541de89d47fcd06f6bfe1cd5ff2d7e3');
+      utils.sha256(new Buffer('')).should.equal('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855');
+      utils.sha256(new Buffer('123')).should.equal('a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
+      utils.sha256(new Buffer('哈哈中文')).should.equal('0f9d15321510b57fc25b712de846c59cc541de89d47fcd06f6bfe1cd5ff2d7e3');
+      utils.sha256(new Buffer('@Python发烧友')).should.equal('80ddd84d1453c994af764bf558c4b96adaced9dd8d7d2194705fe58e1b3162df');
+    });
+  });
+
   describe('hmac()', function () {
     it('should return hmac-sha1', function () {
       // $ echo -n "hello world" | openssl dgst -binary -sha1 -hmac "I am a key" | openssl base64
