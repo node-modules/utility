@@ -185,6 +185,13 @@ var res = utils.try(function () {
 // {error: Error, value: undefined}
 ```
 
+### JSON
+
+```
+var obj = utils.strictJSONparse('"hello"');
+// will throw when JSON string is not object
+```
+
 ## benchmark
 
 * [jsperf: access log date format](http://jsperf.com/access-log-date-format)
