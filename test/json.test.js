@@ -22,6 +22,13 @@ describe('json.test.js', function () {
       obj.should.eql({foo: 'bar'});
     });
 
+
+    it('should parse error when invalid json', function () {
+      (function () {
+        utils.strictJSONParse('[]');
+      }).should.throw();
+    });
+
     it('should parse error when invalid json', function () {
       (function () {
         utils.strictJSONParse('{');
