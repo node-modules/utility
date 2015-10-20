@@ -1,4 +1,11 @@
 
+1.5.0 / 2015-10-20
+==================
+
+ * test(date): fix timezone on test assert
+ * feat(date): make YYYYMMDDHHmmss() support param not Date
+ * test: use codecov.io
+
 1.4.0 / 2015-05-22
 ==================
 
