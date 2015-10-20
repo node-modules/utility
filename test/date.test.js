@@ -48,6 +48,17 @@ describe('date.test.js', function () {
         timeSep: ';'
       }).should.equal('2014-02-14 01;02;03');
     });
+
+    it('should work with time string', function () {
+      utils.YYYYMMDDHHmmss('2014-02-14 01:02:03', {
+        dateSep: '.'
+      }).should.equal('2014.02.14 01:02:03');
+    });
+
+    it('should work with timestamp', function () {
+      // timezone GMT+0800
+      utils.YYYYMMDDHHmmss(1428894236645, {}).should.match(/^2015\-04\-13 (11|03):03:56$/);
+    });
   });
 
   describe('YYYYMMDD()', function () {
