@@ -56,7 +56,8 @@ describe('date.test.js', function () {
     });
 
     it('should work with timestamp', function () {
-      utils.YYYYMMDDHHmmss(1428894236645, {}).should.equal('2015-04-13 11:03:56');
+      // timezone GMT+0800
+      utils.YYYYMMDDHHmmss(1428894236645, {}).should.match(/^2015\-04\-13 (11|03):03:56$/);
     });
   });
 
