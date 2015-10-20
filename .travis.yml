@@ -1,9 +1,12 @@
+sudo: false
 language: node_js
 node_js:
   - '0.10'
-  - '0.11'
   - '0.12'
-  - 'iojs-1'
-  - 'iojs-2'
-script: "npm run jshint && npm run test-travis && npm run test-optimized"
-after_script: "npm install coveralls@2 && cat ./coverage/lcov.info | coveralls"
+  - '1'
+  - '2'
+  - '4'
+script:
+  - "npm run jshint && npm run test-cov"
+after_script:
+  - "npm i codecov.io && cat ./coverage/coverage.json | ./node_modules/codecov.io/bin/codecov.io.js"
