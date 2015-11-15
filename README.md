@@ -28,30 +28,37 @@ $ npm install utility
 ```js
 var utils = require('utility');
 
-// md5 hash
-utils.md5('@Python发烧友'); // '1369e7668bc600f0d90c06f5e395d7a9'
-utils.md5(new Buffer('')); // 'd41d8cd98f00b204e9800998ecf8427e'
-// md5 hase output base64
+### md5
+
+utils.md5('苏千').should.equal('5f733c47c58a077d61257102b2d44481');
+utils.md5(new Buffer('苏千')).should.equal('5f733c47c58a077d61257102b2d44481');
+// md5 base64 format
 utils.md5('苏千', 'base64'); // 'X3M8R8WKB31hJXECstREgQ=='
 
-// Object md5 hash
+// Object md5 hash. Sorted by key, and JSON.stringify. See source code for detail
 utils.md5({foo: 'bar', bar: 'foo'}).should.equal(utils.md5({bar: 'foo', foo: 'bar'}));
 
-// sha1 hash
-utils.sha1('@Python发烧友'); // 'ed6a2381ad20f2cf7875fc04d52257380015b574'
-utils.sha1(new Buffer('')); // 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
-// sha1 hase output base64
+### sha1
+
+utils.sha1('苏千').should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
+utils.sha1(new Buffer('苏千')).should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
+// sha1 base64 format
 utils.sha1('苏千', 'base64'); // 'Ckr/a6tjS5wvmbcfJel2kh/N5aU='
 
-// sha256 hash
-utils.sha256('@Python发烧友'); // '80ddd84d1453c994af764bf558c4b96adaced9dd8d7d2194705fe58e1b3162df'
-
-// Object sha1 hash
+// Object sha1 hash. Sorted by key, and JSON.stringify. See source code for detail
 utils.sha1({foo: 'bar', bar: 'foo'}).should.equal(utils.sha1({bar: 'foo', foo: 'bar'}));
 
-// hmac
+### sha256
+
+utils.sha256(new Buffer('苏千')).should.equal('75dd03e3fcdbba7d5bec07900bae740cc8e361d77e7df8949de421d3df5d3635');
+
+### hmac
+
 // hmac-sha1 with base64 output encoding
 utils.hmac('sha1', 'I am a key', 'hello world'); // 'pO6J0LKDxRRkvSECSEdxwKx84L0='
+
+
+### decode and encode
 
 // base64 encode
 utils.base64encode('你好￥'); // '5L2g5aW977+l'
@@ -61,17 +68,14 @@ utils.base64decode('5L2g5aW977+l') // '你好￥'
 utils.base64encode('你好￥', true); // '5L2g5aW977-l'
 utils.base64decode('5L2g5aW977-l', true); // '你好￥'
 
-// empty function
-process.nextTick(utils.noop);
-function foo(callback) {
-  callback = callback || utils.noop;
-}
-
 // html escape
 utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
 
 // Safe encodeURIComponent and decodeURIComponent
 utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equal('你好, nodejs');
+
+
+### others 
 
 // get first ip
 [WARNNING] getIP() remove, PLEASE use `https://github.com/node-modules/address` module instead
@@ -79,11 +83,15 @@ utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equa
 // get a function parameter's names
 utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
 
-// get a random string, default length is 16
+// get a random string, default length is 16. use `crypto.randomBytes`
 utils.randomString(32, '1234567890'); //18774480824014856763726145106142
 
 // check if object has this property
 utils.has({hello: 'world'}, 'hello'); //true
+
+// empty function
+utils.noop = function () {}
+}
 ```
 
 ### Date utils
@@ -144,6 +152,8 @@ utils.setImmediate(function () {
 
 Create a `real` map in javascript.
 
+use `Object.create(null)`
+
 ```js
 var map = utils.map({a: 1});
 
@@ -159,7 +169,7 @@ console.log(map); // {a: 1}
 
 ```js
 // split string by sep
-utils.split('foo,bar,,,'); // ['foo', 'bar']
+utils.split('foo,bar,,,', ','); // ['foo', 'bar']
 
 // replace string work with special chars which `String.prototype.replace` can't handle
 utils.replace('<body> hi', '<body>', '$& body'); // '$& body hi'

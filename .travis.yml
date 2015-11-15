@@ -6,6 +6,7 @@ node_js:
   - '1'
   - '2'
   - '4'
+  - 'stable'
 script:
   - "npm run jshint && npm run test-cov"
 after_script:
