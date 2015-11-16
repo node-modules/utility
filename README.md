@@ -27,9 +27,11 @@ $ npm install utility
 
 ```js
 var utils = require('utility');
+```
 
 ### md5
 
+```js
 utils.md5('苏千').should.equal('5f733c47c58a077d61257102b2d44481');
 utils.md5(new Buffer('苏千')).should.equal('5f733c47c58a077d61257102b2d44481');
 // md5 base64 format
@@ -37,9 +39,11 @@ utils.md5('苏千', 'base64'); // 'X3M8R8WKB31hJXECstREgQ=='
 
 // Object md5 hash. Sorted by key, and JSON.stringify. See source code for detail
 utils.md5({foo: 'bar', bar: 'foo'}).should.equal(utils.md5({bar: 'foo', foo: 'bar'}));
+```
 
 ### sha1
 
+```js
 utils.sha1('苏千').should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
 utils.sha1(new Buffer('苏千')).should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
 // sha1 base64 format
@@ -47,19 +51,24 @@ utils.sha1('苏千', 'base64'); // 'Ckr/a6tjS5wvmbcfJel2kh/N5aU='
 
 // Object sha1 hash. Sorted by key, and JSON.stringify. See source code for detail
 utils.sha1({foo: 'bar', bar: 'foo'}).should.equal(utils.sha1({bar: 'foo', foo: 'bar'}));
+```
 
 ### sha256
 
+```js
 utils.sha256(new Buffer('苏千')).should.equal('75dd03e3fcdbba7d5bec07900bae740cc8e361d77e7df8949de421d3df5d3635');
+```
 
 ### hmac
 
+```js
 // hmac-sha1 with base64 output encoding
 utils.hmac('sha1', 'I am a key', 'hello world'); // 'pO6J0LKDxRRkvSECSEdxwKx84L0='
-
+```
 
 ### decode and encode
 
+```js
 // base64 encode
 utils.base64encode('你好￥'); // '5L2g5aW977+l'
 utils.base64decode('5L2g5aW977+l') // '你好￥'
@@ -73,17 +82,17 @@ utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
 
 // Safe encodeURIComponent and decodeURIComponent
 utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equal('你好, nodejs');
+```
 
+### others
 
-### others 
+___[WARNNING] getIP() remove, PLEASE use `https://github.com/node-modules/address` module instead.___
 
-// get first ip
-[WARNNING] getIP() remove, PLEASE use `https://github.com/node-modules/address` module instead
-
+```js
 // get a function parameter's names
 utils.getParamNames(function (key1, key2) {}); // ['key1', 'key2']
 
-// get a random string, default length is 16. 
+// get a random string, default length is 16.
 utils.randomString(32, '1234567890'); //18774480824014856763726145106142
 
 // check if object has this property
