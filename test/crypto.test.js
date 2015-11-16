@@ -23,6 +23,7 @@ describe('crypto.test.js', function () {
       utils.md5(new Buffer('')).should.equal('d41d8cd98f00b204e9800998ecf8427e');
       utils.md5(new Buffer('')).should.equal(utils.md5(''));
       utils.md5('苏千').should.equal('5f733c47c58a077d61257102b2d44481');
+      utils.md5(new Buffer('苏千')).should.equal('5f733c47c58a077d61257102b2d44481');
       utils.md5('苏千', 'base64').should.equal('X3M8R8WKB31hJXECstREgQ==');
       utils.md5('123', 'base64').should.equal('ICy5YqxZB1uWSwcVLSNLcA==');
       utils.md5('', 'base64').should.equal('1B2M2Y8AsgTpgAmY7PhCfg==');
@@ -41,6 +42,7 @@ describe('crypto.test.js', function () {
       utils.sha1(new Buffer('')).should.equal('da39a3ee5e6b4b0d3255bfef95601890afd80709');
       utils.sha1(new Buffer('')).should.equal(utils.sha1(''));
       utils.sha1('苏千').should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
+      utils.sha1(new Buffer('苏千')).should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
       utils.sha1('苏千', 'base64').should.equal('Ckr/a6tjS5wvmbcfJel2kh/N5aU=');
       utils.sha1('123', 'base64').should.equal('QL0AFWMIX8NRZTKeof9cXsvbvu8=');
       utils.sha1('', 'base64').should.equal('2jmj7l5rSw0yVb/vlWAYkK/YBwk=');
@@ -64,6 +66,7 @@ describe('crypto.test.js', function () {
       utils.sha256(new Buffer('123')).should.equal('a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
       utils.sha256(new Buffer('哈哈中文')).should.equal('0f9d15321510b57fc25b712de846c59cc541de89d47fcd06f6bfe1cd5ff2d7e3');
       utils.sha256(new Buffer('@Python发烧友')).should.equal('80ddd84d1453c994af764bf558c4b96adaced9dd8d7d2194705fe58e1b3162df');
+      utils.sha256(new Buffer('苏千')).should.equal('75dd03e3fcdbba7d5bec07900bae740cc8e361d77e7df8949de421d3df5d3635');
     });
   });
 
