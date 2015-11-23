@@ -65,8 +65,16 @@ describe('optimize.test.js', function () {
       utils.dig({a: 1}, 'a').should.eql(1);
     });
 
-    it('should work with {a: 1} when access deep key', function () {
+    it('should work with {a: 1} when access no exist deep key', function () {
       should(utils.dig({a: 1}, 'a', 'b') === void 0).ok();
+    });
+
+    it('should work with {a: {b: {c: 1}}} when access deep key', function () {
+      should(utils.dig({a: {b: {c: 1}}}, 'a', 'b', 'c') === 1).ok();
+    });
+
+    it('should work with {a: {b: {c: 1}}} when access no exist deep key', function () {
+      should(utils.dig({a: {b: {c: 1}}}, 'a', 'b', 'z') === void 0).ok();
     });
   });
 });
