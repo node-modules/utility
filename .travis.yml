@@ -8,6 +8,6 @@ node_js:
   - '4'
   - 'stable'
 script:
-  - "npm run jshint && npm run test-cov"
+  - "npm run test-cov"
 after_script:
   - "npm i codecov.io && cat ./coverage/coverage.json | ./node_modules/codecov.io/bin/codecov.io.js"
