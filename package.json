@@ -14,7 +14,8 @@
     "test-optimized": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.js"
   },
   "dependencies": {
-    "copy-to": "~2.0.1"
+    "copy-to": "~2.0.1",
+    "escape-html": "~1.0.3"
   },
   "devDependencies": {
     "autod": "*",

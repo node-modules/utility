@@ -23,8 +23,8 @@ describe('web.test.js', function () {
       $ & &amp; && &&nbsp;\
       ';
       var safe = utils.escape(unsafe);
-      safe.should.equal('&lt;script src=&quot;foo.js&quot;&gt;&quot;&quot;&quot;&lt;/script&gt;\'&quot;&quot;&quot;\
-      $ &amp; &amp; &amp;&amp; &amp;&nbsp;\
+      safe.should.equal('&lt;script src=&quot;foo.js&quot;&gt;&quot;&quot;&quot;&lt;/script&gt;&#39;&quot;&quot;&quot;\
+      $ &amp; &amp;amp; &amp;&amp; &amp;&amp;nbsp;\
       ');
     });
   });
