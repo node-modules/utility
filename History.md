@@ -1,12 +1,13 @@
 
-1.6.0 / 2015-11-25
+1.6.0 / 2015-12-04
+==================
+
+ * refactor: use escape-html
+
+1.5.0 / 2015-11-25
 ==================
 
  * feat: utility.dig
-
-1.5.0 / 2015-10-20
-==================
-
  * test(date): fix timezone on test assert
  * feat(date): make YYYYMMDDHHmmss() support param not Date
  * test: use codecov.io
