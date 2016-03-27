@@ -1,10 +1,9 @@
-/**!
- * utility - test/json.test.js
- *
+/**
+ * Copyright(c) node-modules and other contributors.
  * MIT Licensed
  *
  * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
 'use strict';
@@ -13,31 +12,28 @@
  * Module dependencies.
  */
 
-var utils = require('../');
+import test from 'ava';
+import utils from '../';
 
-describe('json.test.js', function () {
-  describe('strictJSONParse()', function () {
-    it('should parse normal json ok', function () {
-      var obj = utils.strictJSONParse('{"foo": "bar"}');
-      obj.should.eql({foo: 'bar'});
-    });
+test('strictJSONParse() should parse normal json ok', t => {
+  const obj = utils.strictJSONParse('{"foo": "bar"}');
+  t.same(obj, {foo: 'bar'});
+});
 
-    it('should parse error when invalid json', function () {
-      (function () {
-        utils.strictJSONParse('{');
-      }).should.throw();
-    });
+test('strictJSONParse() should parse error when invalid json', t => {
+  t.throws(function () {
+    utils.strictJSONParse('{');
+  });
+});
 
-    it('should parse error when non-object json', function () {
-      (function () {
-        utils.strictJSONParse('"hello"');
-      }).should.throw();
-    });
+test('strictJSONParse() should parse error when non-object json', t => {
+  t.throws(function () {
+    utils.strictJSONParse('"hello"');
+  });
+});
 
-    it('should parse error when null json', function () {
-      (function () {
-        utils.strictJSONParse('null');
-      }).should.throw();
-    });
+test('strictJSONParse() should parse error when null json', t => {
+  t.throws(function () {
+    utils.strictJSONParse('null');
   });
 });

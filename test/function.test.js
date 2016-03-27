@@ -1,11 +1,9 @@
-/**!
- * utility - test/function.test.js
- *
- * Copyright(c) fengmk2 and other contributors.
+/**
+ * Copyright(c) node-modules and other contributors.
  * MIT Licensed
  *
  * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
 'use strict';
@@ -14,35 +12,29 @@
  * Module dependencies.
  */
 
-var utils = require('../');
-var should = require('should');
+import test from 'ava';
+import utils from '../';
 
-describe('function.test.js', function () {
-  describe('getParamNames()', function () {
-    it('should return parameter names', function () {
-      utils.getParamNames(function () {}).should.eql([]);
-      /* jshint ignore:start */
-      utils.getParamNames(function (key1) {}).should.eql(['key1']);
-      utils.getParamNames(function (key1,key2) {}).should.eql(['key1', 'key2']);
-      utils.getParamNames(function (key1, key2) {}).should.eql(['key1', 'key2']);
-      utils.getParamNames(function (key1, key2, key3, key4, callback) {
-        console.log('foo');
-      }).should.eql(['key1', 'key2', 'key3', 'key4', 'callback']);
-      /* jshint ignore:end */
+test('getParamNames() should return parameter names', t => {
+  t.same(utils.getParamNames(function () {}), []);
+  /* jshint ignore:start */
+  t.same(utils.getParamNames(function (key1) {}), ['key1']);
+  t.same(utils.getParamNames(function (key1,key2) {}), ['key1', 'key2']);
+  t.same(utils.getParamNames(function (key1, key2) {}), ['key1', 'key2']);
+  t.same(utils.getParamNames(function (key1, key2, key3, key4, callback) {
+    console.log('foo');
+  }), ['key1', 'key2', 'key3', 'key4', 'callback']);
+  /* jshint ignore:end */
 
-      utils.getParamNames(utils.getParamNames).should.eql(['func', 'cache']);
-      utils.getParamNames(utils.getParamNames, false).should.eql(['func', 'cache']);
-      utils.getParamNames(utils.md5).should.eql(['s', 'format']);
-      utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
-      utils.getParamNames(utils.hmac).should.eql(['algorithm', 'key', 'data', 'encoding']);
-      utils.getParamNames(utils.base64encode).should.eql(['s', 'urlsafe']);
-      utils.getParamNames(utils.base64decode).should.eql(['encodeStr', 'urlsafe', 'encoding']);
-    });
-  });
+  t.same(utils.getParamNames(utils.getParamNames), ['func', 'cache']);
+  t.same(utils.getParamNames(utils.getParamNames, false), ['func', 'cache']);
+  t.same(utils.getParamNames(utils.md5), ['s', 'format']);
+  t.same(utils.getParamNames(utils.hmac), ['algorithm', 'key', 'data', 'encoding']);
+  t.same(utils.getParamNames(utils.hmac), ['algorithm', 'key', 'data', 'encoding']);
+  t.same(utils.getParamNames(utils.base64encode), ['s', 'urlsafe']);
+  t.same(utils.getParamNames(utils.base64decode), ['encodeStr', 'urlsafe', 'encoding']);
+});
 
-  describe('noop()', function () {
-    it('should call noop return undefined', function () {
-      should.ok(utils.noop() === undefined);
-    });
-  });
+test('noop() should call noop return undefined', t => {
+  t.is(utils.noop(), undefined);
 });

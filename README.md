@@ -1,5 +1,4 @@
-utility
-=======
+# utility
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -26,7 +25,7 @@ $ npm install utility
 ## Usage
 
 ```js
-var utils = require('utility');
+const utils = require('utility');
 ```
 
 ### md5
@@ -164,7 +163,7 @@ Create a `real` map in javascript.
 use `Object.create(null)`
 
 ```js
-var map = utils.map({a: 1});
+const map = utils.map({a: 1});
 
 // should.not.exist(map.constractor);
 // should.not.exist(map.__proto__);
@@ -187,7 +186,7 @@ utils.replace('<body> hi', '<body>', '$& body'); // '$& body hi'
 ### Try
 
 ```js
-var res = utils.try(function () {
+const res = utils.try(function () {
   return JSON.parse(str);
 });
 
@@ -197,8 +196,8 @@ var res = utils.try(function () {
 
 ### JSON
 
-```
-var obj = utils.strictJSONparse('"hello"');
+```js
+const obj = utils.strictJSONparse('"hello"');
 // will throw when JSON string is not object
 ```
 
