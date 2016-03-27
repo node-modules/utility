@@ -1,11 +1,9 @@
-/**!
- * utility - test/polyfill.test.js
- *
- * Copyright(c) fengmk2 and other contributors.
+/**
+ * Copyright(c) node-modules and other contributors.
  * MIT Licensed
  *
  * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
 'use strict';
@@ -14,27 +12,24 @@
  * Module dependencies.
  */
 
-var utils = require('../');
+import test from 'ava';
+import utils from '../';
 
-describe('polyfill.test.js', function () {
-  describe('setImmediate()', function () {
-    it('should work', function (done) {
-      var count = 0;
-      utils.setImmediate(function () {
-        count.should.equal(1);
-        done();
-      });
-      count++;
-    });
-
-    it('should pass arguments work', function (done) {
-      var count = 0;
-      utils.setImmediate(function (arg) {
-        count.should.equal(1);
-        arg.should.equal(2);
-        done();
-      }, 2);
-      count++;
-    });
+test.cb('setImmediate() should work', t => {
+  let count = 0;
+  utils.setImmediate(function () {
+    t.is(count, 1);
+    t.end();
   });
+  count++;
+});
+
+test.cb('setImmediate() should pass arguments work', t => {
+  let count = 0;
+  utils.setImmediate(function (arg) {
+    t.is(count, 1);
+    t.is(arg, 2);
+    t.end();
+  }, 2);
+  count++;
 });

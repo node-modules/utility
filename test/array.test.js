@@ -1,11 +1,9 @@
-/**!
- * utility - test/array.test.js
- *
- * Copyright(c) fengmk2 and other contributors.
+/**
+ * Copyright(c) node-modules and other contributors.
  * MIT Licensed
  *
  * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
 'use strict';
@@ -14,20 +12,17 @@
  * Module dependencies.
  */
 
-var utils = require('../');
+import test from 'ava';
+import utils from '../';
 
-describe('array.test.js', function () {
-  describe('randomSlice()', function () {
-    it('should return sub items', function () {
-      var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
-      utils.randomSlice(arr).should.eql(arr);
-      utils.randomSlice(arr, 100000).should.eql(arr);
-      utils.randomSlice(arr, 14).should.eql(arr);
-      utils.randomSlice(arr, 13).should.eql(arr);
-      utils.randomSlice(arr, 1).should.length(1);
-      utils.randomSlice(arr, 12).should.length(12);
-      utils.randomSlice(arr, 0).should.eql(arr);
-      utils.randomSlice(arr, 6).should.length(6);
-    });
-  });
+test('randomSlice() should return sub items', t => {
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  t.same(utils.randomSlice(arr), arr);
+  t.same(utils.randomSlice(arr, 100000), arr);
+  t.same(utils.randomSlice(arr, 14), arr);
+  t.same(utils.randomSlice(arr, 13), arr);
+  t.is(utils.randomSlice(arr, 1).length, 1);
+  t.is(utils.randomSlice(arr, 12).length, 12);
+  t.same(utils.randomSlice(arr, 0), arr);
+  t.is(utils.randomSlice(arr, 6).length, 6);
 });

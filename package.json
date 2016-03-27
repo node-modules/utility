@@ -7,9 +7,10 @@
     "lib"
   ],
   "scripts": {
-    "test": "mocha -R spec -t 5000 test/*.test.js",
-    "test-cov": "istanbul cover node_modules/.bin/_mocha -- -t 5000 test/*.test.js",
-    "jshint": "jshint .",
+    "test": "ava test/**/*.test.js",
+    "test-cov": "nyc ava test/**/*.test.js && nyc report --reporter=lcov",
+    "lint": "jshint .",
+    "ci": "npm run lint && npm run test-cov",
     "autod": "autod -w --prefix '~' -e benchmark",
     "test-optimized": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.js"
   },
@@ -22,13 +23,11 @@
     "beautify-benchmark": "*",
     "benchmark": "1",
     "contributors": "*",
-    "istanbul": "*",
     "jshint": "*",
-    "mm": "1",
-    "mocha": "*",
     "moment": "2",
     "optimized": "1",
-    "should": "7"
+    "ava": "^0.13.0",
+    "nyc": "6"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {
@@ -37,8 +36,13 @@
     "web": "https://github.com/node-modules/utility"
   },
   "keywords": [
-    "utility", "util", "utils",
-    "sha256", "sha1", "hash", "hex"
+    "utility",
+    "util",
+    "utils",
+    "sha256",
+    "sha1",
+    "hash",
+    "hex"
   ],
   "engines": {
     "node": ">= 0.10.0"

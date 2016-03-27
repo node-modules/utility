@@ -1,6 +1,4 @@
-lib-cov
-coverage.html
-coverage/
+coverage
 *.seed
 *.log
 *.csv
@@ -17,3 +15,4 @@ node_modules
 npm-debug.log
 .DS_Store
 .idea
+.nyc_output
