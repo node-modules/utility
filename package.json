@@ -24,7 +24,6 @@
     "benchmark": "1",
     "contributors": "*",
     "jshint": "*",
-    "mm": "1",
     "moment": "2",
     "optimized": "1",
     "ava": "^0.13.0",
