@@ -1,4 +1,15 @@
 
+1.7.0 / 2016-04-07
+==================
+
+  * benchmark: update arguments to array
+  * chore: add doc
+  * feat: add utility.argumentsToArray
+  * chore: add david-dm status badge
+  * deps: remove unuse mm module
+  * test: use ava and nyc instead of mocha and istanbul
+  * bench: add string and tpl string benchmark
+
 1.6.0 / 2015-12-04
 ==================
 
