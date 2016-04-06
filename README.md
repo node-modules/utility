@@ -200,6 +200,15 @@ const res = utils.try(function () {
 // {error: Error, value: undefined}
 ```
 
+### argumentsToArray
+
+```js
+function() {
+  const arr = utility.argumentsToArray(arguments);
+  console.log(arr.join(', '));
+}
+```
+
 ### JSON
 
 ```js

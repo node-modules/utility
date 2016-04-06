@@ -69,3 +69,19 @@ test('dig() should work with {a: {b: {c: 1}}} when access deep key', t => {
 test('dig() should work with {a: {b: {c: 1}}} when access no exist deep key', t => {
   t.is(utils.dig({a: {b: {c: 1}}}, 'a', 'b', 'z'), void 0);
 });
+
+test('argumentsToArray(1, 2, 3)', t => {
+  t.same(utils.argumentsToArray(getArguments(1, 2, 3)), [1, 2, 3]);
+});
+
+test('argumentsToArray(1, null, "string", {})', t => {
+  t.same(utils.argumentsToArray(getArguments(1, null, 'string', {})), [1, null, 'string', {}]);
+});
+
+test('argumentsToArray()', t => {
+  t.same(utils.argumentsToArray(getArguments()), []);
+});
+
+function getArguments() {
+  return arguments;
+}
