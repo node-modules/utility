@@ -24,28 +24,35 @@ function getArguments() {
   return arguments;
 }
 
-const args = getArguments(1, 2, 3, 4, 5);
+function prototypeSlice() {
+  return Array.prototype.slice.call(arguments);
+}
 
-console.log('Array.prototpye.slice.call(#arguments(1, 2, 3, 4, 5))', Array.prototype.slice.call(args));
-console.log('[].slice.call(#arguments(1, 2, 3, 4, 5))', [].slice.call(args));
-console.log('utility.argumentsToArray(#arguments(1, 2, 3, 4, 5))', utility.argumentsToArray(args));
+function slice() {
+  return [].slice.call(arguments);
+}
+
+function argumentsToArray() {
+  return utility.argumentsToArray(arguments);
+}
+
+console.log('Array.prototpye.slice.call(#arguments(1, 2, 3, 4, 5))', prototypeSlice(1, 2, 3, 4, 5));
+console.log('[].slice.call(#arguments(1, 2, 3, 4, 5))', slice(1, 2, 3, 4, 5));
+console.log('utility.argumentsToArray(#arguments(1, 2, 3, 4, 5))', argumentsToArray(1, 2, 3, 4, 5));
 console.log('------------- %s -----------', Date());
-
-// %OptimizeFunctionOnNextCall(utility.split);
-// %OptimizeFunctionOnNextCall(utility.splitAlwaysOptimized);
 
 suite
 
 .add('Array.prototpye.slice.call', function () {
-  Array.prototype.slice.call(args);
+  prototypeSlice(1, 2, 3, 4, 5);
 })
 
 .add('[].slice.call', function () {
-  [].slice.call(args);
+  slice(1, 2, 3, 4, 5);
 })
 
 .add('utility.argumentsToArray', function () {
-  utility.argumentsToArray(args);
+  argumentsToArray(1, 2, 3, 4, 5);
 })
 
 .on('cycle', function(event) {
@@ -61,10 +68,10 @@ suite
 .run({ 'async': false });
 
 // arguments to array Benchmark
-// node version: v4.2.4, date: Wed Apr 06 2016 22:51:17 GMT+0800 (CST)
+// node version: v4.2.4, date: Thu Apr 07 2016 01:04:11 GMT+0800 (CST)
 // Starting...
 // 3 tests completed.
 //
-// Array.prototpye.slice.call x    640,294 ops/sec ±1.21% (96 runs sampled)
-// [].slice.call              x    642,219 ops/sec ±1.17% (93 runs sampled)
-// utility.argumentsToArray   x 28,964,974 ops/sec ±1.09% (95 runs sampled)
+// Array.prototpye.slice.call x    578,606 ops/sec ±1.87% (82 runs sampled)
+// [].slice.call              x    584,230 ops/sec ±1.23% (87 runs sampled)
+// utility.argumentsToArray   x 16,019,542 ops/sec ±1.98% (83 runs sampled)
