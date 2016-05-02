@@ -21,7 +21,7 @@ test('try() should work when no error', t => {
     return JSON.parse(str);
   });
 
-  t.same(res, {error: undefined, value: {foo: 'bar'}});
+  t.deepEqual(res, {error: undefined, value: {foo: 'bar'}});
 });
 
 test('try() should work when throw err with error', t => {
@@ -30,7 +30,7 @@ test('try() should work when throw err with error', t => {
     return JSON.parse(str);
   });
   t.true(res.error instanceof Error);
-  t.notOk(res.value);
+  t.falsy(res.value);
 });
 
 test('try() should work when throw err with string', t => {
@@ -39,11 +39,11 @@ test('try() should work when throw err with string', t => {
   });
   t.true(res.error instanceof Error);
   t.is(res.error.message, 'string error');
-  t.notOk(res.value);
+  t.falsy(res.value);
 });
 
 test('dig() should work with {}', t => {
-  t.same(utils.dig({}), {});
+  t.deepEqual(utils.dig({}), {});
 });
 
 test('dig() should work with undefined', t => {
@@ -51,7 +51,7 @@ test('dig() should work with undefined', t => {
 });
 
 test('dig() should work with {a: 1}', t => {
-  t.same(utils.dig({a: 1}), {a: 1});
+  t.deepEqual(utils.dig({a: 1}), {a: 1});
 });
 
 test('dig() should work with {a: 1} when access `a`', t => {
@@ -71,15 +71,15 @@ test('dig() should work with {a: {b: {c: 1}}} when access no exist deep key', t 
 });
 
 test('argumentsToArray(1, 2, 3)', t => {
-  t.same(utils.argumentsToArray(getArguments(1, 2, 3)), [1, 2, 3]);
+  t.deepEqual(utils.argumentsToArray(getArguments(1, 2, 3)), [1, 2, 3]);
 });
 
 test('argumentsToArray(1, null, "string", {})', t => {
-  t.same(utils.argumentsToArray(getArguments(1, null, 'string', {})), [1, null, 'string', {}]);
+  t.deepEqual(utils.argumentsToArray(getArguments(1, null, 'string', {})), [1, null, 'string', {}]);
 });
 
 test('argumentsToArray()', t => {
-  t.same(utils.argumentsToArray(getArguments()), []);
+  t.deepEqual(utils.argumentsToArray(getArguments()), []);
 });
 
 function getArguments() {

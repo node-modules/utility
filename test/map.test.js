@@ -27,17 +27,17 @@ test('has() should has property ok', t => {
 
 test('map() should get a new map', t => {
   const map = utils.map();
-  t.notOk(map.constructor);
-  t.notOk(map.__proto__);
-  t.notOk(map.toString);
+  t.falsy(map.constructor);
+  t.falsy(map.__proto__);
+  t.falsy(map.toString);
   map.a = 1;
   t.is(map.a, 1);
 });
 
 test('map() should get map with obj ok', t => {
   const map = utils.map({a: 1});
-  t.notOk(map.constructor);
-  t.notOk(map.__proto__);
-  t.notOk(map.toString);
+  t.falsy(map.constructor);
+  t.falsy(map.__proto__);
+  t.falsy(map.toString);
   t.is(map.a, 1);
 });

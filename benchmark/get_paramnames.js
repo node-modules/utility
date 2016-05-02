@@ -1,10 +1,12 @@
-/*!
- * utility - benchmark/get_paramnames.js
- * Copyright(c) 2013 fengmk2 <fengmk2@gmail.com>
+/**
+ * Copyright(c) node-modules and other contributors.
  * MIT Licensed
+ *
+ * Authors:
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
-"use strict";
+'use strict';
 
 /**
  * Module dependencies.

@@ -1,11 +1,12 @@
-/*!
- * utility - benchmark/md5.js
- *
- * Copyright(c) 2013 fengmk2 <fengmk2@gmail.com>
+/**
+ * Copyright(c) node-modules and other contributors.
  * MIT Licensed
+ *
+ * Authors:
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
-"use strict";
+'use strict';
 
 /**
  * Module dependencies.
@@ -56,7 +57,7 @@ suite
 })
 .run({ async: false });
 
-// $ node benchmark/md5.js 
+// $ node benchmark/md5.js
 // utils.md5({foo: 'bar', bar: 'foo', v: [1, 2, 3]}) 079a571be06a7845409f8fc91647b0f4
 // utils.md5(JSON.stringify({foo: 'bar', bar: 'foo', v: [1, 2, 3]})) ab6697805af372cbfe1ea3227e8ac304
 // utils.md5('苏千') 5f733c47c58a077d61257102b2d44481

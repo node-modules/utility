@@ -1,13 +1,14 @@
 sudo: false
 language: node_js
 node_js:
-  - '0.10'
   - '0.12'
   - '1'
   - '2'
   - '4'
   - '5'
+  - '6'
 script:
-  - "npm run ci"
+  - 'npm run ci'
 after_script:
-  - "npm i codecov && codecov"
+  - 'npm i codecov && codecov'
+  - 'node benchmark/map.js'

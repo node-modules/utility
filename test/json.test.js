@@ -17,7 +17,7 @@ import utils from '../';
 
 test('strictJSONParse() should parse normal json ok', t => {
   const obj = utils.strictJSONParse('{"foo": "bar"}');
-  t.same(obj, {foo: 'bar'});
+  t.deepEqual(obj, {foo: 'bar'});
 });
 
 test('strictJSONParse() should parse error when invalid json', t => {

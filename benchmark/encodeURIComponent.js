@@ -1,11 +1,9 @@
-/**!
- * utility - benchmark/encodeURIComponent.js
- *
- * Copyright(c) fengmk2 and other contributors.
+/**
+ * Copyright(c) node-modules and other contributors.
  * MIT Licensed
  *
  * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.github.com)
+ *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
  */
 
 'use strict';

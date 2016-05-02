@@ -26,7 +26,7 @@
     "jshint": "*",
     "moment": "^2.12.0",
     "optimized": "1",
-    "ava": "^0.13.0",
+    "ava": "^0.14.0",
     "nyc": "6"
   },
   "homepage": "https://github.com/node-modules/utility",
@@ -45,7 +45,7 @@
     "hex"
   ],
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12.0"
   },
   "author": "fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)",
   "license": "MIT"
