@@ -1,4 +1,9 @@
 
+1.7.1 / 2016-05-03
+==================
+
+  * refactor: use faster empty object instead of Object.create(null) (#23)
+
 1.7.0 / 2016-04-07
 ==================
 
