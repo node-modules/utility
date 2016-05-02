@@ -8,6 +8,7 @@ node_js:
   - '5'
   - '6'
 script:
-  - "npm run ci"
+  - 'npm run ci'
 after_script:
-  - "npm i codecov && codecov"
+  - 'npm i codecov && codecov'
+  - 'node benchmark/map.js'
