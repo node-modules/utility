@@ -24,25 +24,25 @@ test('randomString() should get number random string with a length of 16', t => 
 });
 
 test('split(), splitAlwaysOptimized() should work with default sep', t => {
-  t.same(utils.split('haha, ok  ,,,,,xxx xxx ,aaa'), ['haha', 'ok', 'xxx xxx', 'aaa']);
-  t.same(utils.splitAlwaysOptimized('haha, ok  ,,,,,xxx xxx ,aaa'), ['haha', 'ok', 'xxx xxx', 'aaa']);
+  t.deepEqual(utils.split('haha, ok  ,,,,,xxx xxx ,aaa'), ['haha', 'ok', 'xxx xxx', 'aaa']);
+  t.deepEqual(utils.splitAlwaysOptimized('haha, ok  ,,,,,xxx xxx ,aaa'), ['haha', 'ok', 'xxx xxx', 'aaa']);
 });
 
 test('split(), splitAlwaysOptimized() should work with sep=|', t => {
-  t.same(utils.split('haha|ok |xxx xxx|,aaa', '|'), ['haha', 'ok', 'xxx xxx', ',aaa']);
-  t.same(utils.splitAlwaysOptimized('haha|ok |xxx xxx|,aaa', '|'), ['haha', 'ok', 'xxx xxx', ',aaa']);
+  t.deepEqual(utils.split('haha|ok |xxx xxx|,aaa', '|'), ['haha', 'ok', 'xxx xxx', ',aaa']);
+  t.deepEqual(utils.splitAlwaysOptimized('haha|ok |xxx xxx|,aaa', '|'), ['haha', 'ok', 'xxx xxx', ',aaa']);
 });
 
 test('split(), splitAlwaysOptimized() should return []', t => {
-  t.same(utils.split(',,,,'), []);
-  t.same(utils.split(), []);
-  t.same(utils.split(null), []);
-  t.same(utils.split(''), []);
+  t.deepEqual(utils.split(',,,,'), []);
+  t.deepEqual(utils.split(), []);
+  t.deepEqual(utils.split(null), []);
+  t.deepEqual(utils.split(''), []);
 
-  t.same(utils.splitAlwaysOptimized(',,,,'), []);
-  t.same(utils.splitAlwaysOptimized(''), []);
-  t.same(utils.splitAlwaysOptimized('', null), []);
-  t.same(utils.splitAlwaysOptimized('', null, null), []);
+  t.deepEqual(utils.splitAlwaysOptimized(',,,,'), []);
+  t.deepEqual(utils.splitAlwaysOptimized(''), []);
+  t.deepEqual(utils.splitAlwaysOptimized('', null), []);
+  t.deepEqual(utils.splitAlwaysOptimized('', null, null), []);
 });
 
 test('replace() should replace work with special chars', t => {
