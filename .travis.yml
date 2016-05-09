@@ -12,3 +12,4 @@ script:
 after_script:
   - 'npm i codecov && codecov'
   - 'node benchmark/map.js'
+  - 'node benchmark/array_splice.js'
