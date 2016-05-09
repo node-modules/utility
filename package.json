@@ -1,6 +1,6 @@
 {
   "name": "utility",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "A collection of useful utilities.",
   "main": "lib/utility.js",
   "files": [

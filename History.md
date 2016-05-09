@@ -1,4 +1,9 @@
 
+1.8.0 / 2016-05-09
+==================
+
+  * feat(array): impl faster splice one element on array (#24)
+
 1.7.1 / 2016-05-03
 ==================
 
