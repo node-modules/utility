@@ -1,16 +1,4 @@
-/**
- * Copyright(c) node-modules and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 var utility = require('../');
 
@@ -34,8 +22,13 @@ function argumentsToArray() {
   return utility.argumentsToArray(arguments);
 }
 
+function arrayFrom() {
+  return Array.from(arguments);
+}
+
 console.log('Array.prototpye.slice.call(#arguments(1, 2, 3, 4, 5))', prototypeSlice(1, 2, 3, 4, 5));
 console.log('[].slice.call(#arguments(1, 2, 3, 4, 5))', slice(1, 2, 3, 4, 5));
+console.log('Array.from(#arguments(1, 2, 3, 4, 5))', arrayFrom(1, 2, 3, 4, 5));
 console.log('utility.argumentsToArray(#arguments(1, 2, 3, 4, 5))', argumentsToArray(1, 2, 3, 4, 5));
 console.log('------------- %s -----------', Date());
 
@@ -47,6 +40,10 @@ suite
 
 .add('[].slice.call', function () {
   slice(1, 2, 3, 4, 5);
+})
+
+.add('Array.from', function () {
+  arrayFrom(1, 2, 3, 4, 5);
 })
 
 .add('utility.argumentsToArray', function () {
@@ -66,10 +63,11 @@ suite
 .run({ 'async': false });
 
 // arguments to array Benchmark
-// node version: v4.2.4, date: Thu Apr 07 2016 01:04:11 GMT+0800 (CST)
+// node version: v4.4.6, date: Tue Jul 05 2016 12:11:34 GMT+0800 (CST)
 // Starting...
-// 3 tests completed.
+// 4 tests completed.
 //
-// Array.prototpye.slice.call x    578,606 ops/sec ±1.87% (82 runs sampled)
-// [].slice.call              x    584,230 ops/sec ±1.23% (87 runs sampled)
-// utility.argumentsToArray   x 16,019,542 ops/sec ±1.98% (83 runs sampled)
+// Array.prototpye.slice.call x    525,065 ops/sec ±1.65% (84 runs sampled)
+// [].slice.call              x    494,868 ops/sec ±3.45% (83 runs sampled)
+// Array.from                 x    622,764 ops/sec ±2.20% (85 runs sampled)
+// utility.argumentsToArray   x 14,542,352 ops/sec ±2.18% (83 runs sampled)
