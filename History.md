@@ -1,4 +1,10 @@
 
+1.9.0 / 2016-11-14
+==================
+
+  * feat: add utils.random function (#25)
+  * bench: add Array.from(arguments) bench test
+
 1.8.0 / 2016-05-09
 ==================
 
