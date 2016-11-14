@@ -56,3 +56,48 @@ test('toSafeNumber() should convert number to number work', t => {
   t.is(utils.toSafeNumber(123), 123);
   t.is(utils.toSafeNumber(9007199254740992), 9007199254740992);
 });
+
+test('random() should return zero when no arguments are given', t => {
+  t.is(utils.random(), 0);
+});
+
+test('random(max) should return an integer between `0` and `max`', t => {
+  const numbers = [100, 5, 5.6, 1000];
+  numbers.forEach(num => {
+    const int = utils.random(num);
+    t.true(int >= 0);
+    t.true(int < num);
+  });
+});
+
+test('random(min, max) should return an integer between `min` and `max`', t => {
+  const cases = [
+    [0, 100],
+    [5, 10],
+    [-5, 5],
+    [5.2, 10.7],
+    [-5.2, -1.7],
+    [10000, 100000],
+  ];
+  cases.forEach(item => {
+    const int = utils.random(item[0], item[1]);
+    t.true(int >= item[0]);
+    t.true(int < item[1]);
+  });
+});
+
+test('random(max, min) should return an integer between `min` and `max`', t => {
+  const cases = [
+    [100, 0],
+    [10, 5],
+    [5, -5],
+    [10.7, 5.2],
+    [-1.7, -5.2],
+    [100000, 10000],
+  ];
+  cases.forEach(item => {
+    const int = utils.random(item[0], item[1]);
+    t.true(int >= item[1]);
+    t.true(int < item[0]);
+  });
+});

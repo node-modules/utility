@@ -152,6 +152,11 @@ utils.isSafeNumberString('9007199254740993'); // false
 // Convert string to number safe:
 utils.toSafeNumber('9007199254740991'); // 9007199254740991
 utils.toSafeNumber('9007199254740993'); // '9007199254740993'
+
+// Produces a random integer between the inclusive `lower` and `upper` bounds.
+utils.random(100); // 0 ~ 100
+utils.random(1.2, 5.6); // 1.2 ~ 5.6
+utils.random(); // 0
 ```
 
 ### Timers
