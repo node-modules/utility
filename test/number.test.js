@@ -75,8 +75,6 @@ test('random(min, max) should return an integer between `min` and `max`', t => {
     [0, 100],
     [5, 10],
     [-5, 5],
-    [5.2, 10.7],
-    [-5.2, -1.7],
     [10000, 100000],
   ];
   cases.forEach(item => {
@@ -91,8 +89,6 @@ test('random(max, min) should return an integer between `min` and `max`', t => {
     [100, 0],
     [10, 5],
     [5, -5],
-    [10.7, 5.2],
-    [-1.7, -5.2],
     [100000, 10000],
   ];
   cases.forEach(item => {
