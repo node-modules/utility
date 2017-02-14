@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-
 const utility = require('../');
 
 const Benchmark = require('benchmark');
