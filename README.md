@@ -192,6 +192,9 @@ utils.split('foo,bar,,,', ','); // ['foo', 'bar']
 
 // replace string work with special chars which `String.prototype.replace` can't handle
 utils.replace('<body> hi', '<body>', '$& body'); // '$& body hi'
+
+// replace http header invalid characters
+utils.replaceInvalidHttpHeaderChar('abc你好11'); // {invalid: true, val: 'abc  11'}
 ```
 
 ### Try
