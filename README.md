@@ -224,6 +224,17 @@ const obj = utils.strictJSONparse('"hello"');
 // will throw when JSON string is not object
 ```
 
+### Object.assign
+
+
+```js
+// assign object
+utility.assign({}, { a: 1 });
+
+// assign multiple object
+utility.assign({}, [ { a: 1 }, { b: 1 } ]);
+```
+
 ## benchmark
 
 * [jsperf: access log date format](http://jsperf.com/access-log-date-format)
