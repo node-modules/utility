@@ -41,3 +41,27 @@ test('map() should get map with obj ok', t => {
   t.falsy(map.toString);
   t.is(map.a, 1);
 });
+
+test('assign() should assign with object', t => {
+  const a = { a: 0, c: 1 };
+  const b = { a: 1, b: 1 };
+  const c = utils.assign(a, b);
+  t.deepEqual(a, c);
+  t.deepEqual(c, { a: 1, b: 1, c: 1 });
+});
+
+test('assign() should assign with array', t => {
+  const a = { a: 0, c: 0 };
+  const b = [{ a: 1, b: 0 }, { b: 1, c: 1 }];
+  const c = utils.assign(a, b);
+  t.deepEqual(a, c);
+  t.deepEqual(c, { a: 1, b: 1, c: 1 });
+});
+
+test('assign() should assign with empty', t => {
+  const a = { a: 0, c: 0 };
+  const b = [{ a: 1, b: 0 }, undefined ];
+  const c = utils.assign(a, b);
+  t.deepEqual(a, c);
+  t.deepEqual(c, { a: 1, b: 0, c: 0 });
+});
