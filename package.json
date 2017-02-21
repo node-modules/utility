@@ -20,14 +20,15 @@
   },
   "devDependencies": {
     "autod": "*",
+    "ava": "^0.14.0",
     "beautify-benchmark": "*",
     "benchmark": "^2.1.0",
     "contributors": "*",
     "jshint": "*",
     "moment": "^2.12.0",
-    "optimized": "1",
-    "ava": "^0.14.0",
-    "nyc": "6"
+    "nyc": "6",
+    "object-assign": "^4.1.1",
+    "optimized": "1"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {
