@@ -1,16 +1,4 @@
-/**
- * Copyright(c) node-modules and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 import test from 'ava';
 import utils from '../';
@@ -75,6 +63,7 @@ test('replaceInvalidHttpHeaderChar() should replace invalid char', t => {
   var s6 = '11你1好0';
   var s7 = '111你1好0';
   var s8 = '1111你1好0';
+  var s9 = '1111----你----1----好0#啊ok的123！！end';
 
   t.is(utils.replaceInvalidHttpHeaderChar(s0).val, s0);
   t.is(utils.replaceInvalidHttpHeaderChar(s0).invalid, false);
@@ -96,4 +85,12 @@ test('replaceInvalidHttpHeaderChar() should replace invalid char', t => {
   t.is(utils.replaceInvalidHttpHeaderChar(s8).invalid, true);
   t.is(utils.replaceInvalidHttpHeaderChar(s8, '-').val, '1111-1-0');
   t.is(utils.replaceInvalidHttpHeaderChar(s8, '-').invalid, true);
+
+  // support replacement function
+  var result = utils.replaceInvalidHttpHeaderChar(s9, function (val) {
+    return encodeURIComponent(val);
+  });
+  t.is(result.val, '1111----%E4%BD%A0----1----%E5%A5%BD0#%E5%95%8Aok%E7%9A%84123%EF%BC%81%EF%BC%81end');
+  t.is(decodeURIComponent(result.val), s9);
+  t.is(result.invalid, true);
 });
