@@ -93,4 +93,11 @@ test('replaceInvalidHttpHeaderChar() should replace invalid char', t => {
   t.is(result.val, '1111----%E4%BD%A0----1----%E5%A5%BD0#%E5%95%8Aok%E7%9A%84123%EF%BC%81%EF%BC%81end');
   t.is(decodeURIComponent(result.val), s9);
   t.is(result.invalid, true);
+
+  var url = 'https://foo.com/abc_%E4%BD%A0%E5%A5%BD/,.handbook-%E4%BD%A0%E5%A5%BD/foo-space-special#空间管理页面-1-你好---';
+  var urlResult = utils.replaceInvalidHttpHeaderChar(url, function (val) {
+    return encodeURIComponent(val);
+  });
+  t.is(urlResult.val, 'https://foo.com/abc_%E4%BD%A0%E5%A5%BD/,.handbook-%E4%BD%A0%E5%A5%BD/foo-space-special#%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-1-%E4%BD%A0%E5%A5%BD---');
+  t.is(urlResult.invalid, true);
 });
