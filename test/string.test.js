@@ -95,9 +95,35 @@ test('replaceInvalidHttpHeaderChar() should replace invalid char', t => {
   t.is(result.invalid, true);
 
   var url = 'https://foo.com/abc_%E4%BD%A0%E5%A5%BD/,.handbook-%E4%BD%A0%E5%A5%BD/foo-space-special#空间管理页面-1-你好---';
-  var urlResult = utils.replaceInvalidHttpHeaderChar(url, function (val) {
-    return encodeURIComponent(val);
+  var urlResult = utils.replaceInvalidHttpHeaderChar(url, function (c) {
+    return encodeURIComponent(c);
   });
   t.is(urlResult.val, 'https://foo.com/abc_%E4%BD%A0%E5%A5%BD/,.handbook-%E4%BD%A0%E5%A5%BD/foo-space-special#%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-1-%E4%BD%A0%E5%A5%BD---');
   t.is(urlResult.invalid, true);
+});
+
+test('includesInvalidHttpHeaderChar() should detect invalid chars', t => {
+  var s0 = '';
+  var s1 = '123';
+  var s2 = 'abc';
+  var s3 = '!@#$%^&*()_+-=\|';
+  var s4 = '你1好0';
+  var s5 = '1你1好0';
+  var s6 = '11你1好0';
+  var s7 = '111你1好0';
+  var s8 = '1111你1好0';
+  var s9 = '1111----你----1----好0#啊ok的123！！end';
+  var s10 = '🚀';
+
+  t.is(utils.includesInvalidHttpHeaderChar(s0), false);
+  t.is(utils.includesInvalidHttpHeaderChar(s1), false);
+  t.is(utils.includesInvalidHttpHeaderChar(s2), false);
+  t.is(utils.includesInvalidHttpHeaderChar(s3), false);
+  t.is(utils.includesInvalidHttpHeaderChar(s4), true);
+  t.is(utils.includesInvalidHttpHeaderChar(s5), true);
+  t.is(utils.includesInvalidHttpHeaderChar(s6), true);
+  t.is(utils.includesInvalidHttpHeaderChar(s7), true);
+  t.is(utils.includesInvalidHttpHeaderChar(s8), true);
+  t.is(utils.includesInvalidHttpHeaderChar(s9), true);
+  t.is(utils.includesInvalidHttpHeaderChar(s10), true);
 });
