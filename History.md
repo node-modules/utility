@@ -1,4 +1,12 @@
 
+1.12.0 / 2017-04-19
+==================
+
+  * feat: add includesInvalidHttpHeaderChar() to detect invalid char
+  * test: add url test for replaceInvalidHttpHeaderChar
+  * chore: remove unused comments
+  * feat: replacement support function format
+
 1.11.0 / 2017-02-21
 ==================
 
