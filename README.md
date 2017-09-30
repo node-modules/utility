@@ -222,6 +222,9 @@ function() {
 ```js
 const obj = utils.strictJSONparse('"hello"');
 // will throw when JSON string is not object
+
+const pkg = utils.readJSON('package.json');
+utils.writeJSON('package.json', pkg);
 ```
 
 ### Object.assign
