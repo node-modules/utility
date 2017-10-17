@@ -3,6 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import rimraf from 'rimraf';
+import assert from 'assert';
 import test from 'ava';
 import utils from '../';
 
@@ -29,20 +30,20 @@ test('strictJSONParse() should parse error when null json', t => {
   });
 });
 
-test('readJSON() should return json', t => {
-  const json = utils.readJSON(path.join(__dirname, '../package.json'));
+test('readJSONSync() should return json', t => {
+  const json = utils.readJSONSync(path.join(__dirname, '../package.json'));
   t.is(json.name, 'utility');
 });
 
-test('readJSON() should throw when file not found', t => {
+test('readJSONSync() should throw when file not found', t => {
   t.throws(function () {
-    utils.readJSON('noexist');
+    utils.readJSONSync('noexist');
   });
 });
 
-test('writeJSON() should write json object', t => {
+test('writeJSONSync() should write json object', t => {
   const target = path.join(__dirname, 'tmp/target');
-  utils.writeJSON(target, { a: 1 });
+  utils.writeJSONSync(target, { a: 1 });
   try {
     const content = fs.readFileSync(target, 'utf8');
     t.is(content, '{\n  "a": 1\n}\n');
@@ -51,9 +52,42 @@ test('writeJSON() should write json object', t => {
   }
 });
 
-test('writeJSON() should write string', t => {
+test('writeJSONSync() should write string', t => {
   const target = path.join(__dirname, 'tmp/target');
-  utils.writeJSON(target, '{"a":1}');
+  utils.writeJSONSync(target, '{"a":1}');
+  try {
+    const content = fs.readFileSync(target, 'utf8');
+    t.is(content, '{"a":1}');
+  } finally {
+    rimraf.sync(target);
+  }
+});
+
+test('readJSON() should return json', async t => {
+  const json = await utils.readJSON(path.join(__dirname, '../package.json'));
+  t.is(json.name, 'utility');
+});
+
+test('readJSON() should throw when file not found', async t => {
+  const p = utils.readJSON('noexist');
+  const err = await t.throws(p);
+  assert(err);
+});
+
+test('writeJSON() should write json object', async t => {
+  const target = path.join(__dirname, 'tmp/target1');
+  await utils.writeJSON(target, { a: 1 });
+  try {
+    const content = fs.readFileSync(target, 'utf8');
+    t.is(content, '{\n  "a": 1\n}\n');
+  } finally {
+    rimraf.sync(target);
+  }
+});
+
+test('writeJSON() should write string', async t => {
+  const target = path.join(__dirname, 'tmp/target2');
+  await utils.writeJSON(target, '{"a":1}');
   try {
     const content = fs.readFileSync(target, 'utf8');
     t.is(content, '{"a":1}');

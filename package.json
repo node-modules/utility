@@ -18,20 +18,21 @@
   "dependencies": {
     "copy-to": "~2.0.1",
     "escape-html": "~1.0.3",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "~0.5.1",
+    "mz": "~2.7.0"
   },
   "devDependencies": {
     "autod": "*",
-    "ava": "^0.14.0",
+    "ava": "~0.22.0",
     "beautify-benchmark": "*",
     "benchmark": "^2.1.0",
     "contributors": "*",
     "jshint": "*",
-    "moment": "^2.12.0",
+    "moment": "~2.19.1",
     "nyc": "6",
     "object-assign": "^4.1.1",
-    "optimized": "1",
-    "rimraf": "^2.6.2"
+    "optimized": "~1.2.0",
+    "rimraf": "~2.6.2"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {
