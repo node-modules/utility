@@ -1,4 +1,10 @@
 
+1.13.0 / 2017-10-17
+==================
+
+**features**
+  * [[`8a84707`](https://github.com/node-modules/utility.git/commit/8a847077b4d543193e4ca2f9ff69068a48d84909)] - feat: add readJSON and writeJSON (#29) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.12.0 / 2017-04-19
 ==================
 
