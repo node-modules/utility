@@ -3,3 +3,4 @@ coverage/
 .tmp/
 .git/
 benchmark/
+test
