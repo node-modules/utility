@@ -223,8 +223,17 @@ function() {
 const obj = utils.strictJSONparse('"hello"');
 // will throw when JSON string is not object
 
-const pkg = utils.readJSON('package.json');
-utils.writeJSON('package.json', pkg);
+const pkg = utils.readJSONSync('package.json');
+utils.writeJSONSync('package.json', pkg);
+```
+
+Or you can use async API
+
+```js
+async () => {
+  const pkg = await utils.readJSON('package.json');
+  await utils.writeJSON('package.json', pkg);
+}
 ```
 
 ### Object.assign
