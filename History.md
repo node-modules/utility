@@ -1,4 +1,10 @@
 
+1.13.1 / 2017-10-17
+==================
+
+**fixes**
+  * [[`fbbf905`](http://github.com/node-modules/utility/commit/fbbf905880185dce1e9cf980112a0f0b890e5969)] - fix: don't use arrow function (#31) (Yiyu He <<dead_horse@qq.com>>)
+
 1.13.0 / 2017-10-17
 ==================
 
