@@ -32,6 +32,12 @@ test('YYYYMMDDHHmmss() should work with custom sep', t => {
   t.is(utils.YYYYMMDDHHmmss(date, {
     timeSep: ';'
   }), '2014-02-14 01;02;03');
+
+  t.is(utils.YYYYMMDDHHmmss(date, {
+    sep: '',
+    timeSep: '',
+    dateSep: ''
+  }), '20140214010203');
 });
 
 test('YYYYMMDDHHmmss() should work with time string', t => {
