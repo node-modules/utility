@@ -1,4 +1,10 @@
 
+1.14.0 / 2018-06-29
+==================
+
+**features**
+  * [[`d401917`](http://github.com/node-modules/utility/commit/d401917f20f89c52be237279d575c695f1bf6ae0)] - feat: add replacer and space to writeJSON* (#34) (Khaidi Chu <<i@2333.moe>>)
+
 1.13.1 / 2017-10-17
 ==================
 
