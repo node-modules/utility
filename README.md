@@ -224,8 +224,11 @@ const obj = utils.strictJSONparse('"hello"');
 // will throw when JSON string is not object
 
 const pkg = utils.readJSONSync('package.json');
-utils.writeJSONSync('package.json', pkg);
+utils.writeJSONSync('package.json', pkg, null, '\t');
 ```
+
+> **Hint:** If `pkg` is an object, the second to fourth parameters equals to `JSON.parse()` first to third parameters.
+> But the default value of the fourth parameter is `2`.
 
 Or you can use async API
 
