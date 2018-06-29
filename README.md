@@ -244,6 +244,11 @@ async () => {
 >
 > + `replacer`: Equals to `JSON.stringify()`'s second parameter;
 > + `space`: Equals to `JSON.stringify()`'s third parameter. Defaults to `2`.
+>
+> Refs:
+>
+> + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter
+> + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_space_argument
 
 
 ### Object.assign
