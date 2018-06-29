@@ -54,7 +54,11 @@ test('writeJSONSync() should write json object', t => {
 
 test('writeJSONSync() should write json with replacer and tabs', t => {
   const target = path.join(__dirname, 'tmp/target');
-  utils.writeJSONSync(target, { age: 1 }, (key, v) => (key === 'age' ? v - 1 : v), '\t');
+  utils.writeJSONSync(target, { age: 1 }, {
+    replacer: (key, v) => (key === 'age' ? v - 1 : v),
+    space: '\t'
+  });
+
   try {
     const content = fs.readFileSync(target, 'utf8');
     t.is(content, '{\n\t"age": 0\n}\n');
@@ -109,7 +113,10 @@ test('writeJSON() should write string', async t => {
 
 test('writeJSON() should write json with replacer and tabs', async t => {
   const target = path.join(__dirname, 'tmp/target');
-  await utils.writeJSON(target, { age: 1 }, (key, v) => (key === 'age' ? v - 1 : v), '\t');
+  await utils.writeJSON(target, { age: 1 }, {
+    replacer: (key, v) => (key === 'age' ? v - 1 : v),
+    space: '\t'
+  });
   try {
     const content = fs.readFileSync(target, 'utf8');
     t.is(content, '{\n\t"age": 0\n}\n');

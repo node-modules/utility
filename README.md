@@ -224,11 +224,11 @@ const obj = utils.strictJSONparse('"hello"');
 // will throw when JSON string is not object
 
 const pkg = utils.readJSONSync('package.json');
-utils.writeJSONSync('package.json', pkg, null, '\t');
+utils.writeJSONSync('package.json', pkg, {
+  replacer: null,
+  space: '\t',
+});
 ```
-
-> **Hint:** If `pkg` is an object, the second to fourth parameters equals to `JSON.parse()` first to third parameters.
-> But the default value of the fourth parameter is `2`.
 
 Or you can use async API
 
@@ -238,6 +238,13 @@ async () => {
   await utils.writeJSON('package.json', pkg);
 }
 ```
+
+> **Hint:** In `utils.writeJSON*()`, if `pkg` is an object, the **optional** third parameter `options` may contain two
+> keys.
+>
+> + `replacer`: Equals to `JSON.stringify()`'s second parameter;
+> + `space`: Equals to `JSON.stringify()`'s third parameter. Defaults to `2`.
+
 
 ### Object.assign
 
