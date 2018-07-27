@@ -104,7 +104,7 @@ test('accessLogDate() should return an access log format date string', t => {
         const ss = parseInt(Math.random() * 60, 10);
         const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
         const n = new Date(ds);
-        t.is(moment(n).format('DD/MMM/YYYY:HH:mm:ss ZZ'), utils.accessLogDate(n));
+        t.is(moment(n).format('DD/MMM/YYYY:HH:mm:ss ZZ'), utils.accessLogDate(n), ds);
       }
     }
   }
