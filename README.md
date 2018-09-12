@@ -83,7 +83,8 @@ utils.base64encode('你好￥', true); // '5L2g5aW977-l'
 utils.base64decode('5L2g5aW977-l', true); // '你好￥'
 
 // html escape
-utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;'
+utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;amp;'
+utils.escape('&lt;script/&gt;&quot;&amp; &amp;amp;'); // '<script/>"& &amp;'
 
 // Safe encodeURIComponent and decodeURIComponent
 utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equal('你好, nodejs');

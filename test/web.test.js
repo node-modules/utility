@@ -4,13 +4,23 @@ import test from 'ava';
 import utils from '../';
 
 test('escape() should return html safe string', t => {
+  const safe = '&lt;script src=&quot;foo.js&quot;&gt;&quot;&quot;&quot;&lt;/script&gt;&#39;&quot;&quot;&quot;\
+  $ &amp; &amp;amp; &amp;&amp; &amp;&amp;nbsp;\
+  ';
   const unsafe = '<script src="foo.js">"""</script>\'"""\
   $ & &amp; && &&nbsp;\
   ';
-  const safe = utils.escape(unsafe);
-  t.is(safe, '&lt;script src=&quot;foo.js&quot;&gt;&quot;&quot;&quot;&lt;/script&gt;&#39;&quot;&quot;&quot;\
+  t.is(utils.escape(unsafe), safe);
+});
+
+test('unescape() should return html original string', t => {
+  const safe = '&lt;script src=&quot;foo.js&quot;&gt;&quot;&quot;&quot;&lt;/script&gt;&#39;&quot;&quot;&quot;\
   $ &amp; &amp;amp; &amp;&amp; &amp;&amp;nbsp;\
-  ');
+  ';
+  const unsafe = '<script src="foo.js">"""</script>\'"""\
+  $ & &amp; && &&nbsp;\
+  ';
+  t.is(utils.unescape(safe), unsafe);
 });
 
 test('base64encode() and base64decode() should return base64 encode string', t => {
