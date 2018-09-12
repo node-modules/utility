@@ -1,4 +1,13 @@
 
+1.15.0 / 2018-09-12
+==================
+
+**features**
+  * [[`e3ae527`](http://github.com/node-modules/utility/commit/e3ae5277161e8870e097897f0dd41cd783170182)] - feat: add utility.unescape (#38) (Yiyu He <<dead_horse@qq.com>>)
+
+**others**
+  * [[`50fb750`](http://github.com/node-modules/utility/commit/50fb750d0f24b7b47f0ef6e2ba5c42e5b2c7166a)] - chore: use ^ as deps version (#37) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.14.0 / 2018-06-29
 ==================
 
