@@ -19,7 +19,8 @@
     "copy-to": "^2.0.1",
     "escape-html": "^1.0.3",
     "mkdirp": "^0.5.1",
-    "mz": "^2.7.0"
+    "mz": "^2.7.0",
+    "unescape": "^1.0.1"
   },
   "devDependencies": {
     "autod": "*",
