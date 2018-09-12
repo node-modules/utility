@@ -13,7 +13,7 @@ test('escape() should return html safe string', t => {
   t.is(utils.escape(unsafe), safe);
 });
 
-test('unescape() should return html original string', t => {
+test('unescape() should return html unsafe string', t => {
   const safe = '&lt;script src=&quot;foo.js&quot;&gt;&quot;&quot;&quot;&lt;/script&gt;&#39;&quot;&quot;&quot;\
   $ &amp; &amp;amp; &amp;&amp; &amp;&amp;nbsp;\
   ';
