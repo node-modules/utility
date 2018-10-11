@@ -69,12 +69,12 @@ var encodeStringURLSafe = utils.base64encode('string', true);
 // broke on 0.11.13
 optimized(utils.base64encode, ['string']); //.should.equal(true);
 optimized(utils.base64encode, ['string', true]); //.should.equal(true);
-optimized(utils.base64encode, [new Buffer('string')]).should.equal(true);
-optimized(utils.base64encode, [new Buffer('string'), true]).should.equal(true);
+optimized(utils.base64encode, [Buffer.from('string')]).should.equal(true);
+optimized(utils.base64encode, [Buffer.from('string'), true]).should.equal(true);
 optimized(utils.base64encode, ['string']).should.equal(true);
 optimized(utils.base64encode, ['string', true]).should.equal(true);
-optimized(utils.base64encode, [new Buffer('string')]).should.equal(true);
-optimized(utils.base64encode, [new Buffer('string'), true]).should.equal(true);
+optimized(utils.base64encode, [Buffer.from('string')]).should.equal(true);
+optimized(utils.base64encode, [Buffer.from('string'), true]).should.equal(true);
 
 optimized(utils.base64decode, [encodeString]); //.should.equal(true);
 optimized(utils.base64decode, [encodeStringURLSafe, true]); //.should.equal(true);
