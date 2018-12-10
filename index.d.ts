@@ -130,4 +130,66 @@ declare namespace utility {
     encoding?: 'utf8' | 'buffer',
   ): string | Buffer;
 
+
+  // ** Defines For Date **
+
+  interface IYYYYMMDDHHmmssStaticOptions {
+    dateSep?: string,
+    timeSep?: string,
+  }
+
+  /**
+   * Access log format date. format: `moment().format('DD/MMM/YYYY:HH:mm:ss ZZ')`
+   *
+   * @return {String}
+   */
+  function accessLogDate(d: Date): string;
+
+  /**
+   * Normal log format date. format: `moment().format('YYYY-MM-DD HH:mm:ss.SSS')`
+   *
+   * @return {String}
+   */
+  function logDate(
+    d: string | Date,
+    msSep?: string,
+  ): string;
+
+  /**
+   * `moment().format('YYYY-MM-DD HH:mm:ss')` format date string.
+   *
+   * @return {String}
+   */
+  function YYYYMMDDHHmmss(
+    d: Date,
+    options?: IYYYYMMDDHHmmssStaticOptions,
+  ): string;
+
+  /**
+   * `moment().format('YYYY-MM-DD')` format date string.
+   *
+   * @return {String}
+   */
+  function YYYYMMDD(
+    d: string | Date,
+    sep?: string,
+  ): string;
+
+  /**
+   * return datetime struct.
+   *
+   * @return {Object} date
+   *  - {Number} YYYYMMDD, 20130401
+   *  - {Number} H, 0, 1, 9, 12, 23
+   */
+  function datestruct(now?: Date): Date;
+
+  /**
+   * Get Unix's timestamp in seconds.
+   * @return {Number}
+   */
+  function timestamp(
+    t?: string,
+  ): number;
+
 }
