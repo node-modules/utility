@@ -192,4 +192,26 @@ declare namespace utility {
     t?: string,
   ): number;
 
+
+  // ** Defines For Function Method **
+
+  /**
+   * A empty function.
+   *
+   * @return {Function}
+   * @public
+   */
+  function noop(): () => any;
+
+  /**
+   * Get a function parameter's names.
+   *
+   * @param {Function} func
+   * @param {Boolean} [useCache], default is true
+   * @return {Array} names
+   */
+  function getParamNames(
+    func: (...args: any[]) => any,
+    cache?: boolean,
+  ): string[];
 }
