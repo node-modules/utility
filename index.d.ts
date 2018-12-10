@@ -214,4 +214,43 @@ declare namespace utility {
     func: (...args: any[]) => any,
     cache?: boolean,
   ): string[];
+
+
+  // ** Defines For JSON methods **
+
+  interface IJSONStaticOptions {
+    space?: number | string,
+    replacer?: (
+      key: string,
+      value: any,
+    ) => any,
+  }
+
+  function strictJSONParse(
+    str: string,
+  ): object;
+
+  function readJSONSync(
+    filepath: string,
+  ): object;
+
+  function writeJSONSync(
+    filepath: string,
+    str: string,
+    options?: IJSONStaticOptions,
+  ): void;
+
+  function readJSON(
+    filepath: string,
+  ): Promise;
+
+  function writeJSON(
+    filepath: string,
+    str: string,
+    options?: IJSONStaticOptions,
+  ): Promise;
+
+  function mkdir(
+    dir: string,
+  ): Promise;
 }
