@@ -428,4 +428,31 @@ declare namespace utility {
   function includesInvalidHttpHeaderChar(
     val: string,
   ): boolean;
+
+
+  // ** Defines For Web Methods **
+
+  function escape(test: string): string;
+
+  /**
+   * Safe encodeURIComponent, won't throw any error.
+   * If `encodeURIComponent` error happen, just return the original value.
+   *
+   * @param {String} text
+   * @return {String} URL encode string.
+   */
+  function encodeURIComponent(
+    text: string,
+  ): string;
+
+  /**
+   * Safe decodeURIComponent, won't throw any error.
+   * If `decodeURIComponent` error happen, just return the original value.
+   *
+   * @param {String} encodeText
+   * @return {String} URL decode original string.
+   */
+  function decodeURIComponent(
+    encodeText: string,
+  ): string;
 }
