@@ -286,19 +286,19 @@ declare namespace utility {
 
   function writeJSONSync(
     filepath: string,
-    str: string,
+    str: string | object,
     options?: IJSONStaticOptions,
   ): void;
 
   function readJSON(
     filepath: string,
-  ): Promise<NodeJS.ReadStream>;
+  ): Promise<any>;
 
   function writeJSON(
     filepath: string,
-    str: string,
+    str: string | object,
     options?: IJSONStaticOptions,
-  ): Promise<NodeJS.WriteStream>;
+  ): Promise<any>;
 
   function mkdir(
     dir: string,
