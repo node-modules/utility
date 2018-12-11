@@ -228,7 +228,7 @@ declare namespace utility {
    */
   function timestamp(
     t?: string,
-  ): number;
+  ): number | Date;
 
 
   /**
