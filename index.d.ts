@@ -354,4 +354,11 @@ declare namespace utility {
   function argumentsToArray(
     ...args: any[],
   ): any[];
+
+
+  // ** Defines For Polyfill Methods **
+
+  function setImmediate(): NodeJS.Immediate | ((
+    fn: (...args: any[]) => any,
+  ) => void);
 }
