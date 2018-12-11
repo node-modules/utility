@@ -1,13 +1,22 @@
 export = utility;
 export as namespace utility;
 
+
+// ---------------------------------
 /**
- * TODO @see注释
+ * @see https://github.com/node-modules/utility
  */
+// ------------------------------------
+
 
 declare namespace utility {
 
-  // ** Defines For Array **
+  /**
+   * ---------------0_0----------------
+   * @description Defines For Array
+   * @see https://github.com/ddzy/utility
+   * ---------------0^0----------------
+   */
 
   /**
    * Array random slice with items count.
@@ -26,7 +35,12 @@ declare namespace utility {
   function spliceOne(arr: any[], index: number): any[];
 
 
-  // ** Defines For Crypto **
+  /**
+   * --------------------0_0----------------
+   * @description Defines For Crypto
+   * @see https://github.com/ddzy/utility#md5
+   * --------------0^0------------------
+   */
 
   /**
    * hash
@@ -135,7 +149,12 @@ declare namespace utility {
   ): string | Buffer;
 
 
-  // ** Defines For Date **
+  /**
+   * ----------------0_0-----------------
+   * @description Defines For Date
+   * @see https://github.com/ddzy/utility#date-utils
+   * ---------------0^0------------------
+   */
 
   interface IYYYYMMDDHHmmssStaticOptions {
     dateSep?: string,
@@ -197,7 +216,12 @@ declare namespace utility {
   ): number;
 
 
-  // ** Defines For Function Method **
+  /**
+   * ---------------0_0-------------------
+   * @description Defines For Function Method
+   * @see https://github.com/ddzy/utility#others
+   * ---------------0^0--------------------
+   */
 
   /**
    * A empty function.
@@ -220,7 +244,12 @@ declare namespace utility {
   ): string[];
 
 
-  // ** Defines For JSON methods **
+  /**
+   * ----------------0_0-----------------------
+   * @description Defines For JSON methods
+   * @see https://github.com/ddzy/utility#json
+   * -----------------0^0-----------------------
+   */
 
   interface IJSONStaticOptions {
     space?: number | string,
@@ -259,7 +288,12 @@ declare namespace utility {
   ): Promise;
 
 
-  // ** Defines For Number Methods **
+  /**
+   * ------------------0_0------------------------
+   * @description Defines For Number Methods
+   * @see https://github.com/ddzy/utility#number-utils
+   * --------------------0^0----------------------
+   */
 
   /**
    * CONSTANTS STATIC
@@ -302,7 +336,12 @@ declare namespace utility {
   ): number;
 
 
-  // ** Defines For Object Methods **
+  /**
+   * ------------------0_0--------------------------
+   * @description Defines For Object Methods
+   * @see https://github.com/ddzy/utility#objectassign
+   * -------------------0^0------------------------
+   */
 
   /**
    * High performance assign before node6
@@ -333,7 +372,12 @@ declare namespace utility {
   ): object;
 
 
-  // ** Defines For Optimize Methods **
+  /**
+   * -----------------0_0---------------------------
+   * @description Defines For Optimize Methods
+   * @see https://github.com/ddzy/utility#argumentstoarray
+   * -----------------0^0------------------------
+   */
 
   /**
    * avoid if (a && a.b && a.b.c)
@@ -356,14 +400,24 @@ declare namespace utility {
   ): any[];
 
 
-  // ** Defines For Polyfill Methods **
+  /**
+   * -------------------0_0---------------------
+   * @description Defines For Polyfill Methods
+   * @see https://github.com/ddzy/utility#timers
+   * -------------------0^0-------------------
+   */
 
   function setImmediate(): NodeJS.Immediate | ((
     fn: (...args: any[]) => any,
   ) => void);
 
 
-  // ** Defines For String Methods **
+  /**
+   * ------------------0_0--------------------
+   * @description Defines For String Methods
+   * @see https://github.com/ddzy/utility#others
+   * -------------------0^0---------------------
+   */
 
   interface IReplaceInvalidHttpHeaderCharReturns {
     val: string,
@@ -430,7 +484,12 @@ declare namespace utility {
   ): boolean;
 
 
-  // ** Defines For Web Methods **
+  /**
+   * ------------------0_0----------------------
+   * @description Defines For Web Methods
+   * @see https://github.com/ddzy/utility#decode-and-encode
+   * ------------------0^0------------------------
+   */
 
   function escape(test: string): string;
 
