@@ -361,4 +361,71 @@ declare namespace utility {
   function setImmediate(): NodeJS.Immediate | ((
     fn: (...args: any[]) => any,
   ) => void);
+
+
+  // ** Defines For String Methods **
+
+  interface IReplaceInvalidHttpHeaderCharReturns {
+    val: string,
+    invalid: boolean,
+  }
+
+  function randomString(
+    length?: number,
+    charSet?: string | string[],
+  ): string;
+
+  /**
+   * split string to array
+   * @param  {String} str
+   * @param  {String} [sep] default is ','
+   * @return {Array}
+   */
+  function split(
+    str: string,
+    sep?: string,
+  ): any[];
+
+  /**
+   * !! always optimized
+   */
+  function splitAlwaysOptimized(
+    ...args: any,
+  ): any[];
+
+  /**
+   * Replace string
+   *
+   * @param  {String} str
+   * @param  {String|RegExp} substr
+   * @param  {String|Function} newSubstr
+   * @return {String}
+   */
+  function replace(
+    str: string,
+    substr: string | RegExp,
+    newSubstr: string | ((...args: any) => any),
+  ): string;
+
+  /**
+   * Replace invalid http header characters with replacement
+   *
+   * @param  {String} val
+   * @param  {String|Function} replacement - can be `function(char)`
+   * @return {Object}
+   */
+  function replaceInvalidHttpHeaderChar(
+    val: string,
+    replacement: string | ((...args: any) => any)
+  ): IReplaceInvalidHttpHeaderCharReturns;
+
+  /**
+   * Detect invalid http header characters in a string
+   *
+   * @param {String} val
+   * @return {Boolean}
+   */
+  function includesInvalidHttpHeaderChar(
+    val: string,
+  ): boolean;
 }
