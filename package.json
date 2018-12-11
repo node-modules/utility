@@ -16,6 +16,7 @@
     "test-optimized": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.js"
   },
   "dependencies": {
+    "@types/node": "^10.12.12",
     "copy-to": "^2.0.1",
     "escape-html": "^1.0.3",
     "mkdirp": "^0.5.1",
