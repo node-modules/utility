@@ -20,6 +20,13 @@ declare namespace utility {
 
 
   /**
+   * Static object define
+   */
+  type ObjStatic = { [key: string]: any };
+
+
+
+  /**
    * Array random slice with items count.
    * @param {Array} arr
    * @param {Number} num, number of sub items.
@@ -278,15 +285,15 @@ declare namespace utility {
 
   function strictJSONParse(
     str: string,
-  ): object;
+  ): ObjStatic;
 
   function readJSONSync(
     filepath: string,
-  ): object;
+  ): ObjStatic;
 
   function writeJSONSync(
     filepath: string,
-    str: string | object,
+    str: string | ObjStatic,
     options?: IJSONStaticOptions,
   ): void;
 
@@ -296,7 +303,7 @@ declare namespace utility {
 
   function writeJSON(
     filepath: string,
-    str: string | object,
+    str: string | ObjStatic,
     options?: IJSONStaticOptions,
   ): Promise<any>;
 
@@ -369,15 +376,15 @@ declare namespace utility {
    * @return {Object} - return target object
    */
   function assign(
-    target: object,
-    objects: object | any[],
-  ): object;
+    target: ObjStatic,
+    objects: ObjStatic | any[],
+  ): ObjStatic;
 
   /**
    * Module dependencies.
    */
   function has(
-    obj: object,
+    obj: ObjStatic,
     prop: string,
   ): boolean;
 
@@ -387,8 +394,8 @@ declare namespace utility {
    * @return {Object}
    */
   function map(
-    obj?: object,
-  ): object;
+    obj?: ObjStatic,
+  ): ObjStatic;
 
 
   /**
@@ -406,7 +413,7 @@ declare namespace utility {
    * @return {Object}
    */
   function dig(
-    obj: object,
+    obj: ObjStatic,
     ...args: any[],
   ): any;
 
