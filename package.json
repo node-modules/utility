@@ -8,7 +8,9 @@
   ],
   "scripts": {
     "test": "npm run lint && npm run test-local",
+    "test-ts": "npm run test-local-ts",
     "test-local": "ava test/**/*.test.js",
+    "test-local-ts": "ava-ts test_ts/**/*.test.ts",
     "test-cov": "nyc ava test/**/*.test.js && nyc report --reporter=lcov",
     "lint": "jshint .",
     "ci": "npm run lint && npm run test-cov",
