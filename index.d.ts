@@ -338,7 +338,7 @@ declare namespace utility {
    * @return {Number|String} success will return Number, otherise return the original string.
    */
   function toSafeNumber(
-    s: string,
+    s: string | number,
   ): number | string;
 
   /**
@@ -349,8 +349,8 @@ declare namespace utility {
    * @return {Number} Returns the random number.
    */
   function random(
-    lower: number,
-    upper: number,
+    lower?: number,
+    upper?: number,
   ): number;
 
 
