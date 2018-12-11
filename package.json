@@ -24,6 +24,7 @@
     "unescape": "^1.0.1"
   },
   "devDependencies": {
+    "@types/escape-html": "0.0.20",
     "autod": "*",
     "ava": "^0.25.0",
     "beautify-benchmark": "*",
