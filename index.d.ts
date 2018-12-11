@@ -275,17 +275,17 @@ declare namespace utility {
 
   function readJSON(
     filepath: string,
-  ): Promise;
+  ): Promise<NodeJS.ReadStream>;
 
   function writeJSON(
     filepath: string,
     str: string,
     options?: IJSONStaticOptions,
-  ): Promise;
+  ): Promise<NodeJS.WriteStream>;
 
   function mkdir(
     dir: string,
-  ): Promise;
+  ): Promise<any>;
 
 
   /**
