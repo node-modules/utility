@@ -18,13 +18,17 @@ declare namespace utility {
    * ---------------0^0----------------
    */
 
+
   /**
    * Array random slice with items count.
    * @param {Array} arr
    * @param {Number} num, number of sub items.
    * @return {Array}
    */
-  function randomSlice(arr: any[], num?: number): any[];
+  function randomSlice(
+    arr: any[],
+    num?: number,
+  ): any[];
 
   /**
    * Remove one exists element from an array
@@ -32,7 +36,10 @@ declare namespace utility {
    * @param  {Number} index - remove element index
    * @return {Array} the array instance
    */
-  function spliceOne(arr: any[], index: number): any[];
+  function spliceOne(
+    arr: any[],
+    index: number,
+  ): any[];
 
 
   /**
@@ -41,6 +48,7 @@ declare namespace utility {
    * @see https://github.com/ddzy/utility#md5
    * --------------0^0------------------
    */
+
 
   /**
    * hash
@@ -156,9 +164,14 @@ declare namespace utility {
    * ---------------0^0------------------
    */
 
+
   interface IYYYYMMDDHHmmssStaticOptions {
     dateSep?: string,
     timeSep?: string,
+  }
+  interface IDateStructStaticReturns {
+    YYYYMMDD: number,
+    H: number,
   }
 
   /**
@@ -184,7 +197,7 @@ declare namespace utility {
    * @return {String}
    */
   function YYYYMMDDHHmmss(
-    d: Date,
+    d: Date | string,
     options?: IYYYYMMDDHHmmssStaticOptions,
   ): string;
 
@@ -205,7 +218,9 @@ declare namespace utility {
    *  - {Number} YYYYMMDD, 20130401
    *  - {Number} H, 0, 1, 9, 12, 23
    */
-  function datestruct(now?: Date): Date;
+  function datestruct(
+    now?: Date,
+  ): IDateStructStaticReturns;
 
   /**
    * Get Unix's timestamp in seconds.
@@ -222,6 +237,7 @@ declare namespace utility {
    * @see https://github.com/ddzy/utility#others
    * ---------------0^0--------------------
    */
+
 
   /**
    * A empty function.
@@ -250,6 +266,7 @@ declare namespace utility {
    * @see https://github.com/ddzy/utility#json
    * -----------------0^0-----------------------
    */
+
 
   interface IJSONStaticOptions {
     space?: number | string,
@@ -294,6 +311,7 @@ declare namespace utility {
    * @see https://github.com/ddzy/utility#number-utils
    * --------------------0^0----------------------
    */
+
 
   /**
    * CONSTANTS STATIC
@@ -343,6 +361,7 @@ declare namespace utility {
    * -------------------0^0------------------------
    */
 
+
   /**
    * High performance assign before node6
    * @param {Object} target - target object
@@ -359,7 +378,7 @@ declare namespace utility {
    */
   function has(
     obj: object,
-    props: string,
+    prop: string,
   ): boolean;
 
   /**
@@ -379,6 +398,7 @@ declare namespace utility {
    * -----------------0^0------------------------
    */
 
+
   /**
    * avoid if (a && a.b && a.b.c)
    * @param {Object} obj
@@ -388,7 +408,7 @@ declare namespace utility {
   function dig(
     obj: object,
     ...args: any[],
-  ): object;
+  ): any;
 
   /**
    * optimize arguments to array
@@ -407,6 +427,7 @@ declare namespace utility {
    * -------------------0^0-------------------
    */
 
+
   function setImmediate(): NodeJS.Immediate | ((
     fn: (...args: any[]) => any,
   ) => void);
@@ -418,6 +439,7 @@ declare namespace utility {
    * @see https://github.com/ddzy/utility#others
    * -------------------0^0---------------------
    */
+
 
   interface IReplaceInvalidHttpHeaderCharReturns {
     val: string,
@@ -438,14 +460,14 @@ declare namespace utility {
   function split(
     str: string,
     sep?: string,
-  ): any[];
+  ): string[];
 
   /**
-   * !! always optimized
+   * always optimized
    */
   function splitAlwaysOptimized(
-    ...args: any,
-  ): any[];
+    ...args: any[],
+  ): string[];
 
   /**
    * Replace string
@@ -491,7 +513,17 @@ declare namespace utility {
    * ------------------0^0------------------------
    */
 
-  function escape(test: string): string;
+
+  /**
+   * Escape the given string of `html`.
+   *
+   * @param {String} html
+   * @return {String}
+   * @public
+   */
+  function escape(
+    test: string,
+  ): string;
 
   /**
    * Safe encodeURIComponent, won't throw any error.
