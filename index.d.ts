@@ -331,4 +331,27 @@ declare namespace utility {
   function map(
     obj?: object,
   ): object;
+
+
+  // ** Defines For Optimize Methods **
+
+  /**
+   * avoid if (a && a.b && a.b.c)
+   * @param {Object} obj
+   * @param {...String} keys
+   * @return {Object}
+   */
+  function dig(
+    obj: object,
+    ...args: any[],
+  ): object;
+
+  /**
+   * optimize arguments to array
+   * @param {Arguments} args
+   * @return {Array}
+   */
+  function argumentsToArray(
+    ...args: any[],
+  ): any[];
 }
