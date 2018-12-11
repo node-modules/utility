@@ -33,6 +33,9 @@ $ npm install utility
 ```js
 const utils = require('utility');
 ```
+```typescript
+import * as utility from 'utility';
+```
 
 ### md5
 
