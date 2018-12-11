@@ -227,7 +227,7 @@ declare namespace utility {
    * @return {Number}
    */
   function timestamp(
-    t?: string,
+    t?: string | number,
   ): number | Date;
 
 
