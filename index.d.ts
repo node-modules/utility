@@ -1,6 +1,10 @@
 export = utility;
 export as namespace utility;
 
+/**
+ * TODO @see注释
+ */
+
 declare namespace utility {
 
   // ** Defines For Array **
@@ -253,4 +257,47 @@ declare namespace utility {
   function mkdir(
     dir: string,
   ): Promise;
+
+
+  // ** Defines For Number Methods **
+
+  /**
+   * CONSTANTS STATIC
+   */
+  const MAX_SAFE_INTEGER: number;
+  const MIN_SAFE_INTEGER: number;
+  const MAX_SAFE_INTEGER_STR: string;
+  const MAX_SAFE_INTEGER_STR_LENGTH: number;
+
+  /**
+   * Detect a number string can safe convert to Javascript Number.
+   *
+   * @param {String} s number format string, like `"123"`, `"-1000123123123123123123"`
+   * @return {Boolean}
+   */
+  function isSafeNumberString(
+    s: string,
+  ): boolean;
+
+  /**
+   * Convert string to Number if string in safe Number scope.
+   *
+   * @param {String} s number format string.
+   * @return {Number|String} success will return Number, otherise return the original string.
+   */
+  function toSafeNumber(
+    s: string,
+  ): number | string;
+
+  /**
+   * Produces a random integer between the inclusive `lower` and `upper` bounds.
+   *
+   * @param {Number} lower The lower bound.
+   * @param {Number} upper The upper bound.
+   * @return {Number} Returns the random number.
+   */
+  function random(
+    lower: number,
+    upper: number,
+  ): number;
 }
