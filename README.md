@@ -33,7 +33,8 @@ $ npm install utility
 ```js
 const utils = require('utility');
 ```
-```typescript
+Also you can use it within typescript, like this ↓
+```js
 import * as utility from 'utility';
 ```
 
