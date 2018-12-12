@@ -407,6 +407,15 @@ declare namespace utility {
 
 
   /**
+   * optimize try catch
+   * @param {Function} fn
+   * @return {Object}
+   *   - {Error} error
+   *   - {Mix} value
+   */
+  // function try(): { err: Error, value: any };
+
+  /**
    * avoid if (a && a.b && a.b.c)
    * @param {Object} obj
    * @param {...String} keys
