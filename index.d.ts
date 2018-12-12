@@ -4,6 +4,7 @@ export as namespace utility;
 
 // ---------------------------------
 /**
+ * @description Types definition by github@ddzy
  * @see https://github.com/node-modules/utility
  */
 // ------------------------------------
@@ -14,7 +15,7 @@ declare namespace utility {
   /**
    * ---------------0_0----------------
    * @description Defines For Array
-   * @see https://github.com/ddzy/utility
+   * @see https://github.com/node-modules/utility
    * ---------------0^0----------------
    */
 
@@ -23,7 +24,6 @@ declare namespace utility {
    * Static object define
    */
   type ObjStatic = { [key: string]: any };
-
 
 
   /**
@@ -52,7 +52,7 @@ declare namespace utility {
   /**
    * --------------------0_0----------------
    * @description Defines For Crypto
-   * @see https://github.com/ddzy/utility#md5
+   * @see https://github.com/node-modules/utility#md5
    * --------------0^0------------------
    */
 
@@ -167,7 +167,7 @@ declare namespace utility {
   /**
    * ----------------0_0-----------------
    * @description Defines For Date
-   * @see https://github.com/ddzy/utility#date-utils
+   * @see https://github.com/node-modules/utility#date-utils
    * ---------------0^0------------------
    */
 
@@ -241,7 +241,7 @@ declare namespace utility {
   /**
    * ---------------0_0-------------------
    * @description Defines For Function Method
-   * @see https://github.com/ddzy/utility#others
+   * @see https://github.com/node-modules/utility#others
    * ---------------0^0--------------------
    */
 
@@ -270,7 +270,7 @@ declare namespace utility {
   /**
    * ----------------0_0-----------------------
    * @description Defines For JSON methods
-   * @see https://github.com/ddzy/utility#json
+   * @see https://github.com/node-modules/utility#json
    * -----------------0^0-----------------------
    */
 
@@ -315,7 +315,7 @@ declare namespace utility {
   /**
    * ------------------0_0------------------------
    * @description Defines For Number Methods
-   * @see https://github.com/ddzy/utility#number-utils
+   * @see https://github.com/node-modules/utility#number-utils
    * --------------------0^0----------------------
    */
 
@@ -364,7 +364,7 @@ declare namespace utility {
   /**
    * ------------------0_0--------------------------
    * @description Defines For Object Methods
-   * @see https://github.com/ddzy/utility#objectassign
+   * @see https://github.com/node-modules/utility#objectassign
    * -------------------0^0------------------------
    */
 
@@ -401,7 +401,7 @@ declare namespace utility {
   /**
    * -----------------0_0---------------------------
    * @description Defines For Optimize Methods
-   * @see https://github.com/ddzy/utility#argumentstoarray
+   * @see https://github.com/node-modules/utility#argumentstoarray
    * -----------------0^0------------------------
    */
 
@@ -439,7 +439,7 @@ declare namespace utility {
   /**
    * -------------------0_0---------------------
    * @description Defines For Polyfill Methods
-   * @see https://github.com/ddzy/utility#timers
+   * @see https://github.com/node-modules/utility#timers
    * -------------------0^0-------------------
    */
 
@@ -457,7 +457,7 @@ declare namespace utility {
   /**
    * ------------------0_0--------------------
    * @description Defines For String Methods
-   * @see https://github.com/ddzy/utility#others
+   * @see https://github.com/node-modules/utility#others
    * -------------------0^0---------------------
    */
 
@@ -530,7 +530,7 @@ declare namespace utility {
   /**
    * ------------------0_0----------------------
    * @description Defines For Web Methods
-   * @see https://github.com/ddzy/utility#decode-and-encode
+   * @see https://github.com/node-modules/utility#decode-and-encode
    * ------------------0^0------------------------
    */
 
