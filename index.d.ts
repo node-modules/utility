@@ -444,9 +444,14 @@ declare namespace utility {
    */
 
 
-  function setImmediate(): NodeJS.Immediate | ((
+  function setImmediate(
+    callback: (...args: any[]) => void,
+    ...args: any[],
+  ): NodeJS.Immediate;
+  function setImmediate(
     fn: (...args: any[]) => any,
-  ) => void);
+    ...args: any[],
+  ): void;
 
 
   /**
