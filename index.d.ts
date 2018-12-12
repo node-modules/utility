@@ -501,7 +501,7 @@ declare namespace utility {
   function replace(
     str: string,
     substr: string | RegExp,
-    newSubstr: string | ((...args: any) => any),
+    newSubstr: string | ((...args: any[]) => any),
   ): string;
 
   /**
@@ -513,7 +513,7 @@ declare namespace utility {
    */
   function replaceInvalidHttpHeaderChar(
     val: string,
-    replacement: string | ((...args: any) => any)
+    replacement?: string | ((...args: any[]) => any)
   ): IReplaceInvalidHttpHeaderCharReturns;
 
   /**
