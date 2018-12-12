@@ -547,6 +547,18 @@ declare namespace utility {
   ): string;
 
   /**
+   * Unescape the given string from html
+   * @param {String} html
+   * @param {String} type
+   * @return {String}
+   * @public
+   */
+  function unescape(
+    html: string,
+    type?: string,
+  ): string | ObjStatic;
+
+  /**
    * Safe encodeURIComponent, won't throw any error.
    * If `encodeURIComponent` error happen, just return the original value.
    *
