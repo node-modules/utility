@@ -408,7 +408,7 @@ declare namespace utility {
   interface ITryStaticReturns {
     error: Error | undefined,
     value: any,
-  };
+  }
 
   /**
    * optimize try catch
