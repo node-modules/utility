@@ -405,6 +405,10 @@ declare namespace utility {
    * -----------------0^0------------------------
    */
 
+  interface ITryStaticReturns {
+    error: Error | undefined,
+    value: any,
+  };
 
   /**
    * optimize try catch
@@ -413,7 +417,9 @@ declare namespace utility {
    *   - {Error} error
    *   - {Mix} value
    */
-  // function try(): { err: Error, value: any };
+  function _try(
+    fn: (...args: any[]) => any,
+  ): ITryStaticReturns;
 
   /**
    * avoid if (a && a.b && a.b.c)
