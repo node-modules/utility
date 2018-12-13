@@ -5,7 +5,7 @@ import utils from '../';
 
 test('try() should work when no error', t => {
   const str = '{"foo": "bar"}';
-  const res = utils.UNSTABLE_METHOD.try(function () {
+  const res = utils.try(function () {
     return JSON.parse(str);
   });
 
@@ -14,7 +14,7 @@ test('try() should work when no error', t => {
 
 test('try() should work when throw err with error', t => {
   const str = '{"foo": "bar}';
-  const res = utils.UNSTABLE_METHOD.try(function () {
+  const res = utils.try(function () {
     return JSON.parse(str);
   });
   t.true(res.error instanceof Error);
@@ -22,7 +22,7 @@ test('try() should work when throw err with error', t => {
 });
 
 test('try() should work when throw err with string', t => {
-  const res = utils.UNSTABLE_METHOD.try(function () {
+  const res = utils.try(function () {
     throw 'string error';
   });
   t.true(res.error instanceof Error);
