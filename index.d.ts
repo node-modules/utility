@@ -410,16 +410,18 @@ declare namespace utility {
     value: any,
   }
 
-  /**
-   * optimize try catch
-   * @param {Function} fn
-   * @return {Object}
-   *   - {Error} error
-   *   - {Mix} value
-   */
-  function _try(
-    fn: (...args: any[]) => any,
-  ): ITryStaticReturns;
+  const UNSTABLE_METHOD: {
+    /**
+     * optimize try catch
+     * @param {Function} fn
+     * @return {Object}
+     *   - {Error} error
+     *   - {Mix} value
+     */
+    try: (
+      fn: (...args: any[]) => any,
+    ) => ITryStaticReturns,
+  };
 
   /**
    * avoid if (a && a.b && a.b.c)
