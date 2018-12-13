@@ -212,6 +212,13 @@ const res = utils.try(function () {
 // {error: undefined, value: {foo: 'bar'}}
 // {error: Error, value: undefined}
 ```
+```Note``` that when you use ```typescript```, you must use the following methods to call ' Try '
+```js
+import * as utility from 'utility';
+
+utility.UNSTABLE_METHOD.try(...);
+...
+```
 
 ### argumentsToArray
 
