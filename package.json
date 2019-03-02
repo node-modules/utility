@@ -13,7 +13,7 @@
     "test-local-ts": "ava-ts test_ts/**/*.test.ts",
     "test-cov": "nyc ava test/**/*.test.js && nyc report --reporter=lcov",
     "lint": "jshint .",
-    "ci": "npm run lint && npm run test-cov",
+    "ci": "npm run lint && npm run test-cov && npm run test-ts",
     "autod": "autod -w --prefix '^' -e benchmark",
     "test-optimized": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.js"
   },
