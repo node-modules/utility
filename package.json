@@ -8,7 +8,9 @@
   ],
   "scripts": {
     "test": "npm run lint && npm run test-local",
+    "test-ts": "npm run test-local-ts",
     "test-local": "ava test/**/*.test.js",
+    "test-local-ts": "ava-ts test_ts/**/*.test.ts",
     "test-cov": "nyc ava test/**/*.test.js && nyc report --reporter=lcov",
     "lint": "jshint .",
     "ci": "npm run lint && npm run test-cov",
@@ -23,8 +25,11 @@
     "unescape": "^1.0.1"
   },
   "devDependencies": {
+    "@types/escape-html": "0.0.20",
+    "@types/node": "^10.12.12",
     "autod": "*",
     "ava": "^0.25.0",
+    "ava-ts": "^0.25.2",
     "beautify-benchmark": "*",
     "benchmark": "^2.1.0",
     "contributors": "*",
@@ -33,7 +38,9 @@
     "nyc": "6",
     "object-assign": "^4.1.1",
     "optimized": "^1.2.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {

@@ -33,6 +33,10 @@ $ npm install utility
 ```js
 const utils = require('utility');
 ```
+Also you can use it within typescript, like this ↓
+```js
+import * as utility from 'utility';
+```
 
 ### md5
 
@@ -207,6 +211,13 @@ const res = utils.try(function () {
 
 // {error: undefined, value: {foo: 'bar'}}
 // {error: Error, value: undefined}
+```
+```Note``` that when you use ```typescript```, you must use the following methods to call ' Try '
+```js
+import * as utility from 'utility';
+
+utility.UNSTABLE_METHOD.try(...);
+...
 ```
 
 ### argumentsToArray
