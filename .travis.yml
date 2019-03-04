@@ -1,10 +1,16 @@
 sudo: false
+os:
+  - linux
+  - osx
+  - windows
 language: node_js
 node_js:
   - '4'
   - '6'
   - '8'
   - '10'
+install:
+  - npm i npminstall && npminstall
 script:
   - 'npm run ci'
 after_script:

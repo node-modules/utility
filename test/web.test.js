@@ -38,7 +38,7 @@ on_purpose_failure YQ b\
 Encode string s using a URL-safe alphabet, which substitutes - instead of + and _ instead of / in the standard Base64 alphabet. The result can still contain =.';
   const expect = '5L2g5aW977+l5ZWKIUAjKShfICsvL1wiImMgIC8g6K6k6LSt5rij5omT6ZO26KGM5Luj5a6i5aKD5aSW55CG6LSi5YWo55CD5Z+66YeR57O7IOWIl+S6p+WTgSzlkIzlk4HniYzln7rph5HovazmjaIw5pS26LS5LiBsZW4xIFlRIGFsZW4yIFlXRSBhYWxlbjMgWVdGaCBhYWFub19wYWRkaW5nIFlXSmogYWJjcGFkZGluZyBZUSBhaHlwaGVuIGZuNS0gfn5+dW5kZXJzY29yZSBQejhfID8/PyMgdGhpcyBzaG91bGQgZmFpbCBhbmQgcHJpbnQgb3V0b25fcHVycG9zZV9mYWlsdXJlIFlRIGJFbmNvZGUgc3RyaW5nIHMgdXNpbmcgYSBVUkwtc2FmZSBhbHBoYWJldCwgd2hpY2ggc3Vic3RpdHV0ZXMgLSBpbnN0ZWFkIG9mICsgYW5kIF8gaW5zdGVhZCBvZiAvIGluIHRoZSBzdGFuZGFyZCBCYXNlNjQgYWxwaGFiZXQuIFRoZSByZXN1bHQgY2FuIHN0aWxsIGNvbnRhaW4gPS4=';
   t.is(utils.base64encode(s), expect);
-  t.is(utils.base64encode(new Buffer(s)), expect);
+  t.is(utils.base64encode(Buffer.from(s)), expect);
   t.is(utils.base64decode(expect), s);
 
   t.is(utils.base64decode(utils.base64encode(s)), s);
@@ -58,7 +58,7 @@ test('encodeURIComponent() and decodeURIComponent() should encode and decode suc
     String.fromCharCode(0xDFFF), // http://cnodejs.org/topic/4fd6b7ba839e1e581407aac8
     123, 0, 1, Math.pow(2, 53),
     null, undefined,
-    new Buffer('中文水电费'), new Buffer(100),
+    Buffer.from('中文水电费'), Buffer.alloc(100),
   ];
   texts.forEach(text => {
     if (typeof text === 'string') {
