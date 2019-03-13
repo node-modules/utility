@@ -1,4 +1,15 @@
 
+1.15.1 / 2019-03-13
+==================
+
+**features**
+  * [[`b092817`](http://github.com/node-modules/utility/commit/b092817be0c4de459bde180e754ba4872e715027)] - feat: support for ts (#45) (yyge <<33921398+ddzy@users.noreply.github.com>>)
+
+**others**
+  * [[`09bd9d0`](http://github.com/node-modules/utility/commit/09bd9d061b57a2ef6b24a39b41063f51cf251fc1)] - chore: package.json files add [index.d.ts] (#46) (ccccQ <<chenqiuws@gmail.com>>)
+  * [[`7c102f4`](http://github.com/node-modules/utility/commit/7c102f4aff81e44b96629d692ce74f22cc02919f)] - test: travis support windows (#40) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`fdd2d27`](http://github.com/node-modules/utility/commit/fdd2d27ce99c25458795ad1e7555370498c051bd)] - chore: fix typo function name of sha256 (#39) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.15.0 / 2018-09-12
 ==================
 
