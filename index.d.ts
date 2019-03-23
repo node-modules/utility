@@ -380,9 +380,6 @@ declare namespace utility {
     objects: ObjStatic | any[],
   ): ObjStatic;
 
-  /**
-   * Module dependencies.
-   */
   function has(
     obj: ObjStatic,
     prop: string,
