@@ -16,7 +16,8 @@
     "lint": "jshint .",
     "ci": "npm run lint && npm run test-cov && npm run test-ts",
     "autod": "autod -w --prefix '^' -e benchmark",
-    "test-optimized": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.js"
+    "test-optimized": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.js",
+    "contributor": "git-contributor"
   },
   "dependencies": {
     "copy-to": "^2.0.1",
@@ -34,6 +35,7 @@
     "beautify-benchmark": "*",
     "benchmark": "^2.1.0",
     "contributors": "*",
+    "git-contributor": "^1.0.10",
     "jshint": "*",
     "moment": "^2.22.2",
     "nyc": "6",

@@ -315,6 +315,18 @@ new Date().toString() x 816,731 ops/sec ±3.46% (93 runs sampled)
 Fastest is utils.datestruct().YYYYMMDD
 ```
 
+<!-- GITCONTRIBUTOR_START -->
+
+## Contributors
+
+|[<img src="https://avatars0.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars3.githubusercontent.com/u/985607?v=4" width="100px;"/><br/><sub><b>dead-horse</b></sub>](https://github.com/dead-horse)<br/>|[<img src="https://avatars1.githubusercontent.com/u/1147375?v=4" width="100px;"/><br/><sub><b>alsotang</b></sub>](https://github.com/alsotang)<br/>|[<img src="https://avatars1.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars2.githubusercontent.com/u/1207064?v=4" width="100px;"/><br/><sub><b>gxcsoccer</b></sub>](https://github.com/gxcsoccer)<br/>|[<img src="https://avatars3.githubusercontent.com/u/2842176?v=4" width="100px;"/><br/><sub><b>XadillaX</b></sub>](https://github.com/XadillaX)<br/>|
+| :---: | :---: | :---: | :---: | :---: | :---: |
+[<img src="https://avatars1.githubusercontent.com/u/24466804?v=4" width="100px;"/><br/><sub><b>mosikoo</b></sub>](https://github.com/mosikoo)<br/>|[<img src="https://avatars2.githubusercontent.com/u/2569835?v=4" width="100px;"/><br/><sub><b>haoxins</b></sub>](https://github.com/haoxins)<br/>|[<img src="https://avatars1.githubusercontent.com/u/546535?v=4" width="100px;"/><br/><sub><b>leoner</b></sub>](https://github.com/leoner)<br/>|[<img src="https://avatars3.githubusercontent.com/u/33921398?v=4" width="100px;"/><br/><sub><b>ddzy</b></sub>](https://github.com/ddzy)<br/>
+
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Sat Mar 23 2019 12:09:41 GMT+0800`.
+
+<!-- GITCONTRIBUTOR_END -->
+
 ## License
 
 [MIT](LICENSE.txt)
