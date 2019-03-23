@@ -388,6 +388,11 @@ declare namespace utility {
     prop: string,
   ): boolean;
 
+  function getOwnEnumerables(
+    obj: ObjStatic,
+    ignoreNull?: boolean,
+  ): string[];
+
   /**
    * generate a real map object(clean object), no constructor, no __proto__
    * @param {Object} [obj] - init object, optional
