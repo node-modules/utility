@@ -13,7 +13,7 @@ test('has() should has property ok', t => {
 });
 
 test('getOwnEnumerables() should return all enumerable and ownership property names', t => {
-  t.deepEqual(utils.getOwnEnumerables({a: 1}), [ 'a' ]);
+  t.deepEqual(utility.getOwnEnumerables({a: 1}), [ 'a' ]);
   const a = { a: 1 };
   Object.defineProperties(a, {
     one: { enumerable: true, value: 'one' },
@@ -23,15 +23,15 @@ test('getOwnEnumerables() should return all enumerable and ownership property na
     const s = Symbol('s');
     a[s] = 'localSymbol';
   }
-  t.deepEqual(utils.getOwnEnumerables(a), [ 'a', 'one' ]);
-  t.deepEqual(utils.getOwnEnumerables({b: null}), [ 'b' ]);
-  t.deepEqual(utils.getOwnEnumerables({b: null, a: undefined, c: NaN, d: 0, e: '', f: []}, true),
+  t.deepEqual(utility.getOwnEnumerables(a), [ 'a', 'one' ]);
+  t.deepEqual(utility.getOwnEnumerables({b: null}), [ 'b' ]);
+  t.deepEqual(utility.getOwnEnumerables({b: null, a: undefined, c: NaN, d: 0, e: '', f: []}, true),
     [ 'd', 'e', 'f' ]);
-  t.deepEqual(utils.getOwnEnumerables({a: 1, constructor: 'foo'}), [ 'a', 'constructor' ]);
+  t.deepEqual(utility.getOwnEnumerables({a: 1, constructor: 'foo'}), [ 'a', 'constructor' ]);
   /* jshint -W001 */
   // ignore hasOwnProperty jshint error
-  t.deepEqual(utils.getOwnEnumerables({'hasOwnProperty': 1, a: 1}), [ 'hasOwnProperty', 'a' ]);
-  t.deepEqual(utils.getOwnEnumerables({'hasOwnProperty': 1, a: 1, 'getOwnEnumerables': 0}), [ 'hasOwnProperty', 'a', 'getOwnEnumerables' ]);
+  t.deepEqual(utility.getOwnEnumerables({'hasOwnProperty': 1, a: 1}), [ 'hasOwnProperty', 'a' ]);
+  t.deepEqual(utility.getOwnEnumerables({'hasOwnProperty': 1, a: 1, 'getOwnEnumerables': 0}), [ 'hasOwnProperty', 'a', 'getOwnEnumerables' ]);
 });
 
 test('map() should get a new map', t => {
