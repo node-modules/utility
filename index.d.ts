@@ -380,13 +380,15 @@ declare namespace utility {
     objects: ObjStatic | any[],
   ): ObjStatic;
 
-  /**
-   * Module dependencies.
-   */
   function has(
     obj: ObjStatic,
     prop: string,
   ): boolean;
+
+  function getOwnEnumerables(
+    obj: ObjStatic,
+    ignoreNull?: boolean,
+  ): string[];
 
   /**
    * generate a real map object(clean object), no constructor, no __proto__
