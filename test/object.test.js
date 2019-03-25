@@ -43,6 +43,23 @@ test('getOwnEnumerables() should return all enumerable and ownership property na
   t.deepEqual(utils.getOwnEnumerables({'hasOwnProperty': 1, a: 1}), [ 'hasOwnProperty', 'a' ]);
   t.deepEqual(utils.getOwnEnumerables({'hasOwnProperty': 1, a: 1, 'getOwnEnumerables': 0}),
     [ 'hasOwnProperty', 'a', 'getOwnEnumerables' ]);
+
+  // ignore null value
+  Object.prototype.noop = function () {};
+  var headers = {
+    'content-type': 'application/json',
+    charset: 'utf-8',
+    foo: NaN,
+    bar: 0,
+    empty: '',
+  };
+  Object.defineProperties(headers, {
+    one: { enumerable: true, value: 'one' },
+    two: { enumerable: false, value: function() {} },
+  });
+  t.deepEqual(utils.getOwnEnumerables(headers, true),
+    [ 'content-type', 'charset', 'bar', 'empty', 'one' ]);
+  delete Object.prototype.noop;
 });
 
 test('map() should get a new map', t => {
