@@ -1,4 +1,10 @@
 
+1.16.0 / 2019-03-25
+==================
+
+**features**
+  * [[`16104be`](http://github.com/node-modules/utility/commit/16104befbfde9c2a0bf95b88029436c4a182b1bb)] - feat: add getOwnEnumerables(obj, ignoreNull) (#47) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.15.1 / 2019-03-13
 ==================
 
