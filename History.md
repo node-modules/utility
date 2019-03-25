@@ -1,4 +1,10 @@
 
+1.16.1 / 2019-03-25
+==================
+
+**fixes**
+  * [[`a8b0c0d`](http://github.com/node-modules/utility/commit/a8b0c0d38e7d2f6c85169975cfc7f2f1a033c310)] - fix: detect number first before check NaN (#48) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.16.0 / 2019-03-25
 ==================
 
