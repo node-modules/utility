@@ -4,6 +4,8 @@ import test from 'ava';
 import utils from '../';
 
 test('getParamNames() should return parameter names', t => {
+  t.deepEqual(utils.getParamNames(null), []);
+  t.deepEqual(utils.getParamNames(undefined), []);
   t.deepEqual(utils.getParamNames(function () {}), []);
   /* jshint ignore:start */
   t.deepEqual(utils.getParamNames(function (key1) {}), ['key1']);
