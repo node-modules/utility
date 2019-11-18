@@ -4,8 +4,16 @@ import * as utility from '../';
 
 
 test('getParamNames() should return parameter names', t => {
-  t.deepEqual(utility.getParamNames(undefined), []);
-  t.deepEqual(utility.getParamNames(null), []);
+  try {
+    utility.getParamNames(null);  
+  } catch (err) {
+    t.is(err.message, 'The "func" must be a function. Received type "object"')
+  }
+  try {
+    utility.getParamNames(undefined);  
+  } catch (err) {
+    t.is(err.message, 'The "func" must be a function. Received type "undefined"')
+  }
   t.deepEqual(utility.getParamNames(function () {}), []);
   /* jshint ignore:start */
   t.deepEqual(utility.getParamNames(function (key1) {}), ['key1']);

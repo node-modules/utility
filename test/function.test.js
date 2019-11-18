@@ -4,8 +4,18 @@ import test from 'ava';
 import utils from '../';
 
 test('getParamNames() should return parameter names', t => {
-  t.deepEqual(utils.getParamNames(null), []);
-  t.deepEqual(utils.getParamNames(undefined), []);
+  try {
+    utils.getParamNames(null);  
+  } catch (err) {
+    t.is(err.message, 'The "func" must be a function. Received type "object"')
+  }
+  
+  try {
+    utils.getParamNames(undefined);  
+  } catch (err) {
+    t.is(err.message, 'The "func" must be a function. Received type "undefined"')
+  }
+  
   t.deepEqual(utils.getParamNames(function () {}), []);
   /* jshint ignore:start */
   t.deepEqual(utils.getParamNames(function (key1) {}), ['key1']);
