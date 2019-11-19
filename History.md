@@ -1,4 +1,13 @@
 
+1.16.2 / 2019-11-19
+==================
+
+**fixes**
+  * [[`bb8f5d4`](http://github.com/node-modules/utility/commit/bb8f5d4becb61df6e8ce1788a172f8ae4e9937b4)] - fix: getParamNames throw when input is not function (#51) (Daniels.Sun <<better.sunjian@gmail.com>>)
+
+**others**
+  * [[`7016803`](http://github.com/node-modules/utility/commit/7016803364f22c70c42da59870eee64dd1d99020)] - build: add node 12 in ci (dead-horse <<dead_horse@qq.com>>)
+
 1.16.1 / 2019-03-25
 ==================
 
