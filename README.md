@@ -113,7 +113,7 @@ utils.noop = function () {}
 
 // throw out an assertion error if you were given an invalid "func"
 try {
-  utils.getParamNames(null/* any non-function */); // Only function is allowed
+  utils.getParamNames(null); // Only function is allowed
 } catch (err) {
   console.error(err); // Assertion Error
 }
