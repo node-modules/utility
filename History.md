@@ -1,4 +1,10 @@
 
+1.16.3 / 2019-11-20
+==================
+
+**fixes**
+  * [[`cf79437`](http://github.com/node-modules/utility/commit/cf794378d9a567b2acdbe894fb0fe86bb11c8e31)] - fix: do not use ECMAScript6 syntax. (#52) (ULIVZ <<472590061@qq.com>>)
+
 1.16.2 / 2019-11-19
 ==================
 
