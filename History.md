@@ -1,4 +1,13 @@
 
+1.17.0 / 2020-12-15
+==================
+
+**features**
+  * [[`19c96a8`](http://github.com/node-modules/utility/commit/19c96a8a58e6bbb4c8bf572b9d2fb76372f16e1e)] - feat: hash ts define support object params (#55) (恒遥 <<zhangyao318@gmail.com>>)
+
+**others**
+  * [[`181f2ed`](http://github.com/node-modules/utility/commit/181f2ed90586258c3110ac7c149f66b8bc7b82b8)] - test: drop node 4, 6 on travis ci (#56) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.16.3 / 2019-11-20
 ==================
 
