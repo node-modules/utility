@@ -13,11 +13,9 @@ test('md5() should return md5 string', (t)=> {
   t.is(utility.md5('', 'base64'), '1B2M2Y8AsgTpgAmY7PhCfg==');
 
 
-  // !!! TS: ERROR
-/*
   t.is(utility.md5({foo: 'bar', bar: 'foo'}), '63a9d72936c6f7366fa5e72fa0cac8b4');
   t.is(utility.md5({foo: 'bar', bar: 'foo'}), utility.md5({bar: 'foo', foo: 'bar'}));
   t.is(utility.md5({foo: 'bar', bar: 'foo', v: [1, 2, 3]}), utility.md5({v: [1, 2, 3], bar: 'foo', foo: 'bar'}));
   t.is(utility.md5({foo: 'bar', bar: 'foo', args: {age: 1, name: 'foo'}, args2: {haha:'哈哈', bi: 'boo'}, v: [1, 2, 3]}),
-    utility.md5({v: [1, 2, 3], bar: 'foo', foo: 'bar', args2: {bi: 'boo', haha:'哈哈'}, args: {name: 'foo', age: 1}})); */
+    utility.md5({v: [1, 2, 3], bar: 'foo', foo: 'bar', args2: {bi: 'boo', haha:'哈哈'}, args: {name: 'foo', age: 1}}));
 });
