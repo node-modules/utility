@@ -14,5 +14,5 @@ jobs:
     name: Node.js
     uses: artusjs/github-actions/.github/workflows/node-test.yml@v1
     with:
-      os: 'ubuntu-latest, windows-latest'
+      os: 'ubuntu-latest'
       version: '8, 10, 12, 14, 16, 18, 20'
