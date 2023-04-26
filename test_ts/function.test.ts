@@ -1,6 +1,6 @@
 
 import test from 'ava';
-import utility from '../';
+import * as utility from '../';
 
 test('getParamNames() should return parameter names', t => {
   t.throws(() => utility.getParamNames(null as any));

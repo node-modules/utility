@@ -41,7 +41,7 @@
     "optimized": "^1.2.0",
     "rimraf": "^2.6.2",
     "time-require": "^0.1.2",
-    "ts-node": "^10.9.1",
+    "ts-node": "^7.0.1",
     "typescript": "^5.0.4"
   },
   "homepage": "https://github.com/node-modules/utility",
