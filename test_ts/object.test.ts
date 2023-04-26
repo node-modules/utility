@@ -14,7 +14,7 @@ test('has() should has property ok', t => {
 
 test('getOwnEnumerables() should return all enumerable and ownership property names', t => {
   t.deepEqual(utility.getOwnEnumerables({a: 1}), [ 'a' ]);
-  const a = { a: 1 };
+  const a = { a: 1 } as any;
   Object.defineProperties(a, {
     one: { enumerable: true, value: 'one' },
     two: { enumerable: false, value: function() {} },

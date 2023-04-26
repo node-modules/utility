@@ -1,7 +1,6 @@
 import test from 'ava';
 import * as utility from '../';
 
-
 test('randomString() should get random string by default', t => {
   t.regex(utility.randomString(), /^[0-9a-zA-Z]{16}$/);
 });
@@ -25,7 +24,7 @@ test('split(), splitAlwaysOptimized() should return []', t => {
   // !!! TSError
   // t.deepEqual(utility.split(), []);
 
-  t.deepEqual(utility.split(null), []);
+  t.deepEqual(utility.split(null as any), []);
   t.deepEqual(utility.split(''), []);
 
   t.deepEqual(utility.splitAlwaysOptimized(',,,,'), []);

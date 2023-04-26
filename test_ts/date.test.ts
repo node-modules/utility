@@ -1,7 +1,6 @@
 import test from 'ava';
-import * as moment from 'moment';
-import * as utility from '../';
-
+import moment from 'moment';
+import utility from '..';
 
 test('YYYYMMDDHHmmss() should return an "YYYY-MM-DD HH:mm:ss" format date string', t => {
 

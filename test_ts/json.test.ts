@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 const rimraf = require('rimraf');
 import test from 'ava';
-import * as utility from '../';
+import utility from '..';
 
 
 test('strictJSONParse() should parse normal json ok', t => {

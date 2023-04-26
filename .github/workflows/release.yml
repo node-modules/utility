@@ -1,0 +1,17 @@
+name: Release
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch: {}
+
+jobs:
+  release:
+    name: Node.js
+    uses: artusjs/github-actions/.github/workflows/node-release.yml@v1
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+    with:
+      checkTest: false
