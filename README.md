@@ -187,7 +187,7 @@ use `Object.create(null)`
 ```js
 const map = utils.map({a: 1});
 
-// should.not.exist(map.constractor);
+// should.not.exist(map.constructor);
 // should.not.exist(map.__proto__);
 // should.not.exist(map.toString);
 // should not exist any property
