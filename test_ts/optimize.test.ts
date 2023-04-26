@@ -31,7 +31,7 @@ test('try() should work when throw err with string', t => {
     throw 'string error';
   });
   t.true(res.error instanceof Error);
-  t.is(res.error.message, 'string error');
+  t.is(res.error!.message, 'string error');
   t.falsy(res.value);
 });
 

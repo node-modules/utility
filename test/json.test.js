@@ -5,7 +5,7 @@ import path from 'path';
 import rimraf from 'rimraf';
 import assert from 'assert';
 import test from 'ava';
-import utils from '../';
+import utils from '../json';
 
 test('strictJSONParse() should parse normal json ok', t => {
   const obj = utils.strictJSONParse('{"foo": "bar"}');

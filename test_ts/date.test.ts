@@ -2,7 +2,6 @@ import test from 'ava';
 import * as moment from 'moment';
 import * as utility from '../';
 
-
 test('YYYYMMDDHHmmss() should return an "YYYY-MM-DD HH:mm:ss" format date string', t => {
 
   // !!! TSError
@@ -136,7 +135,7 @@ test('datestruct() should return an date struct', t => {
 test('timestamp() should return a unix timestamp', t => {
   const ts = utility.timestamp();
   t.is(typeof ts, 'number');
-  t.true(ts > 1378153366);
+  t.true(ts as any > 1378153366);
   t.is(String(ts).length, 10);
 
   t.is((utility.timestamp(1385091596) as Date).getTime(), 1385091596000);

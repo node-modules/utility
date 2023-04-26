@@ -1,8 +1,21 @@
 'use strict';
 
-var fs = require('mz/fs');
 var path = require('path');
-var mkdirp = require('mkdirp');
+
+var _mkdirp;
+function getMkdirp() {
+  if (!_mkdirp) {
+    _mkdirp = require('mkdirp');
+  }
+  return _mkdirp;
+}
+var _fs;
+function getFS() {
+  if (!_fs) {
+    _fs = require('mz/fs');
+  }
+  return _fs;
+}
 
 exports.strictJSONParse = function (str) {
   var obj = JSON.parse(str);
@@ -13,10 +26,10 @@ exports.strictJSONParse = function (str) {
 };
 
 exports.readJSONSync = function(filepath) {
-  if (!fs.existsSync(filepath)) {
+  if (!getFS().existsSync(filepath)) {
     throw new Error(filepath + ' is not found');
   }
-  return JSON.parse(fs.readFileSync(filepath));
+  return JSON.parse(getFS().readFileSync(filepath));
 };
 
 exports.writeJSONSync = function(filepath, str, options) {
@@ -25,21 +38,21 @@ exports.writeJSONSync = function(filepath, str, options) {
     options.space = 2;
   }
 
-  mkdirp.sync(path.dirname(filepath));
+  getMkdirp().sync(path.dirname(filepath));
   if (typeof str === 'object') {
     str = JSON.stringify(str, options.replacer, options.space) + '\n';
   }
 
-  fs.writeFileSync(filepath, str);
+  getFS().writeFileSync(filepath, str);
 };
 
 exports.readJSON = function(filepath) {
-  return fs.exists(filepath)
+  return getFS().exists(filepath)
     .then(function(exists) {
       if (!exists) {
         throw new Error(filepath + ' is not found');
       }
-      return fs.readFile(filepath);
+      return getFS().readFile(filepath);
     })
     .then(function(buf) {
       return JSON.parse(buf);
@@ -58,13 +71,13 @@ exports.writeJSON = function(filepath, str, options) {
 
   return mkdir(path.dirname(filepath))
     .then(function() {
-      return fs.writeFile(filepath, str);
+      return getFS().writeFile(filepath, str);
     });
 };
 
 function mkdir(dir) {
   return new Promise(function(resolve, reject) {
-    mkdirp(dir, function(err) {
+    getMkdirp()(dir, function(err) {
       if (err) {
         return reject(err);
       }

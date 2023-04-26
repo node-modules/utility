@@ -2,10 +2,9 @@
 import test from 'ava';
 import * as utility from '../';
 
-
 test('getParamNames() should return parameter names', t => {
-  t.throws(() => utility.getParamNames(null));
-  t.throws(() => utility.getParamNames(undefined));
+  t.throws(() => utility.getParamNames(null as any));
+  t.throws(() => utility.getParamNames(undefined as any));
   t.deepEqual(utility.getParamNames(function () {}), []);
   /* jshint ignore:start */
   t.deepEqual(utility.getParamNames(function (key1) {}), ['key1']);
