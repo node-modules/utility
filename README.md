@@ -1,24 +1,16 @@
 # utility
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![CI](https://github.com/node-modules/utility/actions/workflows/nodejs.yml/badge.svg)](https://github.com/node-modules/utility/actions/workflows/nodejs.yml)
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
-[![Dependency Status][dependency-image]][dependency-url]
-[![devDependency Status][devDependency-image]][devDependency-url]
 
 [npm-image]: https://img.shields.io/npm/v/utility.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/utility
-[travis-image]: https://img.shields.io/travis/node-modules/utility.svg?style=flat-square
-[travis-url]: https://travis-ci.org/node-modules/utility
 [codecov-image]: https://codecov.io/github/node-modules/utility/coverage.svg?branch=master
 [codecov-url]: https://codecov.io/github/node-modules/utility?branch=master
 [download-image]: https://img.shields.io/npm/dm/utility.svg?style=flat-square
 [download-url]: https://npmjs.org/package/utility
-[dependency-image]: https://david-dm.org/node-modules/utility.svg
-[dependency-url]: https://david-dm.org/node-modules/utility
-[devDependency-image]: https://david-dm.org/node-modules/utility/dev-status.svg
-[devDependency-url]: https://david-dm.org/node-modules/utility#info=devDependencies
 
 A collection of useful utilities.
 
