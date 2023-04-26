@@ -25,9 +25,11 @@ $ npm install utility
 ```js
 const utils = require('utility');
 ```
+
 Also you can use it within typescript, like this ↓
-```js
-import * as utility from 'utility';
+
+```ts
+import utility from 'utility';
 ```
 
 ### md5
