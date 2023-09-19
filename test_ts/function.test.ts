@@ -1,4 +1,3 @@
-
 import test from 'ava';
 import * as utility from '../';
 
@@ -7,12 +6,12 @@ test('getParamNames() should return parameter names', t => {
   t.throws(() => utility.getParamNames(undefined as any));
   t.deepEqual(utility.getParamNames(function () {}), []);
   /* jshint ignore:start */
-  t.deepEqual(utility.getParamNames(function (key1) {}), ['key1']);
-  t.deepEqual(utility.getParamNames(function (key1,key2) {}), ['key1', 'key2']);
-  t.deepEqual(utility.getParamNames(function (key1, key2) {}), ['key1', 'key2']);
-  t.deepEqual(utility.getParamNames(function (key1, key2, key3, key4, callback) {
+  t.deepEqual(utility.getParamNames(function (_key1) {}), ['_key1']);
+  t.deepEqual(utility.getParamNames(function (_key1,_key2) {}), ['_key1', '_key2']);
+  t.deepEqual(utility.getParamNames(function (_key1, _key2) {}), ['_key1', '_key2']);
+  t.deepEqual(utility.getParamNames(function (_key1, _key2, _key3, _key4, _callback) {
     console.log('foo');
-  }), ['key1', 'key2', 'key3', 'key4', 'callback']);
+  }), ['_key1', '_key2', '_key3', '_key4', '_callback']);
   /* jshint ignore:end */
 
   t.deepEqual(utility.getParamNames(utility.getParamNames), ['func', 'cache']);

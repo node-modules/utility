@@ -1,6 +1,8 @@
 import test from 'ava';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as utility from '../';
+import utility2 from '../';
+import { logDate } from '../date';
 
 test('YYYYMMDDHHmmss() should return an "YYYY-MM-DD HH:mm:ss" format date string', t => {
 
@@ -74,12 +76,9 @@ test('YYYYMMDD() should return an "YYYYMMDD" format date string', t => {
 
 
 test('logDate() should return an log format date string', t => {
-
-  // !!! TSError
-  // t.regex(utility.logDate(), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
-  // t.regex(utility.logDate(null, ','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
-
   t.regex(utility.logDate(','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
+  t.regex(utility2.logDate(','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
+  t.regex(logDate(','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
   t.regex(utility.logDate(new Date(1372062988014)), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
   for (let m = 1; m <= 12; m++) {
     for (let d = 1; d <= 28; d++) {
