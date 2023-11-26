@@ -1,5 +1,5 @@
 import test from 'ava';
-import * as utility from '../';
+import * as utility from '../src';
 
 
 test('md5() should return md5 string', (t)=> {

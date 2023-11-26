@@ -9,16 +9,13 @@
     "index.d.ts"
   ],
   "scripts": {
-    "test": "npm run lint && npm run test-local",
-    "test-ts": "npm run test-local-ts",
-    "test-local": "ava test/**/*.test.js",
-    "test-local-ts": "ava-ts test_ts/**/*.test.ts",
-    "test-cov": "nyc ava test/**/*.test.js && nyc report --reporter=lcov",
-    "lint": "jshint .",
-    "tsd": "tsd",
-    "ci": "npm run lint && npm run test-cov && npm run test-ts",
-    "test-optimized": "node --allow-natives-syntax --trace_opt --trace_deopt test/optimized.js",
-    "contributor": "git-contributor"
+    "lint": "eslint src test --ext .ts",
+    "pretest": "npm run lint -- --fix && npm run prepublishOnly",
+    "test": "egg-bin test",
+    "preci": "npm run prepublishOnly",
+    "ci": "egg-bin cov",
+    "contributor": "git-contributor",
+    "prepublishOnly": "tshy && tshy-after"
   },
   "dependencies": {
     "copy-to": "^2.0.1",
@@ -29,24 +26,28 @@
   },
   "devDependencies": {
     "@eggjs/tsconfig": "^1.3.3",
-    "@types/escape-html": "0.0.20",
-    "@types/node": "^10.12.12",
+    "@types/escape-html": "^1.0.4",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.0",
     "ava": "^0.25.0",
     "ava-ts": "^0.25.2",
     "beautify-benchmark": "*",
     "benchmark": "^2.1.0",
     "contributors": "*",
-    "git-contributor": "^1.0.10",
-    "jshint": "*",
+    "egg-bin": "^6.5.2",
+    "eslint": "^8.54.0",
+    "eslint-config-egg": "^13.0.0",
+    "git-contributor": "^2.1.5",
     "moment": "^2.22.2",
     "nyc": "6",
     "object-assign": "^4.1.1",
     "optimized": "^1.2.0",
     "rimraf": "^2.6.2",
     "time-require": "^0.1.2",
-    "ts-node": "^7.0.1",
     "tsd": "^0.28.1",
-    "typescript": "^5.0.4"
+    "tshy": "^1.8.1",
+    "tshy-after": "^1.0.0",
+    "typescript": "~5.2.2"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {

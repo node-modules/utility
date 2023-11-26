@@ -1,5 +1,5 @@
 import { expectType } from 'tsd';
-import utility from '.';
+import utility from './utility';
 import { randomSlice } from './array';
 import { logDate } from './date';
 

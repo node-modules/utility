@@ -1,8 +1,8 @@
 import test from 'ava';
 import moment from 'moment';
-import * as utility from '../';
-import utility2 from '../';
-import { logDate } from '../date';
+import * as utility from '../src';
+import utility2 from '../src';
+import { logDate } from '../src/date';
 
 test('YYYYMMDDHHmmss() should return an "YYYY-MM-DD HH:mm:ss" format date string', t => {
 

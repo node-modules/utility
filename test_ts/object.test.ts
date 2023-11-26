@@ -1,6 +1,6 @@
 
 import test from 'ava';
-import * as utility from '../';
+import * as utility from '../src';
 
 test('has() should has property ok', t => {
   t.true(utility.has({a: 1}, 'a'));

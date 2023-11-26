@@ -1,6 +1,6 @@
 
 import test from 'ava';
-import * as utility from '../';
+import * as utility from '../src';
 
 
 test('isSafeNumberString(), toSafeNumber() should detect number string success', t => {

@@ -1,5 +1,5 @@
 import test from 'ava';
-import * as utility from '../';
+import * as utility from '../src';
 
 test('randomString() should get random string by default', t => {
   t.regex(utility.randomString(), /^[0-9a-zA-Z]{16}$/);

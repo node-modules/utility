@@ -1,5 +1,5 @@
 import test from 'ava';
-import * as utility from '../';
+import * as utility from '../src';
 
 test.cb('setImmediate() should work', t => {
   let count = 0;
