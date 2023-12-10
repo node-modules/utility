@@ -40,8 +40,7 @@
   "homepage": "https://github.com/node-modules/utility",
   "repository": {
     "type": "git",
-    "url": "git://github.com/node-modules/utility.git",
-    "web": "https://github.com/node-modules/utility"
+    "url": "git://github.com/node-modules/utility.git"
   },
   "keywords": [
     "utility",
@@ -81,5 +80,6 @@
     "dist",
     "src"
   ],
-  "main": "./dist/commonjs/index.js"
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts"
 }

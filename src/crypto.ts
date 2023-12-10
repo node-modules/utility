@@ -109,7 +109,7 @@ export function base64encode(s: string | Buffer, urlSafe?: boolean): string {
  * @param {encoding} [encoding=utf8] if encoding = buffer, will return Buffer instance
  * @return {String|Buffer} plain text.
  */
-export function base64decode(encodeStr: string, urlSafe: boolean, encoding?: BufferEncoding | 'buffer'): string | Buffer {
+export function base64decode(encodeStr: string, urlSafe?: boolean, encoding?: BufferEncoding | 'buffer'): string | Buffer {
   if (urlSafe) {
     encodeStr = encodeStr.replace(/\-/g, '+').replace(/_/g, '/');
   }

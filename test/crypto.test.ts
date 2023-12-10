@@ -93,5 +93,34 @@ describe('test/crypto.test.ts', () => {
       assert.equal(buf.toString(), utility.base64decode(text, true));
       assert.equal(buf.toString(), utility.base64decode(text, true, 'utf8'));
     });
+
+    it('base64encode() and base64decode() should return base64 encode string', () => {
+      // eslint-disable-next-line no-multi-str
+      const s = '你好￥啊!@#)(_ +/\/\\\
+""\u0063  / 认购渣打银行代客境外理财全球基金系 列产品,同品牌基金转换0收费. \
+len1 YQ a\
+len2 YWE aa\
+len3 YWFh aaa\
+no_padding YWJj abc\
+padding YQ a\
+hyphen fn5- ~~~\
+underscore Pz8_ ???\
+# this should fail and print out\
+on_purpose_failure YQ b\
+Encode string s using a URL-safe alphabet, which substitutes - instead of + and _ instead of / in the standard Base64 alphabet. The result can still contain =.';
+      const expect = '5L2g5aW977+l5ZWKIUAjKShfICsvL1wiImMgIC8g6K6k6LSt5rij5omT6ZO26KGM5Luj5a6i5aKD5aSW55CG6LSi5YWo55CD5Z+66YeR57O7IOWIl+S6p+WTgSzlkIzlk4HniYzln7rph5HovazmjaIw5pS26LS5LiBsZW4xIFlRIGFsZW4yIFlXRSBhYWxlbjMgWVdGaCBhYWFub19wYWRkaW5nIFlXSmogYWJjcGFkZGluZyBZUSBhaHlwaGVuIGZuNS0gfn5+dW5kZXJzY29yZSBQejhfID8/PyMgdGhpcyBzaG91bGQgZmFpbCBhbmQgcHJpbnQgb3V0b25fcHVycG9zZV9mYWlsdXJlIFlRIGJFbmNvZGUgc3RyaW5nIHMgdXNpbmcgYSBVUkwtc2FmZSBhbHBoYWJldCwgd2hpY2ggc3Vic3RpdHV0ZXMgLSBpbnN0ZWFkIG9mICsgYW5kIF8gaW5zdGVhZCBvZiAvIGluIHRoZSBzdGFuZGFyZCBCYXNlNjQgYWxwaGFiZXQuIFRoZSByZXN1bHQgY2FuIHN0aWxsIGNvbnRhaW4gPS4=';
+      assert.equal(utility.base64encode(s), expect);
+      assert.equal(utility.base64encode(Buffer.from(s)), expect);
+      assert.equal(utility.base64decode(expect), s);
+
+      assert.equal(utility.base64decode(utility.base64encode(s)), s);
+      assert.match(utility.base64encode(s), /\+/);
+      assert.match(utility.base64encode(s), /\//);
+
+      // urlSafe
+      assert.equal(utility.base64decode(utility.base64encode(s, true), true), s);
+      assert.match(utility.base64encode(s, true), /[^+]/);
+      assert.match(utility.base64encode(s, true), /[^\/]/);
+    });
   });
 });
