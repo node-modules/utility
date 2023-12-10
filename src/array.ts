@@ -1,25 +1,23 @@
-'use strict';
-
 /**
  * Array random slice with items count.
  * @param {Array} arr
  * @param {Number} num, number of sub items.
  * @return {Array}
  */
-exports.randomSlice = function randomSlice(arr, num) {
+export function randomSlice<T = any>(arr: T[], num?: number): T[] {
   if (!num || num >= arr.length) {
     return arr.slice();
   }
-  var index = Math.floor(Math.random() * arr.length);
-  var a = [];
-  for (var i = 0, j = index; i < num; i++) {
+  const index = Math.floor(Math.random() * arr.length);
+  const a: T[] = [];
+  for (let i = 0, j = index; i < num; i++) {
     a.push(arr[j++]);
     if (j === arr.length) {
       j = 0;
     }
   }
   return a;
-};
+}
 
 /**
  * Remove one exists element from an array
@@ -27,7 +25,7 @@ exports.randomSlice = function randomSlice(arr, num) {
  * @param  {Number} index - remove element index
  * @return {Array} the array instance
  */
-exports.spliceOne = function spliceOne(arr, index) {
+export function spliceOne<T = any>(arr: T[], index: number): T[] {
   if (index < 0) {
     index = arr.length + index;
     // still negative, not found element
@@ -41,9 +39,9 @@ exports.spliceOne = function spliceOne(arr, index) {
     return arr;
   }
 
-  for (var i = index, k = i + 1, n = arr.length; k < n; i += 1, k += 1) {
+  for (let i = index, k = i + 1, n = arr.length; k < n; i += 1, k += 1) {
     arr[i] = arr[k];
   }
   arr.pop();
   return arr;
-};
+}

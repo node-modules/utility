@@ -1,6 +1,6 @@
-'use strict';
+import { createHash, createHmac, BinaryToTextEncoding } from 'node:crypto';
 
-var crypto = require('crypto');
+type HashInput = string | Buffer | object;
 
 /**
  * hash
@@ -11,15 +11,15 @@ var crypto = require('crypto');
  * @return {String} md5 hash string
  * @public
  */
-exports.hash = function hash(method, s, format) {
-  var sum = crypto.createHash(method);
-  var isBuffer = Buffer.isBuffer(s);
+export function hash(method: string, s: HashInput, format?: BinaryToTextEncoding): string {
+  const sum = createHash(method);
+  const isBuffer = Buffer.isBuffer(s);
   if (!isBuffer && typeof s === 'object') {
     s = JSON.stringify(sortObject(s));
   }
-  sum.update(s, isBuffer ? 'binary' : 'utf8');
+  sum.update(s as string, isBuffer ? 'binary' : 'utf8');
   return sum.digest(format || 'hex');
-};
+}
 
 /**
  * md5 hash
@@ -29,9 +29,9 @@ exports.hash = function hash(method, s, format) {
  * @return {String} md5 hash string
  * @public
  */
-exports.md5 = function md5(s, format) {
-  return exports.hash('md5', s, format);
-};
+export function md5(s: HashInput, format?: BinaryToTextEncoding): string {
+  return hash('md5', s, format);
+}
 
 /**
  * sha1 hash
@@ -41,9 +41,9 @@ exports.md5 = function md5(s, format) {
  * @return {String} sha1 hash string
  * @public
  */
-exports.sha1 = function sha1(s, format) {
-  return exports.hash('sha1', s, format);
-};
+export function sha1(s: HashInput, format?: BinaryToTextEncoding): string {
+  return hash('sha1', s, format);
+}
 
 /**
  * sha256 hash
@@ -53,9 +53,9 @@ exports.sha1 = function sha1(s, format) {
  * @return {String} sha256 hash string
  * @public
  */
-exports.sha256 = function sha256(s, format) {
-  return exports.hash('sha256', s, format);
-};
+export function sha256(s: HashInput, format?: BinaryToTextEncoding): string {
+  return hash('sha256', s, format);
+}
 
 /**
  * HMAC algorithm.
@@ -74,62 +74,61 @@ exports.sha256 = function sha256(s, format) {
  * @param {String} [encoding='base64']
  * @return {String} digest string.
  */
-exports.hmac = function hmac(algorithm, key, data, encoding) {
+export function hmac(algorithm: string, key: string, data: string | Buffer, encoding?: BinaryToTextEncoding): string {
   encoding = encoding || 'base64';
-  var hmac = crypto.createHmac(algorithm, key);
-  hmac.update(data, Buffer.isBuffer(data) ? 'binary' : 'utf8');
+  const hmac = createHmac(algorithm, key);
+  hmac.update(data as string, Buffer.isBuffer(data) ? 'binary' : 'utf8');
   return hmac.digest(encoding);
-};
+}
 
 /**
  * Base64 encode string.
  *
  * @param {String|Buffer} s
- * @param {Boolean} [urlsafe=false] Encode string s using a URL-safe alphabet,
+ * @param {Boolean} [urlSafe=false] Encode string s using a URL-safe alphabet,
  *   which substitutes - instead of + and _ instead of / in the standard Base64 alphabet.
  * @return {String} base64 encode format string.
  */
-exports.base64encode = function base64encode(s, urlsafe) {
+export function base64encode(s: string | Buffer, urlSafe?: boolean): string {
   if (!Buffer.isBuffer(s)) {
-    s = typeof Buffer.from === 'function' ? Buffer.from(s) : new Buffer(s);
+    s = Buffer.from(s);
   }
-  var encode = s.toString('base64');
-  if (urlsafe) {
+  let encode = s.toString('base64');
+  if (urlSafe) {
     encode = encode.replace(/\+/g, '-').replace(/\//g, '_');
   }
   return encode;
-};
+}
 
 /**
  * Base64 string decode.
  *
- * @param {String} encode, base64 encoding string.
- * @param {Boolean} [urlsafe=false] Decode string s using a URL-safe alphabet,
+ * @param {String} encodeStr base64 encoding string.
+ * @param {Boolean} [urlSafe=false] Decode string s using a URL-safe alphabet,
  *   which substitutes - instead of + and _ instead of / in the standard Base64 alphabet.
  * @param {encoding} [encoding=utf8] if encoding = buffer, will return Buffer instance
  * @return {String|Buffer} plain text.
  */
-exports.base64decode = function base64decode(encodeStr, urlsafe, encoding) {
-  if (urlsafe) {
+export function base64decode(encodeStr: string, urlSafe: boolean, encoding?: BufferEncoding | 'buffer'): string | Buffer {
+  if (urlSafe) {
     encodeStr = encodeStr.replace(/\-/g, '+').replace(/_/g, '/');
   }
-  var buf = typeof Buffer.from === 'function' ? Buffer.from(encodeStr, 'base64') : new Buffer(encodeStr, 'base64');
+  const buf = Buffer.from(encodeStr, 'base64');
   if (encoding === 'buffer') {
     return buf;
   }
   return buf.toString(encoding || 'utf8');
-};
+}
 
-function sortObject(o) {
+function sortObject(o: any) {
   if (!o || Array.isArray(o) || typeof o !== 'object') {
     return o;
   }
-  var keys = Object.keys(o);
+  const keys = Object.keys(o);
   keys.sort();
-  var values = [];
-  for (var i = 0; i < keys.length; i++) {
-    var k = keys[i];
-    values.push([k, sortObject(o[k])]);
+  const values: any[] = [];
+  for (const k of keys) {
+    values.push([ k, sortObject(o[k]) ]);
   }
   return values;
 }

@@ -2,26 +2,18 @@
   "name": "utility",
   "version": "1.18.0",
   "description": "A collection of useful utilities.",
-  "main": "utility.js",
-  "types": "index.d.ts",
-  "files": [
-    "*.js",
-    "index.d.ts"
-  ],
   "scripts": {
-    "lint": "eslint src test --ext .ts",
+    "lint": "eslint src test --ext ts",
     "pretest": "npm run lint -- --fix && npm run prepublishOnly",
     "test": "egg-bin test",
+    "test-local": "egg-bin test",
     "preci": "npm run prepublishOnly",
     "ci": "egg-bin cov",
     "contributor": "git-contributor",
     "prepublishOnly": "tshy && tshy-after"
   },
   "dependencies": {
-    "copy-to": "^2.0.1",
     "escape-html": "^1.0.3",
-    "mkdirp": "^0.5.1",
-    "mz": "^2.7.0",
     "unescape": "^1.0.1"
   },
   "devDependencies": {
@@ -29,8 +21,6 @@
     "@types/escape-html": "^1.0.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.10.0",
-    "ava": "^0.25.0",
-    "ava-ts": "^0.25.2",
     "beautify-benchmark": "*",
     "benchmark": "^2.1.0",
     "contributors": "*",
@@ -39,15 +29,13 @@
     "eslint-config-egg": "^13.0.0",
     "git-contributor": "^2.1.5",
     "moment": "^2.22.2",
-    "nyc": "6",
     "object-assign": "^4.1.1",
     "optimized": "^1.2.0",
-    "rimraf": "^2.6.2",
     "time-require": "^0.1.2",
     "tsd": "^0.28.1",
     "tshy": "^1.8.1",
     "tshy-after": "^1.0.0",
-    "typescript": "~5.2.2"
+    "typescript": "^5.2.2"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {
@@ -65,8 +53,33 @@
     "hex"
   ],
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 16.0.0"
   },
   "author": "fengmk2 <fengmk2@gmail.com> (https://github.com/fengmk2)",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "tshy": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts"
+    }
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/commonjs/index.js"
 }

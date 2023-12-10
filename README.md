@@ -17,7 +17,7 @@ A collection of useful utilities.
 ## Install
 
 ```bash
-$ npm install utility
+npm install utility
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ const utils = require('utility');
 Also you can use it within typescript, like this ↓
 
 ```ts
-import utility from 'utility';
+import * as utility from 'utility';
 ```
 
 ### md5
@@ -212,7 +212,9 @@ const res = utils.try(function () {
 // {error: undefined, value: {foo: 'bar'}}
 // {error: Error, value: undefined}
 ```
+
 ```Note``` that when you use ```typescript```, you must use the following methods to call ' Try '
+
 ```js
 import * as utility from 'utility';
 
@@ -251,7 +253,7 @@ async () => {
 }
 ```
 
-> **Hint:** In `utils.writeJSON*()`, if `pkg` is an object, the **optional** third parameter `options` may contain two
+> __Hint:__ In `utils.writeJSON*()`, if `pkg` is an object, the __optional__ third parameter `options` may contain two
 > keys.
 >
 > + `replacer`: Equals to `JSON.stringify()`'s second parameter;
@@ -259,12 +261,10 @@ async () => {
 >
 > Refs:
 >
-> + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter
-> + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_space_argument
-
+> + <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter>
+> + <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_space_argument>
 
 ### Object.assign
-
 
 ```js
 // assign object
@@ -276,8 +276,8 @@ utility.assign({}, [ { a: 1 }, { b: 1 } ]);
 
 ## benchmark
 
-* [jsperf: access log date format](http://jsperf.com/access-log-date-format)
-* [benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
++ [jsperf: access log date format](http://jsperf.com/access-log-date-format)
++ [benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
 
 ```bash
 $ node benchmark/date_format.js
