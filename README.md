@@ -17,7 +17,7 @@ A collection of useful utilities.
 ## Install
 
 ```bash
-$ npm install utility
+npm install utility
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ const utils = require('utility');
 Also you can use it within typescript, like this ↓
 
 ```ts
-import utility from 'utility';
+import * as utility from 'utility';
 ```
 
 ### md5
@@ -212,7 +212,9 @@ const res = utils.try(function () {
 // {error: undefined, value: {foo: 'bar'}}
 // {error: Error, value: undefined}
 ```
+
 ```Note``` that when you use ```typescript```, you must use the following methods to call ' Try '
+
 ```js
 import * as utility from 'utility';
 
@@ -223,7 +225,7 @@ utility.UNSTABLE_METHOD.try(...);
 ### argumentsToArray
 
 ```js
-function() {
+function foo() {
   const arr = utility.argumentsToArray(arguments);
   console.log(arr.join(', '));
 }
@@ -251,7 +253,7 @@ async () => {
 }
 ```
 
-> **Hint:** In `utils.writeJSON*()`, if `pkg` is an object, the **optional** third parameter `options` may contain two
+> __Hint:__ In `utils.writeJSON*()`, if `pkg` is an object, the __optional__ third parameter `options` may contain two
 > keys.
 >
 > + `replacer`: Equals to `JSON.stringify()`'s second parameter;
@@ -259,12 +261,10 @@ async () => {
 >
 > Refs:
 >
-> + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter
-> + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_space_argument
-
+> + <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_replacer_parameter>
+> + <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#The_space_argument>
 
 ### Object.assign
-
 
 ```js
 // assign object
@@ -276,11 +276,11 @@ utility.assign({}, [ { a: 1 }, { b: 1 } ]);
 
 ## benchmark
 
-* [jsperf: access log date format](http://jsperf.com/access-log-date-format)
-* [benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
++ [jsperf: access log date format](http://jsperf.com/access-log-date-format)
++ [benchmark/date_format.js](https://github.com/node-modules/utility/blob/master/benchmark/date_format.cjs)
 
 ```bash
-$ node benchmark/date_format.js
+$ node benchmark/date_format.cjs
 
 moment().format("DD/MMM/YYYY:HH:mm:ss ZZ"): "16/Apr/2013:21:12:32 +0800"
 utils.accessLogDate(): "16/Apr/2013:21:12:32 +0800"
@@ -300,10 +300,10 @@ Date.now() x 8,327,685 ops/sec ±1.85% (94 runs sampled)
 Fastest is Date.now()
 ```
 
-[benchmark/date_YYYYMMDD.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_YYYYMMDD.js)
+[benchmark/date_YYYYMMDD.js](https://github.com/node-modules/utility/blob/master/benchmark/date_YYYYMMDD.cjs)
 
 ```bash
-$ node benchmark/date_YYYYMMDD.js
+$ node benchmark/date_YYYYMMDD.cjs
 
 parseInt(moment().format("YYYYMMDD"), 10): 20130416
 utils.datestruct().YYYYMMDD: 20130416
@@ -319,11 +319,12 @@ Fastest is utils.datestruct().YYYYMMDD
 
 ## Contributors
 
-|[<img src="https://avatars0.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars3.githubusercontent.com/u/985607?v=4" width="100px;"/><br/><sub><b>dead-horse</b></sub>](https://github.com/dead-horse)<br/>|[<img src="https://avatars1.githubusercontent.com/u/1147375?v=4" width="100px;"/><br/><sub><b>alsotang</b></sub>](https://github.com/alsotang)<br/>|[<img src="https://avatars1.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars2.githubusercontent.com/u/1207064?v=4" width="100px;"/><br/><sub><b>gxcsoccer</b></sub>](https://github.com/gxcsoccer)<br/>|[<img src="https://avatars3.githubusercontent.com/u/2842176?v=4" width="100px;"/><br/><sub><b>XadillaX</b></sub>](https://github.com/XadillaX)<br/>|
+|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/985607?v=4" width="100px;"/><br/><sub><b>dead-horse</b></sub>](https://github.com/dead-horse)<br/>|[<img src="https://avatars.githubusercontent.com/u/1147375?v=4" width="100px;"/><br/><sub><b>alsotang</b></sub>](https://github.com/alsotang)<br/>|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/1207064?v=4" width="100px;"/><br/><sub><b>gxcsoccer</b></sub>](https://github.com/gxcsoccer)<br/>|[<img src="https://avatars.githubusercontent.com/u/5127897?v=4" width="100px;"/><br/><sub><b>danielsss</b></sub>](https://github.com/danielsss)<br/>|
 | :---: | :---: | :---: | :---: | :---: | :---: |
-[<img src="https://avatars1.githubusercontent.com/u/24466804?v=4" width="100px;"/><br/><sub><b>mosikoo</b></sub>](https://github.com/mosikoo)<br/>|[<img src="https://avatars2.githubusercontent.com/u/2569835?v=4" width="100px;"/><br/><sub><b>haoxins</b></sub>](https://github.com/haoxins)<br/>|[<img src="https://avatars1.githubusercontent.com/u/546535?v=4" width="100px;"/><br/><sub><b>leoner</b></sub>](https://github.com/leoner)<br/>|[<img src="https://avatars3.githubusercontent.com/u/33921398?v=4" width="100px;"/><br/><sub><b>ddzy</b></sub>](https://github.com/ddzy)<br/>
+|[<img src="https://avatars.githubusercontent.com/u/2842176?v=4" width="100px;"/><br/><sub><b>XadillaX</b></sub>](https://github.com/XadillaX)<br/>|[<img src="https://avatars.githubusercontent.com/u/23133919?v=4" width="100px;"/><br/><sub><b>ulivz</b></sub>](https://github.com/ulivz)<br/>|[<img src="https://avatars.githubusercontent.com/u/24466804?v=4" width="100px;"/><br/><sub><b>mosikoo</b></sub>](https://github.com/mosikoo)<br/>|[<img src="https://avatars.githubusercontent.com/u/546535?v=4" width="100px;"/><br/><sub><b>leoner</b></sub>](https://github.com/leoner)<br/>|[<img src="https://avatars.githubusercontent.com/u/8603442?v=4" width="100px;"/><br/><sub><b>legend80s</b></sub>](https://github.com/legend80s)<br/>|[<img src="https://avatars.githubusercontent.com/u/32174276?v=4" width="100px;"/><br/><sub><b>semantic-release-bot</b></sub>](https://github.com/semantic-release-bot)<br/>|
+[<img src="https://avatars.githubusercontent.com/u/33921398?v=4" width="100px;"/><br/><sub><b>ddzy</b></sub>](https://github.com/ddzy)<br/>|[<img src="https://avatars.githubusercontent.com/u/8896314?v=4" width="100px;"/><br/><sub><b>zhanghengyao</b></sub>](https://github.com/zhanghengyao)<br/>
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Sat Mar 23 2019 12:09:41 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Mon Dec 11 2023 00:23:06 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 
