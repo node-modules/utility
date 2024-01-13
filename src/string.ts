@@ -1,7 +1,5 @@
-'use strict';
-
-exports.randomString = function randomString(length, charSet) {
-  var result = [];
+export function randomString(length?: number, charSet?: string) {
+  const result: string[] = [];
   length = length || 16;
   charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -9,65 +7,39 @@ exports.randomString = function randomString(length, charSet) {
     result.push(charSet[Math.floor(Math.random() * charSet.length)]);
   }
   return result.join('');
-};
+}
 
 /**
  * split string to array
- * @param  {String} str
+ * @param  {String} str input string
  * @param  {String} [sep] default is ','
- * @return {Array}
  */
-exports.split = function split(str, sep) {
+export function split(str?: string, sep?: string) {
   str = str || '';
   sep = sep || ',';
-  var items = str.split(sep);
-  var needs = [];
-  for (var i = 0; i < items.length; i++) {
-    var s = items[i].trim();
+  const needs: string[] = [];
+  for (const item of str.split(sep)) {
+    const s = item.trim();
     if (s.length > 0) {
       needs.push(s);
     }
   }
   return needs;
-};
-// always optimized
-exports.splitAlwaysOptimized = function splitAlwaysOptimized() {
-  var str = '';
-  var sep = ',';
-  if (arguments.length === 1) {
-    str = arguments[0] || '';
-  } else if (arguments.length === 2) {
-    str = arguments[0] || '';
-    sep = arguments[1] || ',';
-  }
-  var items = str.split(sep);
-  var needs = [];
-  for (var i = 0; i < items.length; i++) {
-    var s = items[i].trim();
-    if (s.length > 0) {
-      needs.push(s);
-    }
-  }
-  return needs;
-};
+}
+// keep compatibility
+export const splitAlwaysOptimized = split;
+
+type StringReplacer = (substring: string, ...args: any[]) => string;
 
 /**
  * Replace string
- *
- * @param  {String} str
- * @param  {String|RegExp} substr
- * @param  {String|Function} newSubstr
- * @return {String}
  */
-exports.replace = function replace(str, substr, newSubstr) {
-  var replaceFunction = newSubstr;
-  if (typeof replaceFunction !== 'function') {
-    replaceFunction = function () {
-      return newSubstr;
-    };
+export function replace(str: string, substr: string | RegExp, newSubstr: string | StringReplacer) {
+  if (typeof newSubstr === 'string') {
+    return str.replace(substr, () => { return newSubstr; });
   }
-  return str.replace(substr, replaceFunction);
-};
+  return str.replace(substr, newSubstr);
+}
 
 // original source https://github.com/nodejs/node/blob/v7.5.0/lib/_http_common.js#L300
 /**
@@ -80,7 +52,7 @@ exports.replace = function replace(str, substr, newSubstr) {
  * so take care when making changes to the implementation so that the source
  * code size does not exceed v8's default max_inlined_source_size setting.
  **/
-var validHdrChars = [
+const validHdrChars = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, // 0 - 15
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 16 - 31
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 32 - 47
@@ -96,34 +68,34 @@ var validHdrChars = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  // ... 255
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // ... 255
 ];
+
+type Replacement = (char: string) => string;
 
 /**
  * Replace invalid http header characters with replacement
  *
- * @param  {String} val
- * @param  {String|Function} replacement - can be `function(char)`
- * @return {Object}
+ * @param {String} val input value
+ * @param {String|Function} replacement - can be `function(char)`
  */
-exports.replaceInvalidHttpHeaderChar = function replaceInvalidHttpHeaderChar(val, replacement) {
+export function replaceInvalidHttpHeaderChar(val: string, replacement?: string | Replacement) {
   replacement = replacement || ' ';
-  var invalid = false;
+  let invalid = false;
 
   if (!val || typeof val !== 'string') {
     return {
-      val: val,
-      invalid: invalid,
+      val,
+      invalid,
     };
   }
 
-  var replacementType = typeof replacement;
-  var chars;
-  for (var i = 0; i < val.length; ++i) {
+  let chars: string[] | undefined;
+  for (let i = 0; i < val.length; ++i) {
     if (!validHdrChars[val.charCodeAt(i)]) {
       // delay create chars
       chars = chars || val.split('');
-      if (replacementType === 'function') {
+      if (typeof replacement === 'function') {
         chars[i] = replacement(chars[i]);
       } else {
         chars[i] = replacement;
@@ -137,27 +109,24 @@ exports.replaceInvalidHttpHeaderChar = function replaceInvalidHttpHeaderChar(val
   }
 
   return {
-    val: val,
-    invalid: invalid,
+    val,
+    invalid,
   };
-};
+}
 
 /**
  * Detect invalid http header characters in a string
- *
- * @param {String} val
- * @return {Boolean}
  */
-exports.includesInvalidHttpHeaderChar = function includesInvalidHttpHeaderChar(val) {
+export function includesInvalidHttpHeaderChar(val: string) {
   if (!val || typeof val !== 'string') {
     return false;
   }
 
-  for (var i = 0; i < val.length; ++i) {
+  for (let i = 0; i < val.length; ++i) {
     if (!validHdrChars[val.charCodeAt(i)]) {
       return true;
     }
   }
 
   return false;
-};
+}
