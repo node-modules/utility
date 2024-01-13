@@ -1,55 +1,40 @@
-/**
- * Copyright(c) node-modules and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
- */
-
-'use strict';
-
-/**
- * Module dependencies.
- */
-
-var crypto = require('crypto');
-var utility = require('../');
-
-var Benchmark = require('benchmark');
-var benchmarks = require('beautify-benchmark');
-var suite = new Benchmark.Suite();
+/* eslint-disable @typescript-eslint/no-var-requires */
+const utility = require('../');
+const Benchmark = require('benchmark');
+const benchmarks = require('beautify-benchmark');
+const suite = new Benchmark.Suite();
 
 function map0(obj) {
-  var map = {};
+  const map = {};
   if (!obj) {
     return map;
   }
 
-  for (var key in obj) {
+  for (const key in obj) {
     map[key] = obj[key];
   }
   return map;
 }
 
 function map1(obj) {
-  var map = Object.create(null);
+  const map = Object.create(null);
   if (!obj) {
     return map;
   }
 
-  for (var key in obj) {
+  for (const key in obj) {
     map[key] = obj[key];
   }
   return map;
 }
 
 function map2(obj) {
-  var map = new Map();
+  const map = new Map();
   if (!obj) {
     return map;
   }
 
-  for (var key in obj) {
+  for (const key in obj) {
     map.set(key, obj[key]);
   }
   return map;
@@ -59,12 +44,12 @@ function Store() {}
 Store.prototype = Object.create(null);
 
 function map3(obj) {
-  var map = new Store();
+  const map = new Store();
   if (!obj) {
     return map;
   }
 
-  for (var key in obj) {
+  for (const key in obj) {
     map[key] = obj[key];
   }
   return map;
@@ -77,37 +62,37 @@ console.log('utility.map: %j', utility.map({ foo: 'bar' }));
 
 suite
 
-.add('map = utility.map()', function() {
-  utility.map({ foo: 'bar' });
-})
+  .add('map = utility.map()', function() {
+    utility.map({ foo: 'bar' });
+  })
 
-.add('map = new Store()', function() {
-  map3({ foo: 'bar' });
-})
+  .add('map = new Store()', function() {
+    map3({ foo: 'bar' });
+  })
 
-.add('map = {}', function() {
-  map0({ foo: 'bar' });
-})
+  .add('map = {}', function() {
+    map0({ foo: 'bar' });
+  })
 
-.add('map = Object.create(null)', function() {
-  map1({ foo: 'bar' });
-})
+  .add('map = Object.create(null)', function() {
+    map1({ foo: 'bar' });
+  })
 
-.add('map = new Map()', function() {
-  map2({ foo: 'bar' });
-})
+  .add('map = new Map()', function() {
+    map2({ foo: 'bar' });
+  })
 
-.on('cycle', function(event) {
-  benchmarks.add(event.target);
-})
-.on('start', function(event) {
-  console.log('\n  map Benchmark\n  node version: %s, date: %s\n  Starting...',
-    process.version, Date());
-})
-.on('complete', function done() {
-  benchmarks.log();
-})
-.run({ 'async': false });
+  .on('cycle', function(event) {
+    benchmarks.add(event.target);
+  })
+  .on('start', function() {
+    console.log('\n  map Benchmark\n  node version: %s, date: %s\n  Starting...',
+      process.version, Date());
+  })
+  .on('complete', function done() {
+    benchmarks.log();
+  })
+  .run({ async: false });
 
 // node benchmark/map.js
 //

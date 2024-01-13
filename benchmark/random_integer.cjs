@@ -1,10 +1,10 @@
-'use strict';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const benchmarks = require('beautify-benchmark');
+const Benchmark = require('benchmark');
+const crypto = require('crypto');
+const utility = require('../');
 
-var benchmarks = require('beautify-benchmark');
-var Benchmark = require('benchmark');
-var suite = new Benchmark.Suite();
-var crypto = require('crypto');
-var utility = require('../');
+const suite = new Benchmark.Suite();
 
 function random256(upper) {
   return crypto.randomBytes(1)[0] % upper;
@@ -14,10 +14,10 @@ function random65536(upper) {
   return crypto.randomBytes(2).readUIntBE(0, 2) % upper;
 }
 
-console.log("random256: %s", random256(100));
-console.log("utility.random(100): %s", utility.random(100));
-console.log("random65536: %s", random65536(100));
-console.log("utility.random(100): %s", utility.random(65536));
+console.log('random256: %s', random256(100));
+console.log('utility.random(100): %s', utility.random(100));
+console.log('random65536: %s', random65536(100));
+console.log('utility.random(100): %s', utility.random(65536));
 console.log('------------- %s -----------', Date());
 
 suite

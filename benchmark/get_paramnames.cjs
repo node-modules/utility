@@ -1,23 +1,10 @@
-/**
- * Copyright(c) node-modules and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
- */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const utils = require('../');
+const Benchmark = require('benchmark');
+const benchmarks = require('beautify-benchmark');
+const suite = new Benchmark.Suite();
 
-'use strict';
-
-/**
- * Module dependencies.
- */
-
-var utils = require('../');
-var Benchmark = require('benchmark');
-var benchmarks = require('beautify-benchmark');
-var suite = new Benchmark.Suite();
-
-var foo = function (cid, startDate, endDate, rate, callback) {
+const foo = function(cid, startDate, endDate, rate, callback) {
   console.log('Date.now(): %j', Date.now());
   console.log('Date.now(): %j', Date.now());
   console.log('Date.now(): %j', Date.now());
@@ -43,32 +30,32 @@ console.log('no cache:', utils.getParamNames(foo, false));
 console.log('------------------------');
 
 suite
-.add("utils.getParamNames(foo)", function () {
-  utils.getParamNames(foo);
-})
-.add("utils.getParamNames(foo, false) no cache", function () {
-  utils.getParamNames(foo, false);
-})
-.add("utils.getParamNames(newfn)", function () {
-  function newfn(foo, bar) {}
-  utils.getParamNames(newfn);
-})
-.add("utils.getParamNames(newfn, false) no cache", function () {
-  function newfn(foo, bar) {}
-  utils.getParamNames(newfn, false);
-})
+  .add('utils.getParamNames(foo)', function() {
+    utils.getParamNames(foo);
+  })
+  .add('utils.getParamNames(foo, false) no cache', function() {
+    utils.getParamNames(foo, false);
+  })
+  .add('utils.getParamNames(newfn)', function() {
+    function newfn(foo, bar) {}
+    utils.getParamNames(newfn);
+  })
+  .add('utils.getParamNames(newfn, false) no cache', function() {
+    function newfn(foo, bar) {}
+    utils.getParamNames(newfn, false);
+  })
 
-.on('cycle', function(event) {
-  benchmarks.add(event.target);
-})
-.on('start', function(event) {
-  console.log('\n  get param names Benchmark\n  node version: %s, date: %s\n  Starting...',
-    process.version, Date());
-})
-.on('complete', function done() {
-  benchmarks.log();
-})
-.run({ 'async': false });
+  .on('cycle', function(event) {
+    benchmarks.add(event.target);
+  })
+  .on('start', function(event) {
+    console.log('\n  get param names Benchmark\n  node version: %s, date: %s\n  Starting...',
+      process.version, Date());
+  })
+  .on('complete', function done() {
+    benchmarks.log();
+  })
+  .run({ async: false });
 
 // $ node benchmark/get_paramnames.js
 //

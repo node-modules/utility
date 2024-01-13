@@ -1,8 +1,5 @@
 /**
- * Array random slice with items count.
- * @param {Array} arr
- * @param {Number} num, number of sub items.
- * @return {Array}
+ * Array random slice with items count
  */
 export function randomSlice<T = any>(arr: T[], num?: number): T[] {
   if (!num || num >= arr.length) {
@@ -21,7 +18,7 @@ export function randomSlice<T = any>(arr: T[], num?: number): T[] {
 
 /**
  * Remove one exists element from an array
- * @param {Array} arr
+ * @param {Array} arr input array
  * @param  {Number} index - remove element index
  * @return {Array} the array instance
  */

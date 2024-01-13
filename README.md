@@ -225,7 +225,7 @@ utility.UNSTABLE_METHOD.try(...);
 ### argumentsToArray
 
 ```js
-function() {
+function foo() {
   const arr = utility.argumentsToArray(arguments);
   console.log(arr.join(', '));
 }
@@ -277,10 +277,10 @@ utility.assign({}, [ { a: 1 }, { b: 1 } ]);
 ## benchmark
 
 + [jsperf: access log date format](http://jsperf.com/access-log-date-format)
-+ [benchmark/date_format.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_format.js)
++ [benchmark/date_format.js](https://github.com/node-modules/utility/blob/master/benchmark/date_format.cjs)
 
 ```bash
-$ node benchmark/date_format.js
+$ node benchmark/date_format.cjs
 
 moment().format("DD/MMM/YYYY:HH:mm:ss ZZ"): "16/Apr/2013:21:12:32 +0800"
 utils.accessLogDate(): "16/Apr/2013:21:12:32 +0800"
@@ -300,10 +300,10 @@ Date.now() x 8,327,685 ops/sec ±1.85% (94 runs sampled)
 Fastest is Date.now()
 ```
 
-[benchmark/date_YYYYMMDD.js](https://github.com/fengmk2/utility/blob/master/benchmark/date_YYYYMMDD.js)
+[benchmark/date_YYYYMMDD.js](https://github.com/node-modules/utility/blob/master/benchmark/date_YYYYMMDD.cjs)
 
 ```bash
-$ node benchmark/date_YYYYMMDD.js
+$ node benchmark/date_YYYYMMDD.cjs
 
 parseInt(moment().format("YYYYMMDD"), 10): 20130416
 utils.datestruct().YYYYMMDD: 20130416

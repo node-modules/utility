@@ -1,23 +1,10 @@
-/**
- * Copyright(c) node-modules and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
- */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const crypto = require('crypto');
+const Benchmark = require('benchmark');
+const benchmarks = require('beautify-benchmark');
+const utility = require('..');
 
-'use strict';
-
-/**
- * Module dependencies.
- */
-
-var crypto = require('crypto');
-var utility = require('../');
-
-var Benchmark = require('benchmark');
-var benchmarks = require('beautify-benchmark');
-var suite = new Benchmark.Suite();
+const suite = new Benchmark.Suite();
 
 function arraySplice(array, index) {
   array.splice(index, 1);
@@ -25,7 +12,7 @@ function arraySplice(array, index) {
 }
 
 function spliceOne(array, index) {
-  for (var i = index, k = i + 1, n = array.length; k < n; i += 1, k += 1) {
+  for (let i = index, k = i + 1, n = array.length; k < n; i += 1, k += 1) {
     array[i] = array[k];
   }
   array.pop();
@@ -42,80 +29,75 @@ class SubArray extends Array {
   }
 }
 
-console.log('arraySplice([1, 2, 3], 1): %j', arraySplice([1, 2, 3], 1));
+console.log('arraySplice([1, 2, 3], 1): %j', arraySplice([ 1, 2, 3 ], 1));
 console.log('new SubArray(1, 2, 3).spliceOne(1): %j', new SubArray(1, 2, 3).spliceOne(1));
-console.log('spliceOne([1, 2, 3], 1): %j', spliceOne([1, 2, 3], 1));
+console.log('spliceOne([1, 2, 3], 1): %j', spliceOne([ 1, 2, 3 ], 1));
 console.log('arraySplice([1, 2, 3, 4, 5, 6, 7, 8, 9], 6): %j',
-  arraySplice([1, 2, 3, 4, 5, 6, 7, 8, 9], 6));
+  arraySplice([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 6));
 console.log('new SubArray(1, 2, 3, 4, 5, 6, 7, 8, 9).spliceOne(6): %j',
   new SubArray(1, 2, 3, 4, 5, 6, 7, 8, 9).spliceOne(6));
 console.log('spliceOne([1, 2, 3, 4, 5, 6, 7, 8, 9], 6): %j',
-  spliceOne([1, 2, 3, 4, 5, 6, 7, 8, 9], 6));
+  spliceOne([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 6));
 
 suite
 
-.add('arraySplice([1, 2, 3], 1)', function() {
-  arraySplice([1, 2, 3], 1);
-})
-.add('new SubArray(1, 2, 3).spliceOne(1)', function() {
-  new SubArray(1, 2, 3).spliceOne(1);
-})
-.add('spliceOne([1, 2, 3], 1)', function() {
-  spliceOne([1, 2, 3], 1);
-})
+  .add('arraySplice([1, 2, 3], 1)', function() {
+    arraySplice([ 1, 2, 3 ], 1);
+  })
+  .add('new SubArray(1, 2, 3).spliceOne(1)', function() {
+    new SubArray(1, 2, 3).spliceOne(1);
+  })
+  .add('spliceOne([1, 2, 3], 1)', function() {
+    spliceOne([ 1, 2, 3 ], 1);
+  })
 
-.add('arraySplice([1, 2, 3, 4, 5, 6, 7, 8, 9], 6)', function() {
-  arraySplice([1, 2, 3, 4, 5, 6, 7, 8, 9], 6);
-})
-.add('new SubArray(1, 2, 3, 4, 5, 6, 7, 8, 9).spliceOne(6)', function() {
-  new SubArray(1, 2, 3, 4, 5, 6, 7, 8, 9).spliceOne(6);
-})
-.add('spliceOne([1, 2, 3, 4, 5, 6, 7, 8, 9], 6)', function() {
-  spliceOne([1, 2, 3, 4, 5, 6, 7, 8, 9], 6);
-})
+  .add('arraySplice([1, 2, 3, 4, 5, 6, 7, 8, 9], 6)', function() {
+    arraySplice([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 6);
+  })
+  .add('new SubArray(1, 2, 3, 4, 5, 6, 7, 8, 9).spliceOne(6)', function() {
+    new SubArray(1, 2, 3, 4, 5, 6, 7, 8, 9).spliceOne(6);
+  })
+  .add('spliceOne([1, 2, 3, 4, 5, 6, 7, 8, 9], 6)', function() {
+    spliceOne([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 6);
+  })
 
-.add('arraySplice(new Array(20), 11)', function() {
-  arraySplice(new Array(20), 11);
-})
-.add('new SubArray(new Array(20)).spliceOne(11)', function() {
-  new SubArray(new Array(20)).spliceOne(11);
-})
-.add('spliceOne(new Array(20), 11)', function() {
-  spliceOne(new Array(20), 11);
-})
+  .add('arraySplice(new Array(20), 11)', function() {
+    arraySplice(new Array(20), 11);
+  })
+  .add('new SubArray(new Array(20)).spliceOne(11)', function() {
+    new SubArray(new Array(20)).spliceOne(11);
+  })
+  .add('spliceOne(new Array(20), 11)', function() {
+    spliceOne(new Array(20), 11);
+  })
 
-.add('arraySplice(new Array(50), 30)', function() {
-  arraySplice(new Array(50), 30);
-})
-.add('new SubArray(new Array(50)).spliceOne(30)', function() {
-  new SubArray(new Array(50)).spliceOne(30);
-})
-.add('spliceOne(new Array(50), 30)', function() {
-  spliceOne(new Array(50), 30);
-})
+  .add('arraySplice(new Array(50), 30)', function() {
+    arraySplice(new Array(50), 30);
+  })
+  .add('new SubArray(new Array(50)).spliceOne(30)', function() {
+    new SubArray(new Array(50)).spliceOne(30);
+  })
+  .add('spliceOne(new Array(50), 30)', function() {
+    spliceOne(new Array(50), 30);
+  })
 
-.add('arraySplice(new Array(100), 80)', function() {
-  arraySplice(new Array(100), 80);
-})
-.add('new SubArray(new Array(100)).spliceOne(80)', function() {
-  new SubArray(new Array(100)).spliceOne(80);
-})
-.add('spliceOne(new Array(100), 80)', function() {
-  spliceOne(new Array(100), 80);
-})
+  .add('arraySplice(new Array(100), 80)', function() {
+    arraySplice(new Array(100), 80);
+  })
+  .add('new SubArray(new Array(100)).spliceOne(80)', function() {
+    new SubArray(new Array(100)).spliceOne(80);
+  })
+  .add('spliceOne(new Array(100), 80)', function() {
+    spliceOne(new Array(100), 80);
+  })
 
-
-.on('cycle', function(event) {
-  benchmarks.add(event.target);
-})
-.on('start', function(event) {
-  console.log('\n  map Benchmark\n  node version: %s, date: %s\n  Starting...',
-    process.version, Date());
-})
-.on('complete', function done() {
-  benchmarks.log();
-})
-.run({ 'async': false });
+  .on('cycle', function(event) {
+    benchmarks.add(event.target);
+  })
+  .on('complete', function() {
+    benchmarks.log();
+  })
+  .run({ async: false });
 
 // node benchmark/array_splice.js
 //

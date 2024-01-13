@@ -117,8 +117,6 @@ export function YYYYMMDDHHmmss(d?: Date | string | number, options?: YYYYMMDDHHm
 
 /**
  * `moment().format('YYYY-MM-DD')` format date string.
- *
- * @return {String}
  */
 export function YYYYMMDD(d?: Date | string, sep?: string): string {
   if (typeof d === 'string') {

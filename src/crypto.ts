@@ -6,7 +6,7 @@ type HashInput = string | Buffer | object;
  * hash
  *
  * @param {String} method hash method, e.g.: 'md5', 'sha1'
- * @param {String|Buffer|Object} s
+ * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
  * @return {String} md5 hash string
  * @public
@@ -24,7 +24,7 @@ export function hash(method: string, s: HashInput, format?: BinaryToTextEncoding
 /**
  * md5 hash
  *
- * @param {String|Buffer|Object} s
+ * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
  * @return {String} md5 hash string
  * @public
@@ -36,7 +36,7 @@ export function md5(s: HashInput, format?: BinaryToTextEncoding): string {
 /**
  * sha1 hash
  *
- * @param {String|Buffer|Object} s
+ * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
  * @return {String} sha1 hash string
  * @public
@@ -48,7 +48,7 @@ export function sha1(s: HashInput, format?: BinaryToTextEncoding): string {
 /**
  * sha256 hash
  *
- * @param {String|Buffer|Object} s
+ * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
  * @return {String} sha256 hash string
  * @public
@@ -66,12 +66,12 @@ export function sha256(s: HashInput, format?: BinaryToTextEncoding): string {
  * $ echo -n "$data" | openssl dgst -binary -$algorithm -hmac "$key" | openssl $encoding
  * ```
  *
- * @param {String} algorithm, dependent on the available algorithms supported by the version of OpenSSL on the platform.
+ * @param {String} algorithm dependent on the available algorithms supported by the version of OpenSSL on the platform.
  *   Examples are 'sha1', 'md5', 'sha256', 'sha512', etc.
  *   On recent releases, `openssl list-message-digest-algorithms` will display the available digest algorithms.
- * @param {String} key, the hmac key to be used.
- * @param {String|Buffer} data, content string.
- * @param {String} [encoding='base64']
+ * @param {String} key the hmac key to be used.
+ * @param {String|Buffer} data content string.
+ * @param {String} [encoding='base64'] default encoding is base64
  * @return {String} digest string.
  */
 export function hmac(algorithm: string, key: string, data: string | Buffer, encoding?: BinaryToTextEncoding): string {
@@ -84,7 +84,7 @@ export function hmac(algorithm: string, key: string, data: string | Buffer, enco
 /**
  * Base64 encode string.
  *
- * @param {String|Buffer} s
+ * @param {String|Buffer} s input value
  * @param {Boolean} [urlSafe=false] Encode string s using a URL-safe alphabet,
  *   which substitutes - instead of + and _ instead of / in the standard Base64 alphabet.
  * @return {String} base64 encode format string.

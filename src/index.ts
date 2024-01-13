@@ -6,3 +6,5 @@ export * from './web.js';
 export * from './json.js';
 export * from './number.js';
 export * from './string.js';
+export * from './optimize.js';
+export * from './object.js';

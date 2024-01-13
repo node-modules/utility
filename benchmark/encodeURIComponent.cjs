@@ -1,25 +1,12 @@
-/**
- * Copyright(c) node-modules and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <fengmk2@gmail.com> (http://fengmk2.com)
- */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const crypto = require('crypto');
+const utility = require('../');
 
-'use strict';
+const Benchmark = require('benchmark');
+const benchmarks = require('beautify-benchmark');
+const suite = new Benchmark.Suite();
 
-/**
- * Module dependencies.
- */
-
-var crypto = require('crypto');
-var utility = require('../');
-
-var Benchmark = require('benchmark');
-var benchmarks = require('beautify-benchmark');
-var suite = new Benchmark.Suite();
-
-var encodeString = utility.encodeURIComponent('dsdf/!@#$++\\....,,束带结发');
+const encodeString = utility.encodeURIComponent('dsdf/!@#$++\\....,,束带结发');
 
 console.log('utility.encodeURIComponent("dsdf/!@#$++\\....,,束带结发")',
   utility.encodeURIComponent('dsdf/!@#$++\\....,,束带结发'));
@@ -32,33 +19,33 @@ console.log('decodeURIComponent(encodeString)',
 
 suite
 
-.add('utility.encodeURIComponent()', function () {
-  utility.encodeURIComponent('dsdf/!@#$++\\....,,束带结发');
-})
+  .add('utility.encodeURIComponent()', function() {
+    utility.encodeURIComponent('dsdf/!@#$++\\....,,束带结发');
+  })
 
-.add('encodeURIComponent()', function () {
-  encodeURIComponent('dsdf/!@#$++\\....,,束带结发');
-})
+  .add('encodeURIComponent()', function() {
+    encodeURIComponent('dsdf/!@#$++\\....,,束带结发');
+  })
 
-.add('utility.decodeURIComponent()', function () {
-  utility.decodeURIComponent(encodeString);
-})
+  .add('utility.decodeURIComponent()', function() {
+    utility.decodeURIComponent(encodeString);
+  })
 
-.add('decodeURIComponent()', function () {
-  decodeURIComponent(encodeString);
-})
+  .add('decodeURIComponent()', function() {
+    decodeURIComponent(encodeString);
+  })
 
-.on('cycle', function(event) {
-  benchmarks.add(event.target);
-})
-.on('start', function(event) {
-  console.log('\n  encodeURIComponent Benchmark\n  node version: %s, date: %s\n  Starting...',
-    process.version, Date());
-})
-.on('complete', function done() {
-  benchmarks.log();
-})
-.run({ 'async': false });
+  .on('start', function() {
+    console.log('\n  encodeURIComponent Benchmark\n  node version: %s, date: %s\n  Starting...',
+      process.version, Date());
+  })
+  .on('cycle', function(event) {
+    benchmarks.add(event.target);
+  })
+  .on('complete', function() {
+    benchmarks.log();
+  })
+  .run({ async: false });
 
 // $ node benchmark/encodeURIComponent.js
 //
