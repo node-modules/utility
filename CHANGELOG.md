@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/node-modules/utility/compare/v1.18.0...v2.0.0) (2024-01-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop Node.js < 16 support
+
+### Features
+
+* refactor using typescript ([#60](https://github.com/node-modules/utility/issues/60)) ([e20c1d9](https://github.com/node-modules/utility/commit/e20c1d9702912f5ebc6f3c038bf98338176d4f53))
+
 ## [1.18.0](https://github.com/node-modules/utility/compare/v1.17.0...v1.18.0) (2023-04-26)
 
 
