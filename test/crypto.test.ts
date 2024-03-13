@@ -35,6 +35,20 @@ describe('test/crypto.test.ts', () => {
       assert.equal(md5({ foo: 'bar', bar: 'foo', args: { age: 1, name: 'foo' }, args2: { haha: '哈哈', bi: 'boo' }, v: [ 1, 2, 3 ] }),
         md5({ v: [ 1, 2, 3 ], bar: 'foo', foo: 'bar', args2: { bi: 'boo', haha: '哈哈' }, args: { name: 'foo', age: 1 } }));
     });
+
+    it('should work on ArrayBuffer, TypedArray, DateView', () => {
+      const nodeBuffer = Buffer.from('中文');
+      const arrayBuffer = nodeBuffer.buffer.slice(nodeBuffer.byteOffset, nodeBuffer.byteOffset + nodeBuffer.length);
+      const uintBytes = new Uint8Array(nodeBuffer.length);
+      for (let i = 0; i < nodeBuffer.byteLength; ++i) {
+        uintBytes[i] = nodeBuffer[i];
+      }
+      const dataview = new DataView(arrayBuffer);
+      assert.equal(md5(nodeBuffer), 'a7bac2239fcdcb3a067903d8077c4a07');
+      assert.equal(md5(arrayBuffer), 'a7bac2239fcdcb3a067903d8077c4a07', 'ArrayBuffer md5 invalid');
+      assert.equal(md5(dataview), 'a7bac2239fcdcb3a067903d8077c4a07', 'DataView md5 invalid');
+      assert.equal(md5(uintBytes), 'a7bac2239fcdcb3a067903d8077c4a07', 'Int32Array md5 invalid');
+    });
   });
 
   describe('sha1()', () => {

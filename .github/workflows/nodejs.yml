@@ -13,4 +13,4 @@ jobs:
     uses: node-modules/github-actions/.github/workflows/node-test.yml@master
     with:
       os: 'ubuntu-latest'
-      version: '16, 18, 20'
+      version: '16, 18, 20, 21'
