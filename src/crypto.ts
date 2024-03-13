@@ -72,6 +72,18 @@ export function sha256(s: HashInput, format?: BinaryToTextEncoding): string {
 }
 
 /**
+ * sha512 hash
+ *
+ * @param {String|Buffer|Object} s input value
+ * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
+ * @return {String} sha512 hash string
+ * @public
+ */
+export function sha512(s: HashInput, format?: BinaryToTextEncoding): string {
+  return hash('sha512', s, format);
+}
+
+/**
  * HMAC algorithm.
  *
  * Equal bash:

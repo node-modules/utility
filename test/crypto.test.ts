@@ -85,6 +85,19 @@ describe('test/crypto.test.ts', () => {
     });
   });
 
+  describe('sha512()', () => {
+    it('should return sha512 hex string', () => {
+      assert.equal(utility.sha512(''), 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e');
+      assert.equal(utility.sha512('123'), '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+      assert.equal(utility.sha512('哈哈中文'), '648c07b8103f2c9600163fccccdb0268fd98e0aedf002d0a29b270190d0d3ad44ca9484f8a11711672abe704e97f26b55e3a090a1969aeba052b9b783c4eff6c');
+      assert.equal(utility.sha512(Buffer.from('')), 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e');
+      assert.equal(utility.sha512(Buffer.from('123')), '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+      assert.equal(utility.sha512(Buffer.from('哈哈中文')), '648c07b8103f2c9600163fccccdb0268fd98e0aedf002d0a29b270190d0d3ad44ca9484f8a11711672abe704e97f26b55e3a090a1969aeba052b9b783c4eff6c');
+      assert.equal(utility.sha512(Buffer.from('@Python发烧友')), 'e387db347ab42a7e44aebc8f165e0b6e42941692efa38fa82d0bea6844cf80d060fa3df7c9eafc2accecca436a6c3fa905920d130b6e1cc8f5a80f1a514f358f');
+      assert.equal(utility.sha512(Buffer.from('苏千')), '913e9b219f70541725a6ed721b42ae88e79f7ea1c7aec53be80ab277d4704b556df265cc4235f942f9dfbbbbd88e02ba2e18f60b217853835aeb362fb1830016');
+    });
+  });
+
   describe('hmac()', () => {
     it('should return hmac-sha1', () => {
       // $ echo -n "hello world" | openssl dgst -binary -sha1 -hmac "I am a key" | openssl base64
