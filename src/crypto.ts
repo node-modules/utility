@@ -1,22 +1,36 @@
 import { createHash, createHmac, BinaryToTextEncoding } from 'node:crypto';
+import crypto from 'node:crypto';
 
-type HashInput = string | Buffer | object;
+type HashInput = string | Buffer | ArrayBuffer | DataView | object;
+type HashMethod = (method: string, data: HashInput, outputEncoding?: BinaryToTextEncoding) => string;
+
+const nativeHash = 'hash' in crypto ? crypto.hash as HashMethod : null;
 
 /**
  * hash
  *
  * @param {String} method hash method, e.g.: 'md5', 'sha1'
- * @param {String|Buffer|Object} s input value
+ * @param {String|Buffer|ArrayBuffer|TypedArray|DataView|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
  * @return {String} md5 hash string
  * @public
  */
 export function hash(method: string, s: HashInput, format?: BinaryToTextEncoding): string {
-  const sum = createHash(method);
-  const isBuffer = Buffer.isBuffer(s);
+  if (s instanceof ArrayBuffer) {
+    s = Buffer.from(s);
+  }
+  const isBuffer = Buffer.isBuffer(s) || ArrayBuffer.isView(s);
   if (!isBuffer && typeof s === 'object') {
     s = JSON.stringify(sortObject(s));
   }
+
+  if (nativeHash) {
+    // try to use crypto.hash first
+    // https://nodejs.org/en/blog/release/v21.7.0#crypto-implement-cryptohash
+    return nativeHash(method, s, format);
+  }
+
+  const sum = createHash(method);
   sum.update(s as string, isBuffer ? 'binary' : 'utf8');
   return sum.digest(format || 'hex');
 }
@@ -55,6 +69,18 @@ export function sha1(s: HashInput, format?: BinaryToTextEncoding): string {
  */
 export function sha256(s: HashInput, format?: BinaryToTextEncoding): string {
   return hash('sha256', s, format);
+}
+
+/**
+ * sha512 hash
+ *
+ * @param {String|Buffer|Object} s input value
+ * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
+ * @return {String} sha512 hash string
+ * @public
+ */
+export function sha512(s: HashInput, format?: BinaryToTextEncoding): string {
+  return hash('sha512', s, format);
 }
 
 /**

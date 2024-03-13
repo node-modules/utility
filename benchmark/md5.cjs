@@ -1,8 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const Benchmark = require('benchmark');
+const crypto = require('node:crypto');
 const utils = require('..');
 
 const suite = new Benchmark.Suite();
+
+function createHashWithMD5(s) {
+  const sum = crypto.createHash('md5');
+  sum.update(s);
+  return sum.digest('hex');
+}
 
 console.log("utils.md5({foo: 'bar', bar: 'foo', v: [1, 2, 3]})", utils.md5({ foo: 'bar', bar: 'foo', v: [ 1, 2, 3 ] }));
 console.log("utils.md5(JSON.stringify({foo: 'bar', bar: 'foo', v: [1, 2, 3]}))",
@@ -24,8 +31,19 @@ suite
   })
   .add("utils.md5('苏千')", function() {
     utils.md5('苏千');
-  })
+  });
 
+if (crypto.hash) {
+  suite.add('createHashWithMD5(Buffer.alloc(1024))', function() {
+    createHashWithMD5(Buffer.alloc(1024));
+  }).add("crypto.hash('md5', Buffer.alloc(1024))", function() {
+    crypto.hash('md5', Buffer.alloc(1024));
+  });
+  console.log("crypto.hash('md5', Buffer.alloc(1024))", crypto.hash('md5', Buffer.alloc(1024)));
+  console.log('createHashWithMD5(Buffer.alloc(1024))', createHashWithMD5(Buffer.alloc(1024)));
+}
+
+suite
   .add("utils.sha1({foo: 'bar', bar: 'foo', v: [1, 2, 3]})", function() {
     utils.sha1({ foo: 'bar', bar: 'foo', v: [ 1, 2, 3 ] });
   })

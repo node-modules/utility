@@ -35,6 +35,20 @@ describe('test/crypto.test.ts', () => {
       assert.equal(md5({ foo: 'bar', bar: 'foo', args: { age: 1, name: 'foo' }, args2: { haha: '哈哈', bi: 'boo' }, v: [ 1, 2, 3 ] }),
         md5({ v: [ 1, 2, 3 ], bar: 'foo', foo: 'bar', args2: { bi: 'boo', haha: '哈哈' }, args: { name: 'foo', age: 1 } }));
     });
+
+    it('should work on ArrayBuffer, TypedArray, DateView', () => {
+      const nodeBuffer = Buffer.from('中文');
+      const arrayBuffer = nodeBuffer.buffer.slice(nodeBuffer.byteOffset, nodeBuffer.byteOffset + nodeBuffer.length);
+      const uintBytes = new Uint8Array(nodeBuffer.length);
+      for (let i = 0; i < nodeBuffer.byteLength; ++i) {
+        uintBytes[i] = nodeBuffer[i];
+      }
+      const dataview = new DataView(arrayBuffer);
+      assert.equal(md5(nodeBuffer), 'a7bac2239fcdcb3a067903d8077c4a07');
+      assert.equal(md5(arrayBuffer), 'a7bac2239fcdcb3a067903d8077c4a07', 'ArrayBuffer md5 invalid');
+      assert.equal(md5(dataview), 'a7bac2239fcdcb3a067903d8077c4a07', 'DataView md5 invalid');
+      assert.equal(md5(uintBytes), 'a7bac2239fcdcb3a067903d8077c4a07', 'Int32Array md5 invalid');
+    });
   });
 
   describe('sha1()', () => {
@@ -68,6 +82,19 @@ describe('test/crypto.test.ts', () => {
       assert.equal(utility.sha256(Buffer.from('哈哈中文')), '0f9d15321510b57fc25b712de846c59cc541de89d47fcd06f6bfe1cd5ff2d7e3');
       assert.equal(utility.sha256(Buffer.from('@Python发烧友')), '80ddd84d1453c994af764bf558c4b96adaced9dd8d7d2194705fe58e1b3162df');
       assert.equal(utility.sha256(Buffer.from('苏千')), '75dd03e3fcdbba7d5bec07900bae740cc8e361d77e7df8949de421d3df5d3635');
+    });
+  });
+
+  describe('sha512()', () => {
+    it('should return sha512 hex string', () => {
+      assert.equal(utility.sha512(''), 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e');
+      assert.equal(utility.sha512('123'), '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+      assert.equal(utility.sha512('哈哈中文'), '648c07b8103f2c9600163fccccdb0268fd98e0aedf002d0a29b270190d0d3ad44ca9484f8a11711672abe704e97f26b55e3a090a1969aeba052b9b783c4eff6c');
+      assert.equal(utility.sha512(Buffer.from('')), 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e');
+      assert.equal(utility.sha512(Buffer.from('123')), '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+      assert.equal(utility.sha512(Buffer.from('哈哈中文')), '648c07b8103f2c9600163fccccdb0268fd98e0aedf002d0a29b270190d0d3ad44ca9484f8a11711672abe704e97f26b55e3a090a1969aeba052b9b783c4eff6c');
+      assert.equal(utility.sha512(Buffer.from('@Python发烧友')), 'e387db347ab42a7e44aebc8f165e0b6e42941692efa38fa82d0bea6844cf80d060fa3df7c9eafc2accecca436a6c3fa905920d130b6e1cc8f5a80f1a514f358f');
+      assert.equal(utility.sha512(Buffer.from('苏千')), '913e9b219f70541725a6ed721b42ae88e79f7ea1c7aec53be80ab277d4704b556df265cc4235f942f9dfbbbbd88e02ba2e18f60b217853835aeb362fb1830016');
     });
   });
 
