@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/node-modules/utility/compare/v2.0.0...v2.1.0) (2024-03-13)
+
+
+### Features
+
+* try to use crypto.hash first ([#62](https://github.com/node-modules/utility/issues/62)) ([2a68056](https://github.com/node-modules/utility/commit/2a68056f7c39be6c9ec1cdc954f42a45e8a68dc3))
+
 ## [2.0.0](https://github.com/node-modules/utility/compare/v1.18.0...v2.0.0) (2024-01-13)
 
 
