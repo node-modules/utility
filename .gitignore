@@ -18,3 +18,4 @@ npm-debug.log
 .nyc_output
 .tshy*
 dist
+package-lock.json
