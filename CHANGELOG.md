@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/node-modules/utility/compare/v2.1.0...v2.2.0) (2024-12-10)
+
+
+### Features
+
+* export getDateStringParts ([#63](https://github.com/node-modules/utility/issues/63)) ([3475532](https://github.com/node-modules/utility/commit/3475532e8e158967211a7aefaccdf71ea9bf4d88))
+
 ## [2.1.0](https://github.com/node-modules/utility/compare/v2.0.0...v2.1.0) (2024-03-13)
 
 
