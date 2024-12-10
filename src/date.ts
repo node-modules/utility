@@ -33,7 +33,11 @@ const MONTHS: Record<string, string> = {
   '12': 'Dec',
 };
 
-function getDateStringParts(d: Date, onlyDate?: boolean) {
+/**
+ * return `[ YYYY, MM, DD, HH, mm, ss ]` date string array
+ */
+export function getDateStringParts(d?: Date, onlyDate?: boolean) {
+  d = d || new Date();
   const monthNum = d.getMonth() + 1;
   const month = monthNum < 10 ? `0${monthNum}` : `${monthNum}`;
   const dateNum = d.getDate();

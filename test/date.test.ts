@@ -2,9 +2,16 @@ import { strict as assert } from 'node:assert';
 import moment from 'moment';
 import * as utility from '../src/index.js';
 import * as utils from '../src/index.js';
-import { YYYYMMDDHHmmss, logDate } from '../src/index.js';
+import { YYYYMMDDHHmmss, logDate, getDateStringParts } from '../src/index.js';
 
 describe('test/date.test.ts', () => {
+  describe('getDateStringParts()', () => {
+    it('should work', () => {
+      assert.match(getDateStringParts().join(','), /^\d{4},\d{2},\d{2},\d{2},\d{2},\d{2}$/);
+      assert.match(utility.getDateStringParts(new Date(), true).join('.'), /^\d{4}\.\d{2}\.\d{2}$/);
+    });
+  });
+
   describe('YYYYMMDDHHmmss()', () => {
     it('should return an "YYYY-MM-DD HH:mm:ss" format date string', () => {
       assert.match(utility.YYYYMMDDHHmmss(), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}$/);

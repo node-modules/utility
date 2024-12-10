@@ -315,19 +315,12 @@ new Date().toString() x 816,731 ops/sec ±3.46% (93 runs sampled)
 Fastest is utils.datestruct().YYYYMMDD
 ```
 
-<!-- GITCONTRIBUTOR_START -->
-
-## Contributors
-
-|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/985607?v=4" width="100px;"/><br/><sub><b>dead-horse</b></sub>](https://github.com/dead-horse)<br/>|[<img src="https://avatars.githubusercontent.com/u/1147375?v=4" width="100px;"/><br/><sub><b>alsotang</b></sub>](https://github.com/alsotang)<br/>|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/1207064?v=4" width="100px;"/><br/><sub><b>gxcsoccer</b></sub>](https://github.com/gxcsoccer)<br/>|[<img src="https://avatars.githubusercontent.com/u/5127897?v=4" width="100px;"/><br/><sub><b>danielsss</b></sub>](https://github.com/danielsss)<br/>|
-| :---: | :---: | :---: | :---: | :---: | :---: |
-|[<img src="https://avatars.githubusercontent.com/u/2842176?v=4" width="100px;"/><br/><sub><b>XadillaX</b></sub>](https://github.com/XadillaX)<br/>|[<img src="https://avatars.githubusercontent.com/u/23133919?v=4" width="100px;"/><br/><sub><b>ulivz</b></sub>](https://github.com/ulivz)<br/>|[<img src="https://avatars.githubusercontent.com/u/24466804?v=4" width="100px;"/><br/><sub><b>mosikoo</b></sub>](https://github.com/mosikoo)<br/>|[<img src="https://avatars.githubusercontent.com/u/546535?v=4" width="100px;"/><br/><sub><b>leoner</b></sub>](https://github.com/leoner)<br/>|[<img src="https://avatars.githubusercontent.com/u/8603442?v=4" width="100px;"/><br/><sub><b>legend80s</b></sub>](https://github.com/legend80s)<br/>|[<img src="https://avatars.githubusercontent.com/u/32174276?v=4" width="100px;"/><br/><sub><b>semantic-release-bot</b></sub>](https://github.com/semantic-release-bot)<br/>|
-[<img src="https://avatars.githubusercontent.com/u/33921398?v=4" width="100px;"/><br/><sub><b>ddzy</b></sub>](https://github.com/ddzy)<br/>|[<img src="https://avatars.githubusercontent.com/u/8896314?v=4" width="100px;"/><br/><sub><b>zhanghengyao</b></sub>](https://github.com/zhanghengyao)<br/>
-
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Mon Dec 11 2023 00:23:06 GMT+0800`.
-
-<!-- GITCONTRIBUTOR_END -->
-
 ## License
 
 [MIT](LICENSE.txt)
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=node-modules/utility)](https://github.com/node-modules/utility/graphs/contributors)
+
+Made with [contributors-img](https://contrib.rocks).

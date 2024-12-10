@@ -9,7 +9,6 @@
     "test-local": "egg-bin test",
     "preci": "npm run prepublishOnly",
     "ci": "egg-bin cov",
-    "contributor": "git-contributor",
     "prepublishOnly": "tshy && tshy-after"
   },
   "dependencies": {
@@ -20,20 +19,18 @@
     "@eggjs/tsconfig": "^1.3.3",
     "@types/escape-html": "^1.0.4",
     "@types/mocha": "^10.0.6",
-    "@types/node": "^20.10.0",
+    "@types/node": "22",
     "beautify-benchmark": "^0.2.4",
     "benchmark": "^2.1.4",
-    "contributors": "*",
     "egg-bin": "^6.5.2",
     "eslint": "^8.54.0",
     "eslint-config-egg": "^13.0.0",
-    "git-contributor": "^2.1.5",
     "moment": "^2.22.2",
     "object-assign": "^4.1.1",
     "optimized": "^1.2.0",
     "time-require": "^0.1.2",
     "tsd": "^0.28.1",
-    "tshy": "^1.8.1",
+    "tshy": "^3.0.2",
     "tshy-after": "^1.0.0",
     "typescript": "^5.2.2"
   },
@@ -81,5 +78,6 @@
     "src"
   ],
   "main": "./dist/commonjs/index.js",
-  "types": "./dist/commonjs/index.d.ts"
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
 }
