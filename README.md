@@ -196,12 +196,12 @@ utils.random(); // 0
 
 ### Timeout
 
-#### `runWithTimeout(promise, timeout)`
+#### `runWithTimeout(scope, timeout)`
 
-Run promise with timeout
+Executes a scope promise with a specified timeout duration. If the promise doesn't resolve within the timeout period, it will reject with a `TimeoutError`.
 
 ```ts
-import { sha256 } from 'utility';
+import { runWithTimeout } from 'utility';
 
 await runWithTimeout(async () => {
   // long run operation here
