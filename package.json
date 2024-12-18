@@ -7,7 +7,7 @@
     "pretest": "npm run lint -- --fix && npm run prepublishOnly",
     "test": "egg-bin test",
     "test-local": "egg-bin test",
-    "preci": "npm run prepublishOnly",
+    "preci": "npm run lint && npm run prepublishOnly && attw --pack",
     "ci": "egg-bin cov",
     "prepublishOnly": "tshy && tshy-after"
   },
@@ -16,6 +16,7 @@
     "unescape": "^1.0.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.1",
     "@eggjs/tsconfig": "^1.3.3",
     "@types/escape-html": "^1.0.4",
     "@types/mocha": "^10.0.6",
