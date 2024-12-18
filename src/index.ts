@@ -8,3 +8,4 @@ export * from './number.js';
 export * from './string.js';
 export * from './optimize.js';
 export * from './object.js';
+export * from './timeout.js';

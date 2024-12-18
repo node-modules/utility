@@ -4,6 +4,7 @@
 [![CI](https://github.com/node-modules/utility/actions/workflows/nodejs.yml/badge.svg)](https://github.com/node-modules/utility/actions/workflows/nodejs.yml)
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
+[![Node.js Version](https://img.shields.io/node/v/utility.svg?style=flat)](https://nodejs.org/en/download/)
 
 [npm-image]: https://img.shields.io/npm/v/utility.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/utility
@@ -29,68 +30,97 @@ const utils = require('utility');
 Also you can use it within typescript, like this ↓
 
 ```ts
-import * as utility from 'utility';
+import * as utils from 'utility';
 ```
 
 ### md5
 
-```js
-utils.md5('苏千').should.equal('5f733c47c58a077d61257102b2d44481');
-utils.md5(Buffer.from('苏千')).should.equal('5f733c47c58a077d61257102b2d44481');
+```ts
+import { md5 } from 'utility';
+
+md5('苏千');
+// '5f733c47c58a077d61257102b2d44481'
+
+md5(Buffer.from('苏千'));
+// '5f733c47c58a077d61257102b2d44481'
+
 // md5 base64 format
-utils.md5('苏千', 'base64'); // 'X3M8R8WKB31hJXECstREgQ=='
+md5('苏千', 'base64'); 
+// 'X3M8R8WKB31hJXECstREgQ=='
 
 // Object md5 hash. Sorted by key, and JSON.stringify. See source code for detail
-utils.md5({foo: 'bar', bar: 'foo'}).should.equal(utils.md5({bar: 'foo', foo: 'bar'}));
+md5({foo: 'bar', bar: 'foo'}).should.equal(md5({bar: 'foo', foo: 'bar'}));
 ```
 
 ### sha1
 
-```js
-utils.sha1('苏千').should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
-utils.sha1(Buffer.from('苏千')).should.equal('0a4aff6bab634b9c2f99b71f25e976921fcde5a5');
+```ts
+import { sha1 } from 'utility';
+
+sha1('苏千');
+// '0a4aff6bab634b9c2f99b71f25e976921fcde5a5'
+
+sha1(Buffer.from('苏千'));
+// '0a4aff6bab634b9c2f99b71f25e976921fcde5a5'
+
 // sha1 base64 format
-utils.sha1('苏千', 'base64'); // 'Ckr/a6tjS5wvmbcfJel2kh/N5aU='
+sha1('苏千', 'base64');
+// 'Ckr/a6tjS5wvmbcfJel2kh/N5aU='
 
 // Object sha1 hash. Sorted by key, and JSON.stringify. See source code for detail
-utils.sha1({foo: 'bar', bar: 'foo'}).should.equal(utils.sha1({bar: 'foo', foo: 'bar'}));
+sha1({foo: 'bar', bar: 'foo'}).should.equal(sha1({bar: 'foo', foo: 'bar'}));
 ```
 
 ### sha256
 
-```js
-utils.sha256(Buffer.from('苏千')).should.equal('75dd03e3fcdbba7d5bec07900bae740cc8e361d77e7df8949de421d3df5d3635');
+```ts
+import { sha256 } from 'utility';
+
+sha256(Buffer.from('苏千'));
+// '75dd03e3fcdbba7d5bec07900bae740cc8e361d77e7df8949de421d3df5d3635'
 ```
 
 ### hmac
 
-```js
+```ts
+import { hmac } from 'utility';
+
 // hmac-sha1 with base64 output encoding
-utils.hmac('sha1', 'I am a key', 'hello world'); // 'pO6J0LKDxRRkvSECSEdxwKx84L0='
+hmac('sha1', 'I am a key', 'hello world');
+// 'pO6J0LKDxRRkvSECSEdxwKx84L0='
 ```
 
 ### decode and encode
 
-```js
+```ts
+import { base64encode, base64decode, escape, unescape, encodeURIComponent, decodeURIComponent } from 'utility';
+
 // base64 encode
-utils.base64encode('你好￥'); // '5L2g5aW977+l'
-utils.base64decode('5L2g5aW977+l') // '你好￥'
+base64encode('你好￥');
+// '5L2g5aW977+l'
+base64decode('5L2g5aW977+l');
+// '你好￥'
 
 // urlsafe base64 encode
-utils.base64encode('你好￥', true); // '5L2g5aW977-l'
-utils.base64decode('5L2g5aW977-l', true); // '你好￥'
+base64encode('你好￥', true);
+// '5L2g5aW977-l'
+base64decode('5L2g5aW977-l', true);
+// '你好￥'
 
 // html escape and unescape
-utils.escape('<script/>"& &amp;'); // '&lt;script/&gt;&quot;&amp; &amp;amp;'
-utils.unescape('&lt;script/&gt;&quot;&amp; &amp;amp;'); // '<script/>"& &amp;'
+escape('<script/>"& &amp;');
+// '&lt;script/&gt;&quot;&amp; &amp;amp;'
+unescape('&lt;script/&gt;&quot;&amp; &amp;amp;');
+// '<script/>"& &amp;'
 
 // Safe encodeURIComponent and decodeURIComponent
-utils.decodeURIComponent(utils.encodeURIComponent('你好, nodejs')).should.equal('你好, nodejs');
+decodeURIComponent(encodeURIComponent('你好, Node.js'));
+// '你好, Node.js'
 ```
 
 ### others
 
-___[WARNNING] getIP() remove, PLEASE use `https://github.com/node-modules/address` module instead.___
+___[WARNNING] `getIP()` remove, PLEASE use `https://github.com/node-modules/address` module instead.___
 
 ```js
 // get a function parameter's names
@@ -164,12 +194,18 @@ utils.random(2, 1000); // [2, 1000)
 utils.random(); // 0
 ```
 
-### Timers
+### Timeout
 
-```js
-utils.setImmediate(function () {
-  console.log('hi');
-});
+#### `runWithTimeout(promise, timeout)`
+
+Run promise with timeout
+
+```ts
+import { sha256 } from 'utility';
+
+await runWithTimeout(async () => {
+  // long run operation here
+}, 1000);
 ```
 
 ### map
@@ -216,9 +252,9 @@ const res = utils.try(function () {
 ```Note``` that when you use ```typescript```, you must use the following methods to call ' Try '
 
 ```js
-import * as utility from 'utility';
+import { UNSTABLE_METHOD } from 'utility';
 
-utility.UNSTABLE_METHOD.try(...);
+UNSTABLE_METHOD.try(...);
 ...
 ```
 
@@ -226,7 +262,7 @@ utility.UNSTABLE_METHOD.try(...);
 
 ```js
 function foo() {
-  const arr = utility.argumentsToArray(arguments);
+  const arr = utils.argumentsToArray(arguments);
   console.log(arr.join(', '));
 }
 ```
@@ -268,10 +304,10 @@ async () => {
 
 ```js
 // assign object
-utility.assign({}, { a: 1 });
+utils.assign({}, { a: 1 });
 
 // assign multiple object
-utility.assign({}, [ { a: 1 }, { b: 1 } ]);
+utils.assign({}, [ { a: 1 }, { b: 1 } ]);
 ```
 
 ## benchmark
