@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/node-modules/utility/compare/v2.2.0...v2.3.0) (2024-12-18)
+
+
+### Features
+
+* support promise with timeout ([#64](https://github.com/node-modules/utility/issues/64)) ([bc3e168](https://github.com/node-modules/utility/commit/bc3e168b0f38180053481f95a5cc653b775b2d79))
+
 ## [2.2.0](https://github.com/node-modules/utility/compare/v2.1.0...v2.2.0) (2024-12-10)
 
 

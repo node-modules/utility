@@ -1,6 +1,6 @@
 {
   "name": "utility",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "A collection of useful utilities.",
   "scripts": {
     "lint": "eslint src test --ext ts",
