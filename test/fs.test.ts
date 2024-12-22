@@ -23,8 +23,32 @@ describe('test/fs.test.ts', () => {
       assert.equal(stats.isDirectory(), true);
       assert.equal(stats.isFile(), false);
       assert.equal(await exists(__dirname + '/nonexistent'), false);
+    });
 
-      assert.equal(await exists('/root/../../../../../etc/passwd'), false);
+    it('should throw error on Linux', async () => {
+      if (process.platform !== 'linux') {
+        return;
+      }
+      await assert.rejects(async () => {
+        await exists('/root/../../../../../etc/passwd');
+      }, (err: any) => {
+        // Error: EACCES: permission denied, stat '/root/../../../../../etc/passwd'
+        assert.equal(err.code, 'EACCES');
+        return true;
+      });
+    });
+
+    it('should throw error on win32', async () => {
+      if (process.platform !== 'win32') {
+        return;
+      }
+      await assert.rejects(async () => {
+        await exists('C:\\Windows\\System32\\drivers\\etc\\hosts');
+      }, (err: any) => {
+        // Error: EACCES: permission denied, stat 'C:\Windows\System32\drivers\etc\hosts'
+        assert.equal(err.code, 'EPERM');
+        return true;
+      });
     });
   });
 });
