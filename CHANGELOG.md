@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/node-modules/utility/compare/v2.3.0...v2.4.0) (2024-12-22)
+
+
+### Features
+
+* support fs.exists async function ([#65](https://github.com/node-modules/utility/issues/65)) ([eb95f36](https://github.com/node-modules/utility/commit/eb95f36dea2a7cebb32d46038cc99b455fb734cd))
+
 ## [2.3.0](https://github.com/node-modules/utility/compare/v2.2.0...v2.3.0) (2024-12-18)
 
 
