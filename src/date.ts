@@ -1,8 +1,5 @@
-// only set once.
-let TIMEZONE = '';
-export function resetTimezone() {
-  TIMEZONE = '';
-  const date = new Date();
+export function resetTimezone(date: Date) {
+  let TIMEZONE = '';
   const offsetInMinutes = date.getTimezoneOffset();
   const _hourOffset = Math.floor(-offsetInMinutes / 60);
   const _minuteOffset = Math.abs(offsetInMinutes % 60);
@@ -12,7 +9,6 @@ export function resetTimezone() {
 
   return TIMEZONE;
 }
-resetTimezone();
 
 const MONTHS: Record<string, string> = {
   '01': 'Jan',
@@ -60,6 +56,7 @@ export function accessLogDate(d?: Date): string {
   // 16/Apr/2013:16:40:09 +0800
   d = d || new Date();
   const [ year, month, date, hours, minutes, seconds ] = getDateStringParts(d);
+  const TIMEZONE = resetTimezone(d);
   return `${date}/${MONTHS[month]}/${year}:${hours}:${minutes}:${seconds} ${TIMEZONE}`;
 }
 

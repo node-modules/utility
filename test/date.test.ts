@@ -252,7 +252,7 @@ describe('test/date.test.ts', () => {
       it('should return access log date format', () => {
         const milliseconds = Date.now();
         const result = utility.getDateFromMilliseconds(milliseconds, utility.DateFormat.DateTimeWithTimeZone);
-        assert.match(result, /^\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}$/);
+        assert.match(result, /^\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} [+-]\d{4}$/);
       });
 
       it('should return log date format with milliseconds', () => {
