@@ -2,15 +2,14 @@
 let TIMEZONE = '';
 export function resetTimezone() {
   TIMEZONE = '';
-  let _hourOffset = Math.floor(-(new Date().getTimezoneOffset()) / 60);
-  if (_hourOffset >= 0) {
-    TIMEZONE += '+';
-  } else {
-    TIMEZONE += '-';
-  }
-  _hourOffset = Math.abs(_hourOffset);
-  const _hourOffsetStr = _hourOffset < 10 ? `0${_hourOffset}` : `${_hourOffset}`;
-  TIMEZONE += `${_hourOffsetStr}00`;
+  const date = new Date();
+  const offsetInMinutes = date.getTimezoneOffset();
+  const _hourOffset = Math.floor(-offsetInMinutes / 60);
+  const _minuteOffset = Math.abs(offsetInMinutes % 60);
+
+  TIMEZONE += _hourOffset >= 0 ? '+' : '-';
+  TIMEZONE += `${String(Math.abs(_hourOffset)).padStart(2, '0')}${String(_minuteOffset).padStart(2, '0')}`;
+
   return TIMEZONE;
 }
 resetTimezone();
@@ -185,4 +184,36 @@ export function timestamp(t?: number | string): number | Date {
  */
 export function parseTimestamp(t: number | string): Date {
   return timestamp(t) as Date;
+}
+
+/**
+ * Convert Date object to Unix timestamp in seconds.
+ */
+export function dateToUnixTimestamp(date: Date): number {
+  return Math.round(date.getTime() / 1000);
+}
+
+export enum DateFormat {
+  DateTimeWithTimeZone,
+  DateTimeWithMilliSeconds,
+  DateTimeWithSeconds,
+  UnixTimestamp
+}
+
+/**
+ * Provide milliseconds, return a formatted string.
+ */
+export function getDateFromMilliseconds(milliseconds: number, format?: DateFormat): string {
+  switch (format) {
+    case DateFormat.DateTimeWithTimeZone:
+      return accessLogDate(new Date(milliseconds));
+    case DateFormat.DateTimeWithMilliSeconds:
+      return logDate(new Date(milliseconds));
+    case DateFormat.DateTimeWithSeconds:
+      return YYYYMMDDHHmmss(new Date(milliseconds));
+    case DateFormat.UnixTimestamp:
+      return dateToUnixTimestamp(new Date(milliseconds)).toString();
+    default:
+      return YYYYMMDD(new Date(milliseconds));
+  }
 }

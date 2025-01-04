@@ -176,6 +176,13 @@ utils.timestamp(); // 1378153226
 utils.timestamp(1385091596); // Fri Nov 22 2013 11:39:56 GMT+0800 (CST)
 // millseconds
 utils.timestamp(1385091596000); // Fri Nov 22 2013 11:39:56 GMT+0800 (CST)
+
+// Get Date from Milliseconds
+utils.getDateFromMilliseconds(1385091596000) // 2013-11-22
+utils.getDateFromMilliseconds(1385091596000, utility.DateFormat.DateTimeWithTimeZone) // 22/Nov/2013:01:46:36 +0000
+utils.getDateFromMilliseconds(1385091596000, utility.DateFormat.DateTimeWithMilliSeconds) // 2013-11-22 01:46:36.000
+utils.getDateFromMilliseconds(1385091596000, utility.DateFormat.DateTimeWithSeconds) // 2013-11-22 01:46:36
+utils.getDateFromMilliseconds(1385091596000, utility.DateFormat.UnixTimestamp) // 1385091596
 ```
 
 ### Number utils
