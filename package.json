@@ -33,7 +33,8 @@
     "tsd": "^0.28.1",
     "tshy": "^3.0.2",
     "tshy-after": "^1.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "ylru": "^2.0.0"
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {

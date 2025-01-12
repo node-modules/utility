@@ -1,3 +1,6 @@
+import { LRU } from 'ylru';
+const lru = new LRU(0);
+
 export function resetTimezone(date: Date) {
   let TIMEZONE = '';
   const offsetInMinutes = date.getTimezoneOffset();
@@ -56,10 +59,18 @@ export function accessLogDate(d?: Date): string {
   // 16/Apr/2013:16:40:09 +0800
   d = d || new Date();
   const [ year, month, date, hours, minutes, seconds ] = getDateStringParts(d);
-  const TIMEZONE = resetTimezone(d);
+  const TIMEZONE = getTimezone(d);
   return `${date}/${MONTHS[month]}/${year}:${hours}:${minutes}:${seconds} ${TIMEZONE}`;
 }
 
+export function getTimezone(d: Date) {
+  const timeZone = lru.get('TIMEZONE');
+  if (timeZone === undefined) {
+    lru.set('TIMEZONE', resetTimezone(d), { maxAge: 8640000 });
+    return lru.get('TIMEZONE');
+  }
+  return timeZone;
+}
 /**
  * Normal log format date. format: `moment().format('YYYY-MM-DD HH:mm:ss.SSS')`
  */
