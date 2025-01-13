@@ -64,10 +64,11 @@ export function accessLogDate(d?: Date): string {
 }
 
 export function getTimezone(d: Date) {
-  const timeZone = lru.get('TIMEZONE');
+  const key = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  const timeZone = lru.get(key);
   if (timeZone === undefined) {
-    lru.set('TIMEZONE', resetTimezone(d), { maxAge: 8640000 });
-    return lru.get('TIMEZONE');
+    lru.set(key, resetTimezone(d), { maxAge: 86400000 }); // Cache for 24 hours
+    return lru.get(key);
   }
   return timeZone;
 }
