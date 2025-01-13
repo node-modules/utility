@@ -1,5 +1,5 @@
 import { LRU } from 'ylru';
-const lru = new LRU(0);
+const lru = new LRU(1000); // Cache up to 1000 entries
 
 export function resetTimezone(date: Date) {
   let TIMEZONE = '';
