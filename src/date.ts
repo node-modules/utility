@@ -2,10 +2,10 @@ import { LRU } from 'ylru';
 const lru = new LRU(1000); // Cache up to 1000 entries
 
 export function resetTimezone(date: Date) {
-  let TIMEZONE = '';
+  let TIMEZONE: string = '';
   const offsetInMinutes = date.getTimezoneOffset();
-  const _hourOffset = Math.floor(-offsetInMinutes / 60);
-  const _minuteOffset = Math.abs(offsetInMinutes % 60);
+  const _hourOffset: number = Math.floor(-offsetInMinutes / 60);
+  const _minuteOffset: number = Math.abs(offsetInMinutes % 60);
 
   TIMEZONE += _hourOffset >= 0 ? '+' : '-';
   TIMEZONE += `${String(Math.abs(_hourOffset)).padStart(2, '0')}${String(_minuteOffset).padStart(2, '0')}`;
@@ -213,6 +213,10 @@ export enum DateFormat {
  * Provide milliseconds, return a formatted string.
  */
 export function getDateFromMilliseconds(milliseconds: number, format?: DateFormat): string {
+  if (!Number.isFinite(milliseconds)) {
+    throw new Error('Invalid milliseconds value');
+  }
+
   switch (format) {
     case DateFormat.DateTimeWithTimeZone:
       return accessLogDate(new Date(milliseconds));
