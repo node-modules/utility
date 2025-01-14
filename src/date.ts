@@ -204,7 +204,7 @@ export function dateToUnixTimestamp(date: Date): number {
 
 // use `as const` instead of enum
 // https://www.totaltypescript.com/books/total-typescript-essentials/deriving-types#using-as-const-for-javascript-style-enums
-export const DateFormat {
+export const DateFormat = {
   DateTimeWithTimeZone: 'DateTimeWithTimeZone',
   DateTimeWithMilliSeconds: 'DateTimeWithMilliSeconds',
   DateTimeWithSeconds: 'DateTimeWithSeconds',
