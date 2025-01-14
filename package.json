@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "escape-html": "^1.0.3",
-    "unescape": "^1.0.1"
+    "unescape": "^1.0.1",
+    "ylru": "^2.0.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.1",

@@ -1,19 +1,17 @@
-// only set once.
-let TIMEZONE = '';
-export function resetTimezone() {
-  TIMEZONE = '';
-  let _hourOffset = Math.floor(-(new Date().getTimezoneOffset()) / 60);
-  if (_hourOffset >= 0) {
-    TIMEZONE += '+';
-  } else {
-    TIMEZONE += '-';
-  }
-  _hourOffset = Math.abs(_hourOffset);
-  const _hourOffsetStr = _hourOffset < 10 ? `0${_hourOffset}` : `${_hourOffset}`;
-  TIMEZONE += `${_hourOffsetStr}00`;
+import { LRU } from 'ylru';
+const lru = new LRU(1000); // Cache up to 1000 entries
+
+export function resetTimezone(date: Date) {
+  let TIMEZONE: string = '';
+  const offsetInMinutes = date.getTimezoneOffset();
+  const _hourOffset: number = Math.floor(-offsetInMinutes / 60);
+  const _minuteOffset: number = Math.abs(offsetInMinutes % 60);
+
+  TIMEZONE += _hourOffset >= 0 ? '+' : '-';
+  TIMEZONE += `${String(Math.abs(_hourOffset)).padStart(2, '0')}${String(_minuteOffset).padStart(2, '0')}`;
+
   return TIMEZONE;
 }
-resetTimezone();
 
 const MONTHS: Record<string, string> = {
   '01': 'Jan',
@@ -61,9 +59,19 @@ export function accessLogDate(d?: Date): string {
   // 16/Apr/2013:16:40:09 +0800
   d = d || new Date();
   const [ year, month, date, hours, minutes, seconds ] = getDateStringParts(d);
+  const TIMEZONE = getTimezone(d);
   return `${date}/${MONTHS[month]}/${year}:${hours}:${minutes}:${seconds} ${TIMEZONE}`;
 }
 
+export function getTimezone(d: Date) {
+  const key = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  const timeZone = lru.get(key);
+  if (timeZone === undefined) {
+    lru.set(key, resetTimezone(d), { maxAge: 86400000 }); // Cache for 24 hours
+    return lru.get(key);
+  }
+  return timeZone;
+}
 /**
  * Normal log format date. format: `moment().format('YYYY-MM-DD HH:mm:ss.SSS')`
  */
@@ -185,4 +193,40 @@ export function timestamp(t?: number | string): number | Date {
  */
 export function parseTimestamp(t: number | string): Date {
   return timestamp(t) as Date;
+}
+
+/**
+ * Convert Date object to Unix timestamp in seconds.
+ */
+export function dateToUnixTimestamp(date: Date): number {
+  return Math.round(date.getTime() / 1000);
+}
+
+export enum DateFormat {
+  DateTimeWithTimeZone = 'DateTimeWithTimeZone',
+  DateTimeWithMilliSeconds = 'DateTimeWithMilliSeconds',
+  DateTimeWithSeconds = 'DateTimeWithSeconds',
+  UnixTimestamp = 'UnixTimestamp',
+}
+
+/**
+ * Provide milliseconds, return a formatted string.
+ */
+export function getDateFromMilliseconds(milliseconds: number, format?: DateFormat): string {
+  if (!Number.isFinite(milliseconds)) {
+    throw new Error('Invalid milliseconds value');
+  }
+
+  switch (format) {
+    case DateFormat.DateTimeWithTimeZone:
+      return accessLogDate(new Date(milliseconds));
+    case DateFormat.DateTimeWithMilliSeconds:
+      return logDate(new Date(milliseconds));
+    case DateFormat.DateTimeWithSeconds:
+      return YYYYMMDDHHmmss(new Date(milliseconds));
+    case DateFormat.UnixTimestamp:
+      return dateToUnixTimestamp(new Date(milliseconds)).toString();
+    default:
+      return YYYYMMDD(new Date(milliseconds));
+  }
 }

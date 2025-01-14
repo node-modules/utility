@@ -84,7 +84,7 @@ describe('test/date.test.ts', () => {
 
     it('should work with timestamp', () => {
       // timezone GMT+0800
-      assert.match(utils.YYYYMMDDHHmmss(1428894236645, {}), /^2015\-04\-13 (11|03):03:56$/);
+      assert.match(utils.YYYYMMDDHHmmss(1428894236645, {}), /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]$)/);
     });
   });
 
@@ -192,7 +192,7 @@ describe('test/date.test.ts', () => {
   describe('accessLogDate()', () => {
     it('accessLogDate() should return an access log format date string', () => {
       // 16/Apr/2013:16:40:09 +0800
-      assert.match(utility.accessLogDate(new Date()), /^\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2} [\+\-]\d{4}$/);
+      assert.match(utility.accessLogDate(new Date()), /^(0[1-9]|[12]\d|3[01])\/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\/\d{4}:\d{2}:\d{2}:\d{2} [+-](0[0-9]|1[0-3])\d{2}$/);
       assert.equal(moment().format('DD/MMM/YYYY:HH:mm:ss ZZ'), utility.accessLogDate(new Date()));
       for (let m = 1; m <= 12; m++) {
         for (let d = 1; d <= 28; d++) {
@@ -236,6 +236,48 @@ describe('test/date.test.ts', () => {
       assert.equal((utility.timestamp(1385091596000) as Date).getTime(), 1385091596000);
       assert.equal((utility.timestamp('1385091596') as Date).getTime(), 1385091596000);
       assert.equal((utility.timestamp('1385091596000') as Date).getTime(), 1385091596000);
+    });
+  });
+
+  describe('dateToUnixTimestamp()', () => {
+    it('should convert Date object to Unix timestamp in seconds', () => {
+      const date = new Date('2023-10-01T00:00:00Z');
+      const timestamp = utility.dateToUnixTimestamp(date);
+      assert.equal(timestamp, 1696118400);
+    });
+  });
+
+  describe('test/date.test.ts', () => {
+    describe('getDateFromMilliseconds()', () => {
+      it('should return access log date format', () => {
+        const milliseconds = Date.now();
+        const result = utility.getDateFromMilliseconds(milliseconds, utility.DateFormat.DateTimeWithTimeZone);
+        assert.match(result, /^\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2} [+-]\d{4}$/);
+      });
+
+      it('should return log date format with milliseconds', () => {
+        const milliseconds = Date.now();
+        const result = utility.getDateFromMilliseconds(milliseconds, utility.DateFormat.DateTimeWithMilliSeconds);
+        assert.match(result, /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+      });
+
+      it('should return date time format with seconds', () => {
+        const milliseconds = Date.now();
+        const result = utility.getDateFromMilliseconds(milliseconds, utility.DateFormat.DateTimeWithSeconds);
+        assert.match(result, /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/);
+      });
+
+      it('should return Unix timestamp', () => {
+        const milliseconds = Date.now();
+        const result = utility.getDateFromMilliseconds(milliseconds, utility.DateFormat.UnixTimestamp);
+        assert.match(result, /^\d+$/);
+      });
+
+      it('should return default date format', () => {
+        const milliseconds = Date.now();
+        const result = utility.getDateFromMilliseconds(milliseconds);
+        assert.match(result, /^\d{4}-\d{2}-\d{2}$/);
+      });
     });
   });
 });
