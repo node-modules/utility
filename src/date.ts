@@ -202,12 +202,14 @@ export function dateToUnixTimestamp(date: Date): number {
   return Math.round(date.getTime() / 1000);
 }
 
-export enum DateFormat {
-  DateTimeWithTimeZone,
-  DateTimeWithMilliSeconds,
-  DateTimeWithSeconds,
-  UnixTimestamp
-}
+// use `as const` instead of enum
+// https://www.totaltypescript.com/books/total-typescript-essentials/deriving-types#using-as-const-for-javascript-style-enums
+export const DateFormat {
+  DateTimeWithTimeZone: 'DateTimeWithTimeZone',
+  DateTimeWithMilliSeconds: 'DateTimeWithMilliSeconds',
+  DateTimeWithSeconds: 'DateTimeWithSeconds',
+  UnixTimestamp: 'UnixTimestamp',
+} as const;
 
 /**
  * Provide milliseconds, return a formatted string.
