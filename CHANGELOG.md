@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/node-modules/utility/compare/v2.4.0...v2.5.0) (2025-01-14)
+
+
+### Features
+
+* support convert milliseconds and fix timezone ([#66](https://github.com/node-modules/utility/issues/66)) ([4bc6691](https://github.com/node-modules/utility/commit/4bc669117456c1ad8936cd1f1ce46489d4f6153f))
+
 ## [2.4.0](https://github.com/node-modules/utility/compare/v2.3.0...v2.4.0) (2024-12-22)
 
 
