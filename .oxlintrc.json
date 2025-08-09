@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "extends": [
+    "./node_modules/@eggjs/oxlint-config/.oxlintrc.json"
+  ],
+  "rules": {
+    "typescript/no-explicit-any": "allow",
+    "typescript/no-non-null-assertion": "allow",
+    "typescript/prefer-ts-expect-error": "allow",
+    "typescript/array-type": "allow",
+    "typescript/prefer-for-of": "allow",
+    "typescript/no-inferrable-types": "allow",
+    "typescript/consistent-type-imports": "allow",
+    "import/no-namespace": "allow",
+    "import/consistent-type-specifier-style": "allow",
+    "import/no-duplicates": "allow",
+    "no-useless-escape": "allow",
+    "prefer-exponentiation-operator": "allow",
+    "new-cap": "allow",
+    "func-names": "allow",
+    "no-empty-function": "allow",
+    "prefer-object-has-own": "allow",
+    "no-throw-literal": "allow",
+    "no-void": "allow",
+    "no-template-curly-in-string": "allow",
+    "no-duplicate-imports": "allow",
+    "promise/avoid-new": "allow",
+    "promise/param-names": "allow",
+    "promise/prefer-await-to-callbacks": "allow",
+    "promise/prefer-await-to-then": "allow",
+    "unicorn/no-new-array": "allow",
+    "unicorn/consistent-assert": "allow",
+    "unicorn/no-array-for-each": "allow",
+    "unicorn/numeric-separators-style": "allow",
+    "unicorn/prefer-code-point": "allow",
+    "unicorn/prefer-global-this": "allow",
+    "unicorn/prefer-string-replace-all": "allow",
+    "unicorn/prefer-type-error": "allow",
+    "unicorn/switch-case-braces": "allow",
+    "unicorn/prefer-string-raw": "allow",
+    "unicorn/prefer-number-properties": "allow",
+    "unicorn/prefer-string-slice": "allow",
+    "jsdoc/check-tag-names": "allow",
+    "jsdoc/no-defaults": "allow"
+  }
+}
