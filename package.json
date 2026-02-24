@@ -3,7 +3,7 @@
   "version": "2.5.0",
   "description": "A collection of useful utilities.",
   "scripts": {
-    "lint": "oxlint src test",
+    "lint": "node -e \"process.exit(parseInt(process.versions.node) < 18 ? 0 : 1)\" || oxlint src test",
     "pretest": "npm run lint -- --fix && npm run prepublishOnly",
     "test": "egg-bin test",
     "test-local": "egg-bin test",
