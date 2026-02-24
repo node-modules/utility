@@ -8,11 +8,11 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
 [npm-image]: https://img.shields.io/npm/v/utility.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/utility
+[npm-url]: https://npmx.dev/package/utility
 [codecov-image]: https://codecov.io/github/node-modules/utility/coverage.svg?branch=master
 [codecov-url]: https://codecov.io/github/node-modules/utility?branch=master
 [download-image]: https://img.shields.io/npm/dm/utility.svg?style=flat-square
-[download-url]: https://npmjs.org/package/utility
+[download-url]: https://npmx.dev/package/utility
 
 A collection of useful utilities.
 
