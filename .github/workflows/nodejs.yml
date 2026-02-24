@@ -12,6 +12,38 @@ jobs:
     name: Node.js
     uses: node-modules/github-actions/.github/workflows/node-test.yml@master
     with:
-      version: '16, 18, 20, 22, 24'
+      version: '18, 20, 22, 24'
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  Job-Node16:
+    name: Node.js 16
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout Git Source
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          check-latest: true
+
+      - name: Install Dependencies
+        run: npm i --no-package-lock --no-fund
+
+      - name: Build
+        run: npm run prepublishOnly
+
+      - name: Run Test
+        run: npx egg-bin cov
+
+      - name: Code Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
