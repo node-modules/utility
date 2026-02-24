@@ -13,6 +13,9 @@ describe('test/crypto.test.ts', () => {
       assert.equal(utility.md5('zhaoyang_duan', 'base64'), 'tf9hiQy1sn4/2eOW4y/Mww==');
       assert.equal(utility.md5('123', 'base64'), 'ICy5YqxZB1uWSwcVLSNLcA==');
       assert.equal(utility.md5('', 'base64'), '1B2M2Y8AsgTpgAmY7PhCfg==');
+    });
+
+    it('should return md5 for objects', () => {
       assert.equal(utility.md5({ foo: 'bar', bar: 'foo' }), '63a9d72936c6f7366fa5e72fa0cac8b4');
       assert.equal(utility.md5({ foo: 'bar', bar: 'foo' }), utility.md5({ bar: 'foo', foo: 'bar' }));
       assert.equal(utility.md5({ foo: 'bar', bar: 'foo', v: [ 1, 2, 3 ] }), utility.md5({ v: [ 1, 2, 3 ], bar: 'foo', foo: 'bar' }));
@@ -29,6 +32,9 @@ describe('test/crypto.test.ts', () => {
       assert.equal(md5('苏千', 'base64'), 'X3M8R8WKB31hJXECstREgQ==');
       assert.equal(md5('123', 'base64'), 'ICy5YqxZB1uWSwcVLSNLcA==');
       assert.equal(md5('', 'base64'), '1B2M2Y8AsgTpgAmY7PhCfg==');
+    });
+
+    it('should work on utf-8 objects', () => {
       assert.equal(md5({ foo: 'bar', bar: 'foo' }), '63a9d72936c6f7366fa5e72fa0cac8b4');
       assert.equal(md5({ foo: 'bar', bar: 'foo' }), md5({ bar: 'foo', foo: 'bar' }));
       assert.equal(md5({ foo: 'bar', bar: 'foo', v: [ 1, 2, 3 ] }), md5({ v: [ 1, 2, 3 ], bar: 'foo', foo: 'bar' }));
@@ -61,7 +67,9 @@ describe('test/crypto.test.ts', () => {
       assert.equal(utility.sha1('苏千', 'base64'), 'Ckr/a6tjS5wvmbcfJel2kh/N5aU=');
       assert.equal(utility.sha1('123', 'base64'), 'QL0AFWMIX8NRZTKeof9cXsvbvu8=');
       assert.equal(utility.sha1('', 'base64'), '2jmj7l5rSw0yVb/vlWAYkK/YBwk=');
+    });
 
+    it('should return sha1 for objects', () => {
       assert.equal(utility.sha1({ foo: 'bar', bar: 'foo' }), '91bb58051ed80d841941730c1f1399c9e0d8701b');
       assert.equal(utility.sha1({ foo: 'bar', bar: 'foo' }), utility.sha1({ bar: 'foo', foo: 'bar' }));
       assert.equal(utility.sha1({ foo: 'bar', bar: 'foo', v: [ 1, 2, 3 ] }), utility.sha1({ v: [ 1, 2, 3 ], bar: 'foo', foo: 'bar' }));
@@ -107,7 +115,7 @@ describe('test/crypto.test.ts', () => {
       // > 4Vnqz+LV0qMMt/a81E+EURcQMrI=
       assert.equal(utility.hmac('sha1', 'I am a key', '中文，你好', 'base64'), '4Vnqz+LV0qMMt/a81E+EURcQMrI=');
 
-      // should work with buffer data
+      // Should work with buffer data
       assert.equal(utility.hmac('sha1', 'I am a key', '中文，你好'), utility.hmac('sha1', 'I am a key', Buffer.from('中文，你好')));
     });
   });
@@ -139,12 +147,26 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       assert.equal(utility.base64encode(s), expect);
       assert.equal(utility.base64encode(Buffer.from(s)), expect);
       assert.equal(utility.base64decode(expect), s);
-
       assert.equal(utility.base64decode(utility.base64encode(s)), s);
       assert.match(utility.base64encode(s), /\+/);
       assert.match(utility.base64encode(s), /\//);
+    });
 
-      // urlSafe
+    it('base64encode() and base64decode() should work with urlSafe', () => {
+      // eslint-disable-next-line no-multi-str
+      const s = '你好￥啊!@#)(_ +/\/\\\
+""\u0063  / 认购渣打银行代客境外理财全球基金系 列产品,同品牌基金转换0收费. \
+len1 YQ a\
+len2 YWE aa\
+len3 YWFh aaa\
+no_padding YWJj abc\
+padding YQ a\
+hyphen fn5- ~~~\
+underscore Pz8_ ???\
+# this should fail and print out\
+on_purpose_failure YQ b\
+Encode string s using a URL-safe alphabet, which substitutes - instead of + and _ instead of / in the standard Base64 alphabet. The result can still contain =.';
+      // UrlSafe
       assert.equal(utility.base64decode(utility.base64encode(s, true), true), s);
       assert.match(utility.base64encode(s, true), /[^+]/);
       assert.match(utility.base64encode(s, true), /[^\/]/);

@@ -5,12 +5,10 @@
  * @return {Object} - return target object
  */
 export function assign(target: any, objects: any | any[]): any {
-  if (!Array.isArray(objects)) {
-    objects = [ objects ];
-  }
+  const objs = Array.isArray(objects) ? objects : [ objects ];
 
-  for (let i = 0; i < objects.length; i++) {
-    const obj = objects[i];
+  for (let i = 0; i < objs.length; i++) {
+    const obj = objs[i];
     if (obj) {
       const keys = Object.keys(obj);
       for (let j = 0; j < keys.length; j++) {
@@ -47,14 +45,14 @@ export function getOwnEnumerables(obj: any, ignoreNull?: boolean): Array<string>
   });
 }
 
-// faster way like `Object.create(null)` to get a 'clean' empty object
+// Faster way like `Object.create(null)` to get a 'clean' empty object
 // https://github.com/nodejs/node/blob/master/lib/events.js#L5
 // https://cnodejs.org/topic/571e0c445a26c4a841ecbcf1
 function EmptyObject() {}
 EmptyObject.prototype = Object.create(null);
 
 /**
- * generate a real map object(clean object), no constructor, no __proto__
+ * Generate a real map object(clean object), no constructor, no __proto__
  * @param {Object} [obj] - init object, optional
  */
 export function map(obj?: any): Record<string, any> {

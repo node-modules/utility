@@ -45,6 +45,9 @@
     "unicorn/prefer-number-properties": "allow",
     "unicorn/prefer-string-slice": "allow",
     "jsdoc/check-tag-names": "allow",
-    "jsdoc/no-defaults": "allow"
+    "jsdoc/no-defaults": "allow",
+    "import/no-named-export": "allow",
+    "import/no-nodejs-modules": "allow",
+    "import/no-relative-parent-imports": "allow"
   }
 }

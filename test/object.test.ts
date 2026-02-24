@@ -13,7 +13,7 @@ describe('test/object.test.ts', () => {
   });
 
   describe('getOwnEnumerables()', () => {
-    it('should return all enumerable and ownership property names', () => {
+    it('should return enumerable and own property names', () => {
       assert.deepEqual(utility.getOwnEnumerables({ a: 1 }), [ 'a' ]);
       const a = { a: 1 } as any;
       Object.defineProperties(a, {
@@ -25,6 +25,9 @@ describe('test/object.test.ts', () => {
         a[s] = 'localSymbol';
       }
       assert.deepEqual(utility.getOwnEnumerables(a), [ 'a', 'one' ]);
+    });
+
+    it('should handle null, undefined, NaN filtering', () => {
       assert.deepEqual(utility.getOwnEnumerables({ b: null }), [ 'b' ]);
       assert.deepEqual(utility.getOwnEnumerables({ b: null, a: undefined, c: NaN, d: 0, e: '', f: [] }, true),
         [ 'd', 'e', 'f' ]);

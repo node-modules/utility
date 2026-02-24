@@ -1,5 +1,6 @@
 import { LRU } from 'ylru';
-const lru = new LRU(1000); // Cache up to 1000 entries
+// Cache up to 1000 entries
+const lru = new LRU(1000);
 
 export function resetTimezone(date: Date) {
   let TIMEZONE: string = '';
@@ -31,25 +32,35 @@ const MONTHS: Record<string, string> = {
   '12': 'Dec',
 };
 
+export function getTimezone(d: Date) {
+  const key = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  const timeZone = lru.get(key);
+  if (timeZone === undefined) {
+    // Cache for 24 hours
+    lru.set(key, resetTimezone(d), { maxAge: 86400000 });
+    return lru.get(key);
+  }
+  return timeZone;
+}
+
+function formatDatePart(num: number) {
+  return num < 10 ? `0${num}` : `${num}`;
+}
+
 /**
- * return `[ YYYY, MM, DD, HH, mm, ss ]` date string array
+ * Return `[ YYYY, MM, DD, HH, mm, ss ]` date string array
  */
 export function getDateStringParts(d?: Date, onlyDate?: boolean) {
-  d = d || new Date();
-  const monthNum = d.getMonth() + 1;
-  const month = monthNum < 10 ? `0${monthNum}` : `${monthNum}`;
-  const dateNum = d.getDate();
-  const date = dateNum < 10 ? `0${dateNum}` : `${dateNum}`;
+  const date = d || new Date();
+  const month = formatDatePart(date.getMonth() + 1);
+  const day = formatDatePart(date.getDate());
   if (onlyDate) {
-    return [ `${d.getFullYear()}`, month, date ];
+    return [ `${date.getFullYear()}`, month, day ];
   }
-  const hoursNum = d.getHours();
-  const hours = hoursNum < 10 ? `0${hoursNum}` : `${hoursNum}`;
-  const minutesNum = d.getMinutes();
-  const minutes = minutesNum < 10 ? `0${minutesNum}` : `${minutesNum}`;
-  const secondsNum = d.getSeconds();
-  const seconds = secondsNum < 10 ? `0${secondsNum}` : `${secondsNum}`;
-  return [ `${d.getFullYear()}`, month, date, hours, minutes, seconds ];
+  const hours = formatDatePart(date.getHours());
+  const minutes = formatDatePart(date.getMinutes());
+  const seconds = formatDatePart(date.getSeconds());
+  return [ `${date.getFullYear()}`, month, day, hours, minutes, seconds ];
 }
 
 /**
@@ -57,46 +68,30 @@ export function getDateStringParts(d?: Date, onlyDate?: boolean) {
  */
 export function accessLogDate(d?: Date): string {
   // 16/Apr/2013:16:40:09 +0800
-  d = d || new Date();
-  const [ year, month, date, hours, minutes, seconds ] = getDateStringParts(d);
-  const TIMEZONE = getTimezone(d);
-  return `${date}/${MONTHS[month]}/${year}:${hours}:${minutes}:${seconds} ${TIMEZONE}`;
+  const date = d || new Date();
+  const [ year, month, day, hours, minutes, seconds ] = getDateStringParts(date);
+  const TIMEZONE = getTimezone(date);
+  return `${day}/${MONTHS[month]}/${year}:${hours}:${minutes}:${seconds} ${TIMEZONE}`;
 }
 
-export function getTimezone(d: Date) {
-  const key = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-  const timeZone = lru.get(key);
-  if (timeZone === undefined) {
-    lru.set(key, resetTimezone(d), { maxAge: 86400000 }); // Cache for 24 hours
-    return lru.get(key);
-  }
-  return timeZone;
-}
 /**
  * Normal log format date. format: `moment().format('YYYY-MM-DD HH:mm:ss.SSS')`
  */
-export function logDate(msSep?: string): string;
-export function logDate(d?: Date): string;
-export function logDate(d?: Date | null, msSep?: string): string;
-export function logDate(d?: Date | string | null, msSep?: string): string {
+export function logDate(d?: string | Date | null, msSep?: string): string {
+  let date: Date;
+  let separator: string;
   if (typeof d === 'string') {
-    // logDate(msSep)
-    msSep = d;
-    d = new Date();
+    // LogDate(msSep)
+    separator = d;
+    date = new Date();
   } else {
-    // logDate(d, msSep)
-    d = d || new Date();
+    // LogDate(d, msSep)
+    date = d || new Date();
+    separator = msSep || '.';
   }
-  const [ year, month, date, hours, minutes, seconds ] = getDateStringParts(d);
-  const millisecondsNum = d.getMilliseconds();
-  let milliseconds = `${millisecondsNum}`;
-  if (millisecondsNum < 10) {
-    milliseconds = `00${millisecondsNum}`;
-  } else if (millisecondsNum < 100) {
-    milliseconds = `0${millisecondsNum}`;
-  }
-  msSep = msSep || '.';
-  return `${year}-${month}-${date} ${hours}:${minutes}:${seconds}${msSep}${milliseconds}`;
+  const [ year, month, day, hours, minutes, seconds ] = getDateStringParts(date);
+  const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}${separator}${milliseconds}`;
 }
 
 export const YYYYMMDDHHmmssSSS = logDate;
@@ -110,40 +105,37 @@ export interface YYYYMMDDHHmmssOptions {
  * `moment().format('YYYY-MM-DD HH:mm:ss')` format date string.
  */
 export function YYYYMMDDHHmmss(d?: Date | string | number, options?: YYYYMMDDHHmmssOptions): string {
-  d = d || new Date();
-  if (!(d instanceof Date)) {
-    d = new Date(d);
+  let date: Date;
+  if (!d) {
+    date = new Date();
+  } else if (d instanceof Date) {
+    date = d;
+  } else {
+    date = new Date(d);
   }
-
-  let dateSep = '-';
-  let timeSep = ':';
-  if (options?.dateSep) {
-    dateSep = options.dateSep;
-  }
-  if (options?.timeSep) {
-    timeSep = options.timeSep;
-  }
-  const [ year, month, date, hours, minutes, seconds ] = getDateStringParts(d);
-  return `${year}${dateSep}${month}${dateSep}${date} ${hours}${timeSep}${minutes}${timeSep}${seconds}`;
+  const dateSep = options?.dateSep || '-';
+  const timeSep = options?.timeSep || ':';
+  const [ year, month, day, hours, minutes, seconds ] = getDateStringParts(date);
+  return `${year}${dateSep}${month}${dateSep}${day} ${hours}${timeSep}${minutes}${timeSep}${seconds}`;
 }
 
 /**
  * `moment().format('YYYY-MM-DD')` format date string.
  */
 export function YYYYMMDD(d?: Date | string, sep?: string): string {
+  let date: Date;
+  let separator: string;
   if (typeof d === 'string') {
     // YYYYMMDD(sep)
-    sep = d;
-    d = new Date();
+    separator = d;
+    date = new Date();
   } else {
     // YYYYMMDD(d, sep)
-    d = d || new Date();
-    if (typeof sep !== 'string') {
-      sep = '-';
-    }
+    date = d || new Date();
+    separator = typeof sep === 'string' ? sep : '-';
   }
-  const [ year, month, date ] = getDateStringParts(d, true);
-  return `${year}${sep}${month}${sep}${date}`;
+  const [ year, month, day ] = getDateStringParts(date, true);
+  return `${year}${separator}${month}${separator}${day}`;
 }
 
 export interface DateStruct {
@@ -152,17 +144,17 @@ export interface DateStruct {
 }
 
 /**
- * return datetime struct.
+ * Return datetime struct.
  *
  * @return {Object} date
  *  - {Number} YYYYMMDD, 20130401
  *  - {Number} H, 0, 1, 9, 12, 23
  */
 export function datestruct(now?: Date): DateStruct {
-  now = now || new Date();
+  const date = now || new Date();
   return {
-    YYYYMMDD: now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate(),
-    H: now.getHours(),
+    YYYYMMDD: date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate(),
+    H: date.getHours(),
   } satisfies DateStruct;
 }
 
@@ -171,20 +163,15 @@ export function datestruct(now?: Date): DateStruct {
  */
 export function timestamp(t?: number | string): number | Date {
   if (t) {
-    // convert timestamp to Date
-    // timestamp(timestampValue)
-    let v: number;
-    if (typeof t === 'string') {
-      v = Number(t);
-    } else {
-      v = t;
-    }
+    // Convert timestamp to Date
+    // Timestamp(timestampValue)
+    let v = typeof t === 'string' ? Number(t) : t;
     if (String(v).length === 10) {
       v *= 1000;
     }
     return new Date(v);
   }
-  // get current timestamp
+  // Get current timestamp
   return Math.round(Date.now() / 1000);
 }
 

@@ -16,15 +16,10 @@ describe('test/array.test.ts', () => {
       assert.equal(randomSlice(arr, 6).length, 6);
     });
 
-    it('should return sub items', () => {
+    it('should return sub items for number array', () => {
       const arr: number[] = [
         0, 1, 2, 3, 4, 5, 6,
         7, 8, 9, 10, 11, 12,
-      ];
-      const arr2: any[] = [
-        0, 1, 2, 'duan', 'zhao',
-        'yang', { name: 'duan', age: 20 }, false, 10,
-        11, 2, 333, 333,
       ];
 
       assert.deepEqual(utility.randomSlice(arr), arr);
@@ -36,6 +31,14 @@ describe('test/array.test.ts', () => {
       assert.equal(utility.randomSlice(arr, 12).length, 12);
       assert.deepEqual(utility.randomSlice(arr, 0), arr);
       assert.equal(utility.randomSlice(arr, 6).length, 6);
+    });
+
+    it('should return sub items for mixed array', () => {
+      const arr2: any[] = [
+        0, 1, 2, 'duan', 'zhao',
+        'yang', { name: 'duan', age: 20 }, false, 10,
+        11, 2, 333, 333,
+      ];
 
       assert.deepEqual(utility.randomSlice(arr2), arr2);
       assert.deepEqual(utility.randomSlice(arr2, 100000), arr2);
@@ -49,21 +52,26 @@ describe('test/array.test.ts', () => {
   });
 
   describe('spliceOne()', () => {
-    it('should work', () => {
+    it('should work with positive indices', () => {
       assert.deepEqual(spliceOne([ 1, 2, 3 ], 0), [ 2, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], 1), [ 1, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], 2), [ 1, 2 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], 3), [ 1, 2, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], 4), [ 1, 2, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], 5), [ 1, 2, 3 ]);
+      assert.deepEqual(spliceOne([ 1, 2, 3 ], 100), [ 1, 2, 3 ]);
+    });
+
+    it('should work with negative indices', () => {
       assert.deepEqual(spliceOne([ 1, 2, 3 ], -0), [ 2, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], -1), [ 1, 2 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], -2), [ 1, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], -3), [ 2, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], -4), [ 1, 2, 3 ]);
       assert.deepEqual(spliceOne([ 1, 2, 3 ], -5), [ 1, 2, 3 ]);
-      assert.deepEqual(spliceOne([ 1, 2, 3 ], 100), [ 1, 2, 3 ]);
+    });
 
+    it('should work with edge cases', () => {
       assert.deepEqual(spliceOne([ 1 ], 0), []);
       assert.deepEqual(spliceOne([ 1 ], 1), [ 1 ]);
       assert.deepEqual(spliceOne([], 0), []);

@@ -93,6 +93,7 @@ describe('test/json.test.ts', () => {
         .readJSON(path.join(__dirname, '../package.json'))
         .then(json => {
           assert.equal(json.name, 'utility');
+          return json;
         });
     });
 
@@ -112,6 +113,7 @@ describe('test/json.test.ts', () => {
         .then(() => {
           const content = fs.readFileSync(target, 'utf8');
           assert.equal(content, '{\n  "a": 1\n}\n');
+          return content;
         });
     });
 

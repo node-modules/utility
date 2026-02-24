@@ -61,47 +61,55 @@ describe('test/number.test.ts', () => {
   });
 
   describe('replaceInvalidHttpHeaderChar()', () => {
-    it('should replace invalid char', () => {
-      const s0 = '';
-      const s1 = '123';
-      const s2 = 'abc';
-      const s3 = '!@#$%^&*()_+-=\|';
-      const s4 = '你1好0';
-      const s5 = '1你1好0';
-      const s6 = '11你1好0';
-      const s7 = '111你1好0';
-      const s8 = '1111你1好0';
-      const s9 = '1111----你----1----好0#啊ok的123！！end';
+    it('should keep empty and simple strings unchanged', () => {
+      assert.equal(utility.replaceInvalidHttpHeaderChar('').val, '');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('').invalid, false);
+      assert.equal(utility.replaceInvalidHttpHeaderChar('123').val, '123');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('123').invalid, false);
+      assert.equal(utility.replaceInvalidHttpHeaderChar('abc').val, 'abc');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('abc').invalid, false);
+    });
 
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s0).val, s0);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s0).invalid, false);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s1).val, s1);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s1).invalid, false);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s2).val, s2);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s2).invalid, false);
+    it('should keep special chars valid', () => {
+      const s3 = '!@#$%^&*()_+-=\|';
       assert.equal(utility.replaceInvalidHttpHeaderChar(s3).val, s3);
       assert.equal(utility.replaceInvalidHttpHeaderChar(s3).invalid, false);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s4).val, ' 1 0');
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s4).invalid, true);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s5).val, '1 1 0');
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s5).invalid, true);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s6).val, '11 1 0');
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s6).invalid, true);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s7).val, '111 1 0');
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s7).invalid, true);
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s8).val, '1111 1 0');
-      assert.equal(utility.replaceInvalidHttpHeaderChar(s8).invalid, true);
+    });
+
+    it('should replace chinese chars with default replacement', () => {
+      assert.equal(utility.replaceInvalidHttpHeaderChar('你1好0').val, ' 1 0');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('你1好0').invalid, true);
+      assert.equal(utility.replaceInvalidHttpHeaderChar('1你1好0').val, '1 1 0');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('1你1好0').invalid, true);
+      assert.equal(utility.replaceInvalidHttpHeaderChar('11你1好0').val, '11 1 0');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('11你1好0').invalid, true);
+    });
+
+    it('should replace with longer prefix strings', () => {
+      assert.equal(utility.replaceInvalidHttpHeaderChar('111你1好0').val, '111 1 0');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('111你1好0').invalid, true);
+      assert.equal(utility.replaceInvalidHttpHeaderChar('1111你1好0').val, '1111 1 0');
+      assert.equal(utility.replaceInvalidHttpHeaderChar('1111你1好0').invalid, true);
+    });
+
+    it('should replace with custom string replacement', () => {
+      const s8 = '1111你1好0';
       assert.equal(utility.replaceInvalidHttpHeaderChar(s8, '-').val, '1111-1-0');
       assert.equal(utility.replaceInvalidHttpHeaderChar(s8, '-').invalid, true);
+    });
 
-      // support replacement function
+    it('should replace with function replacement', () => {
+      const s9 = '1111----你----1----好0#啊ok的123！！end';
+      // Support replacement function
       const result = utility.replaceInvalidHttpHeaderChar(s9, function(val) {
         return encodeURIComponent(val);
       });
       assert.equal(result.val, '1111----%E4%BD%A0----1----%E5%A5%BD0#%E5%95%8Aok%E7%9A%84123%EF%BC%81%EF%BC%81end');
       assert.equal(decodeURIComponent(result.val), s9);
       assert.equal(result.invalid, true);
+    });
 
+    it('should handle URL with invalid chars', () => {
       const url = 'https://foo.com/abc_%E4%BD%A0%E5%A5%BD/,.handbook-%E4%BD%A0%E5%A5%BD/foo-space-special#空间管理页面-1-你好---';
       const urlResult = utility.replaceInvalidHttpHeaderChar(url, function(c) {
         return encodeURIComponent(c);
@@ -112,30 +120,21 @@ describe('test/number.test.ts', () => {
   });
 
   describe('includesInvalidHttpHeaderChar()', () => {
-    it('should detect invalid chars', () => {
-      const s0 = '';
-      const s1 = '123';
-      const s2 = 'abc';
-      const s3 = '!@#$%^&*()_+-=\|';
-      const s4 = '你1好0';
-      const s5 = '1你1好0';
-      const s6 = '11你1好0';
-      const s7 = '111你1好0';
-      const s8 = '1111你1好0';
-      const s9 = '1111----你----1----好0#啊ok的123！！end';
-      const s10 = '🚀';
+    it('should return false for valid chars', () => {
+      assert.equal(utility.includesInvalidHttpHeaderChar(''), false);
+      assert.equal(utility.includesInvalidHttpHeaderChar('123'), false);
+      assert.equal(utility.includesInvalidHttpHeaderChar('abc'), false);
+      assert.equal(utility.includesInvalidHttpHeaderChar('!@#$%^&*()_+-=\|'), false);
+    });
 
-      assert.equal(utility.includesInvalidHttpHeaderChar(s0), false);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s1), false);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s2), false);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s3), false);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s4), true);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s5), true);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s6), true);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s7), true);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s8), true);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s9), true);
-      assert.equal(utility.includesInvalidHttpHeaderChar(s10), true);
+    it('should detect invalid chars', () => {
+      assert.equal(utility.includesInvalidHttpHeaderChar('你1好0'), true);
+      assert.equal(utility.includesInvalidHttpHeaderChar('1你1好0'), true);
+      assert.equal(utility.includesInvalidHttpHeaderChar('11你1好0'), true);
+      assert.equal(utility.includesInvalidHttpHeaderChar('111你1好0'), true);
+      assert.equal(utility.includesInvalidHttpHeaderChar('1111你1好0'), true);
+      assert.equal(utility.includesInvalidHttpHeaderChar('1111----你----1----好0#啊ok的123！！end'), true);
+      assert.equal(utility.includesInvalidHttpHeaderChar('🚀'), true);
     });
   });
 });

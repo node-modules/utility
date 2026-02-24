@@ -5,7 +5,7 @@ import assert from 'node:assert';
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function noop(..._args: any[]): any {
-  // noop
+  // Noop
 }
 
 /**
@@ -19,8 +19,8 @@ export function getParamNames(func: (...args: any[]) => any, cache?: boolean): s
   const type = typeof func;
   assert.equal(type, 'function', `The "func" must be a function. Received type "${type}"`);
 
-  cache = cache !== false;
-  if (cache && '__cache_names' in func) {
+  const useCache = cache !== false;
+  if (useCache && '__cache_names' in func) {
     return func.__cache_names as string[];
   }
   const str = func.toString();

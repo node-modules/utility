@@ -11,11 +11,9 @@ const MAX_SAFE_INTEGER_STR_LENGTH = MAX_SAFE_INTEGER_STR.length;
  * @param {String} s number format string, like `"123"`, `"-1000123123123123123123"`
  */
 export function isSafeNumberString(s: string) {
-  if (s[0] === '-') {
-    s = s.substring(1);
-  }
-  if (s.length < MAX_SAFE_INTEGER_STR_LENGTH ||
-    (s.length === MAX_SAFE_INTEGER_STR_LENGTH && s <= MAX_SAFE_INTEGER_STR)) {
+  const str = s[0] === '-' ? s.substring(1) : s;
+  if (str.length < MAX_SAFE_INTEGER_STR_LENGTH ||
+    (str.length === MAX_SAFE_INTEGER_STR_LENGTH && str <= MAX_SAFE_INTEGER_STR)) {
     return true;
   }
   return false;
@@ -43,21 +41,12 @@ export function toSafeNumber(s: string | number): number | string {
  * @return {Number} Returns the random number.
  */
 export function random(lower?: number, upper?: number): number {
-  // random()
+  // Random()
   if (lower === undefined) {
     return 0;
   }
-  // random(lower) => random(0, lower)
-  if (upper === undefined) {
-    upper = lower;
-    lower = 0;
-  }
-  let temp: number;
-  // random(upper, lower)
-  if (lower > upper) {
-    temp = lower;
-    lower = upper;
-    upper = temp;
-  }
-  return Math.floor(lower + Math.random() * (upper - lower));
+  // Random(lower) => random(0, lower)
+  const lo = upper === undefined ? 0 : Math.min(lower, upper);
+  const hi = upper === undefined ? lower : Math.max(lower, upper);
+  return Math.floor(lo + Math.random() * (hi - lo));
 }

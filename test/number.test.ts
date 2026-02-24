@@ -6,7 +6,7 @@ describe('test/number.test.ts', () => {
   describe('isSafeNumberString(), toSafeNumber()', () => {
     it('should detect number string success', () => {
       const numbers = [
-        // str, safe or not
+        // Str, safe or not
         [ String(utility.MAX_SAFE_INTEGER), true ],
         [ String(utility.MIN_SAFE_INTEGER), true ],
         [ String(utility.MAX_SAFE_INTEGER + 10), false ],

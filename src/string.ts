@@ -1,32 +1,31 @@
-export function randomString(length?: number, charSet?: string) {
+export function randomString(length = 16, charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789') {
   const result: string[] = [];
-  length = length || 16;
-  charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let remaining = length;
 
-  while (length--) {
+  while (remaining--) {
     result.push(charSet[Math.floor(Math.random() * charSet.length)]);
   }
   return result.join('');
 }
 
 /**
- * split string to array
+ * Split string to array
  * @param  {String} str input string
  * @param  {String} [sep] default is ','
  */
 export function split(str?: string, sep?: string) {
-  str = str || '';
-  sep = sep || ',';
+  const s = str || '';
+  const separator = sep || ',';
   const needs: string[] = [];
-  for (const item of str.split(sep)) {
-    const s = item.trim();
-    if (s.length > 0) {
-      needs.push(s);
+  for (const item of s.split(separator)) {
+    const trimmed = item.trim();
+    if (trimmed.length > 0) {
+      needs.push(trimmed);
     }
   }
   return needs;
 }
-// keep compatibility
+// Keep compatibility
 export const splitAlwaysOptimized = split;
 
 type StringReplacer = (substring: string, ...args: any[]) => string;
@@ -41,7 +40,7 @@ export function replace(str: string, substr: string | RegExp, newSubstr: string 
   return str.replace(substr, newSubstr);
 }
 
-// original source https://github.com/nodejs/node/blob/v7.5.0/lib/_http_common.js#L300
+// Original source https://github.com/nodejs/node/blob/v7.5.0/lib/_http_common.js#L300
 /**
  * True if val contains an invalid field-vchar
  *  field-value    = *( field-content / obs-fold )
@@ -53,22 +52,32 @@ export function replace(str: string, substr: string | RegExp, newSubstr: string 
  * code size does not exceed v8's default max_inlined_source_size setting.
  **/
 const validHdrChars = [
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, // 0 - 15
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // 16 - 31
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 32 - 47
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 48 - 63
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 64 - 79
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 80 - 95
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 96 - 111
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, // 112 - 127
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 128 ...
+  // 0 - 15
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+  // 16 - 31
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  // 32 - 47
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  // 48 - 63
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  // 64 - 79
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  // 80 - 95
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  // 96 - 111
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  // 112 - 127
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+  // 128 ...
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // ... 255
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  // ... 255
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
 
 type Replacement = (char: string) => string;
@@ -79,39 +88,23 @@ type Replacement = (char: string) => string;
  * @param {String} val input value
  * @param {String|Function} replacement - can be `function(char)`
  */
-export function replaceInvalidHttpHeaderChar(val: string, replacement?: string | Replacement) {
-  replacement = replacement || ' ';
-  let invalid = false;
-
+export function replaceInvalidHttpHeaderChar(val: string, replacement: string | Replacement = ' ') {
   if (!val || typeof val !== 'string') {
-    return {
-      val,
-      invalid,
-    };
+    return { val, invalid: false };
   }
 
   let chars: string[] | undefined;
   for (let i = 0; i < val.length; ++i) {
     if (!validHdrChars[val.charCodeAt(i)]) {
-      // delay create chars
+      // Delay create chars
       chars = chars || val.split('');
-      if (typeof replacement === 'function') {
-        chars[i] = replacement(chars[i]);
-      } else {
-        chars[i] = replacement;
-      }
+      chars[i] = typeof replacement === 'function' ? replacement(chars[i]) : replacement;
     }
   }
 
-  if (chars) {
-    val = chars.join('');
-    invalid = true;
-  }
-
-  return {
-    val,
-    invalid,
-  };
+  return chars
+    ? { val: chars.join(''), invalid: true }
+    : { val, invalid: false };
 }
 
 /**

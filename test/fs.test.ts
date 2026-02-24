@@ -19,10 +19,10 @@ describe('test/fs.test.ts', () => {
 
       stats = await utility.exists(__dirname);
       assert(stats instanceof Stats);
-      // assert(stats.size > 0, 'stats.size > 0');
+      // Assert(stats.size > 0, 'stats.size > 0');
       assert.equal(stats.isDirectory(), true);
       assert.equal(stats.isFile(), false);
-      assert.equal(await exists(__dirname + '/nonexistent'), false);
+      assert.equal(await exists(`${__dirname}/nonexistent`), false);
     });
 
     it('should throw error on Linux', async () => {
