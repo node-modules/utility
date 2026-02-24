@@ -7,7 +7,7 @@ type HashMethod = (method: string, data: HashInput, outputEncoding?: BinaryToTex
 const nativeHash = 'hash' in crypto ? crypto.hash as HashMethod : null;
 
 /**
- * Hash
+ * hash
  *
  * @param {String} method hash method, e.g.: 'md5', 'sha1'
  * @param {String|Buffer|ArrayBuffer|TypedArray|DataView|Object} s input value
@@ -25,7 +25,7 @@ export function hash(method: string, s: HashInput, format?: BinaryToTextEncoding
   }
 
   if (nativeHash) {
-    // Try to use crypto.hash first
+    // try to use crypto.hash first
     // https://nodejs.org/en/blog/release/v21.7.0#crypto-implement-cryptohash
     return nativeHash(method, s, format);
   }
@@ -36,7 +36,7 @@ export function hash(method: string, s: HashInput, format?: BinaryToTextEncoding
 }
 
 /**
- * Md5 hash
+ * md5 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
@@ -48,7 +48,7 @@ export function md5(s: HashInput, format?: BinaryToTextEncoding): string {
 }
 
 /**
- * Sha1 hash
+ * sha1 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
@@ -60,7 +60,7 @@ export function sha1(s: HashInput, format?: BinaryToTextEncoding): string {
 }
 
 /**
- * Sha256 hash
+ * sha256 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
@@ -72,7 +72,7 @@ export function sha256(s: HashInput, format?: BinaryToTextEncoding): string {
 }
 
 /**
- * Sha512 hash
+ * sha512 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.

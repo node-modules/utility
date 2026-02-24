@@ -1,5 +1,5 @@
 /**
- * Optimize try catch
+ * optimize try catch
  */
 export function tryCatch<T = any>(fn: () => T) {
   const res: {
@@ -29,7 +29,7 @@ export const UNSTABLE_METHOD = {
 };
 
 /**
- * Avoid if (a && a.b && a.b.c)
+ * avoid if (a && a.b && a.b.c)
  */
 export function dig(obj?: any, ...keys: string[]) {
   if (!obj) {
@@ -51,7 +51,7 @@ export function dig(obj?: any, ...keys: string[]) {
 }
 
 /**
- * Optimize arguments to array
+ * optimize arguments to array
  */
 export function argumentsToArray(args: any[]) {
   const res = new Array(args.length);

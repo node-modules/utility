@@ -42,7 +42,7 @@ describe('test/date.test.ts', () => {
     });
 
     it('should work with timestamp', () => {
-      // Timezone GMT+0800
+      // timezone GMT+0800
       assert.match(utility.YYYYMMDDHHmmss(new Date('2014-02-14 01:02:03'), {}), /^2014\-02\-14 01:02:03$/);
     });
 
@@ -83,7 +83,7 @@ describe('test/date.test.ts', () => {
     });
 
     it('should work with timestamp', () => {
-      // Timezone GMT+0800
+      // timezone GMT+0800
       assert.match(utils.YYYYMMDDHHmmss(1428894236645, {}), /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]$)/);
     });
   });

@@ -47,6 +47,7 @@
     "jsdoc/check-tag-names": "allow",
     "jsdoc/no-defaults": "allow",
     "max-statements": "allow",
+    "capitalized-comments": "allow",
     "no-inline-comments": "allow",
     "no-param-reassign": "allow",
     "no-shadow": "allow",

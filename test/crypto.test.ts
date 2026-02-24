@@ -107,7 +107,7 @@ describe('test/crypto.test.ts', () => {
       // > 4Vnqz+LV0qMMt/a81E+EURcQMrI=
       assert.equal(utility.hmac('sha1', 'I am a key', '中文，你好', 'base64'), '4Vnqz+LV0qMMt/a81E+EURcQMrI=');
 
-      // Should work with buffer data
+      // should work with buffer data
       assert.equal(utility.hmac('sha1', 'I am a key', '中文，你好'), utility.hmac('sha1', 'I am a key', Buffer.from('中文，你好')));
     });
   });
@@ -144,7 +144,7 @@ Encode string s using a URL-safe alphabet, which substitutes - instead of + and 
       assert.match(utility.base64encode(s), /\+/);
       assert.match(utility.base64encode(s), /\//);
 
-      // UrlSafe
+      // urlSafe
       assert.equal(utility.base64decode(utility.base64encode(s, true), true), s);
       assert.match(utility.base64encode(s, true), /[^+]/);
       assert.match(utility.base64encode(s, true), /[^\/]/);

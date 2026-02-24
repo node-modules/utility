@@ -47,14 +47,14 @@ export function getOwnEnumerables(obj: any, ignoreNull?: boolean): Array<string>
   });
 }
 
-// Faster way like `Object.create(null)` to get a 'clean' empty object
+// faster way like `Object.create(null)` to get a 'clean' empty object
 // https://github.com/nodejs/node/blob/master/lib/events.js#L5
 // https://cnodejs.org/topic/571e0c445a26c4a841ecbcf1
 function EmptyObject() {}
 EmptyObject.prototype = Object.create(null);
 
 /**
- * Generate a real map object(clean object), no constructor, no __proto__
+ * generate a real map object(clean object), no constructor, no __proto__
  * @param {Object} [obj] - init object, optional
  */
 export function map(obj?: any): Record<string, any> {

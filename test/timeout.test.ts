@@ -19,7 +19,7 @@ describe('test/timeout.test.ts', () => {
         assert(err instanceof TimeoutError);
         assert.equal(err.timeout, 10);
         assert.equal(err.message, 'Timed out after 10ms');
-        // Console.error(err);
+        // console.error(err);
         return true;
       });
 
@@ -31,7 +31,7 @@ describe('test/timeout.test.ts', () => {
         assert(err instanceof TimeoutError);
         assert.equal(err.timeout, 15);
         assert.equal(err.message, 'Timed out after 15ms');
-        // Console.error(err);
+        // console.error(err);
         return true;
       });
     });
@@ -53,7 +53,7 @@ describe('test/timeout.test.ts', () => {
         assert(err instanceof TimeoutError);
         assert.equal(err.timeout, 10);
         assert.equal(err.message, 'Timed out after 10ms');
-        // Console.error(err);
+        // console.error(err);
         return true;
       });
     });

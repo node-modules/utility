@@ -10,7 +10,7 @@ export function randomString(length?: number, charSet?: string) {
 }
 
 /**
- * Split string to array
+ * split string to array
  * @param  {String} str input string
  * @param  {String} [sep] default is ','
  */
@@ -26,7 +26,7 @@ export function split(str?: string, sep?: string) {
   }
   return needs;
 }
-// Keep compatibility
+// keep compatibility
 export const splitAlwaysOptimized = split;
 
 type StringReplacer = (substring: string, ...args: any[]) => string;
@@ -41,7 +41,7 @@ export function replace(str: string, substr: string | RegExp, newSubstr: string 
   return str.replace(substr, newSubstr);
 }
 
-// Original source https://github.com/nodejs/node/blob/v7.5.0/lib/_http_common.js#L300
+// original source https://github.com/nodejs/node/blob/v7.5.0/lib/_http_common.js#L300
 /**
  * True if val contains an invalid field-vchar
  *  field-value    = *( field-content / obs-fold )
@@ -93,7 +93,7 @@ export function replaceInvalidHttpHeaderChar(val: string, replacement?: string |
   let chars: string[] | undefined;
   for (let i = 0; i < val.length; ++i) {
     if (!validHdrChars[val.charCodeAt(i)]) {
-      // Delay create chars
+      // delay create chars
       chars = chars || val.split('');
       if (typeof replacement === 'function') {
         chars[i] = replacement(chars[i]);
