@@ -6,8 +6,21 @@ type HashMethod = (method: string, data: HashInput, outputEncoding?: BinaryToTex
 
 const nativeHash = 'hash' in crypto ? crypto.hash as HashMethod : null;
 
+function sortObject(o: any) {
+  if (!o || Array.isArray(o) || typeof o !== 'object') {
+    return o;
+  }
+  const keys = Object.keys(o);
+  keys.sort();
+  const values: any[] = [];
+  for (const k of keys) {
+    values.push([ k, sortObject(o[k]) ]);
+  }
+  return values;
+}
+
 /**
- * hash
+ * Hash
  *
  * @param {String} method hash method, e.g.: 'md5', 'sha1'
  * @param {String|Buffer|ArrayBuffer|TypedArray|DataView|Object} s input value
@@ -16,27 +29,23 @@ const nativeHash = 'hash' in crypto ? crypto.hash as HashMethod : null;
  * @public
  */
 export function hash(method: string, s: HashInput, format?: BinaryToTextEncoding): string {
-  if (s instanceof ArrayBuffer) {
-    s = Buffer.from(s);
-  }
-  const isBuffer = Buffer.isBuffer(s) || ArrayBuffer.isView(s);
-  if (!isBuffer && typeof s === 'object') {
-    s = JSON.stringify(sortObject(s));
-  }
+  const input: HashInput = s instanceof ArrayBuffer ? Buffer.from(s) : s;
+  const isBuffer = Buffer.isBuffer(input) || ArrayBuffer.isView(input);
+  const processedInput = (!isBuffer && typeof input === 'object') ? JSON.stringify(sortObject(input)) : input;
 
   if (nativeHash) {
-    // try to use crypto.hash first
+    // Try to use crypto.hash first
     // https://nodejs.org/en/blog/release/v21.7.0#crypto-implement-cryptohash
-    return nativeHash(method, s, format);
+    return nativeHash(method, processedInput, format);
   }
 
   const sum = createHash(method);
-  sum.update(s as string, isBuffer ? 'binary' : 'utf8');
+  sum.update(processedInput as string, isBuffer ? 'binary' : 'utf8');
   return sum.digest(format || 'hex');
 }
 
 /**
- * md5 hash
+ * Md5 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
@@ -48,7 +57,7 @@ export function md5(s: HashInput, format?: BinaryToTextEncoding): string {
 }
 
 /**
- * sha1 hash
+ * Sha1 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
@@ -60,7 +69,7 @@ export function sha1(s: HashInput, format?: BinaryToTextEncoding): string {
 }
 
 /**
- * sha256 hash
+ * Sha256 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
@@ -72,7 +81,7 @@ export function sha256(s: HashInput, format?: BinaryToTextEncoding): string {
 }
 
 /**
- * sha512 hash
+ * Sha512 hash
  *
  * @param {String|Buffer|Object} s input value
  * @param {String} [format] output string format, could be 'hex' or 'base64'. default is 'hex'.
@@ -101,10 +110,9 @@ export function sha512(s: HashInput, format?: BinaryToTextEncoding): string {
  * @return {String} digest string.
  */
 export function hmac(algorithm: string, key: string, data: string | Buffer, encoding?: BinaryToTextEncoding): string {
-  encoding = encoding || 'base64';
-  const hmac = createHmac(algorithm, key);
-  hmac.update(data as string, Buffer.isBuffer(data) ? 'binary' : 'utf8');
-  return hmac.digest(encoding);
+  const mac = createHmac(algorithm, key);
+  mac.update(data as string, Buffer.isBuffer(data) ? 'binary' : 'utf8');
+  return mac.digest(encoding || 'base64');
 }
 
 /**
@@ -116,10 +124,8 @@ export function hmac(algorithm: string, key: string, data: string | Buffer, enco
  * @return {String} base64 encode format string.
  */
 export function base64encode(s: string | Buffer, urlSafe?: boolean): string {
-  if (!Buffer.isBuffer(s)) {
-    s = Buffer.from(s);
-  }
-  let encode = s.toString('base64');
+  const buf = Buffer.isBuffer(s) ? s : Buffer.from(s);
+  let encode = buf.toString('base64');
   if (urlSafe) {
     encode = encode.replace(/\+/g, '-').replace(/\//g, '_');
   }
@@ -136,25 +142,10 @@ export function base64encode(s: string | Buffer, urlSafe?: boolean): string {
  * @return {String|Buffer} plain text.
  */
 export function base64decode(encodeStr: string, urlSafe?: boolean, encoding?: BufferEncoding | 'buffer'): string | Buffer {
-  if (urlSafe) {
-    encodeStr = encodeStr.replace(/\-/g, '+').replace(/_/g, '/');
-  }
-  const buf = Buffer.from(encodeStr, 'base64');
+  const str = urlSafe ? encodeStr.replace(/\-/g, '+').replace(/_/g, '/') : encodeStr;
+  const buf = Buffer.from(str, 'base64');
   if (encoding === 'buffer') {
     return buf;
   }
   return buf.toString(encoding || 'utf8');
-}
-
-function sortObject(o: any) {
-  if (!o || Array.isArray(o) || typeof o !== 'object') {
-    return o;
-  }
-  const keys = Object.keys(o);
-  keys.sort();
-  const values: any[] = [];
-  for (const k of keys) {
-    values.push([ k, sortObject(o[k]) ]);
-  }
-  return values;
 }

@@ -5,9 +5,12 @@ import { getParamNames } from '../src/index.js';
 
 describe('test/function.test.ts', () => {
   describe('getParamNames()', () => {
-    it('should return parameter names', () => {
+    it('should throw on invalid input', () => {
       assert.throws(() => utility.getParamNames(null as any));
       assert.throws(() => utility.getParamNames(undefined as any));
+    });
+
+    it('should return parameter names for anonymous functions', () => {
       assert.deepEqual(utility.getParamNames(function() {}), []);
       /* eslint-disable @typescript-eslint/no-unused-vars */
       assert.deepEqual(utility.getParamNames(function(_key1) {}), [ '_key1' ]);
@@ -16,7 +19,9 @@ describe('test/function.test.ts', () => {
       assert.deepEqual(getParamNames(function(_key1, _key2, _key3, _key4, _callback) {
         console.log('foo');
       }), [ '_key1', '_key2', '_key3', '_key4', '_callback' ]);
+    });
 
+    it('should return parameter names for utility functions', () => {
       assert.deepEqual(utility.getParamNames(utility.getParamNames), [ 'func', 'cache' ]);
       assert.deepEqual(utility.getParamNames(utility.getParamNames, false), [ 'func', 'cache' ]);
       assert.deepEqual(utility.getParamNames(utility.md5), [ 's', 'format' ]);
@@ -26,9 +31,12 @@ describe('test/function.test.ts', () => {
       assert.deepEqual(utility.getParamNames(utility.base64decode), [ 'encodeStr', 'urlSafe', 'encoding' ]);
     });
 
-    it('should return parameter names', () => {
+    it('should throw on invalid input (utils)', () => {
       assert.throws(() => utility.getParamNames(null as any));
       assert.throws(() => utility.getParamNames(undefined as any));
+    });
+
+    it('should return parameter names for anonymous functions (utils)', () => {
       assert.deepEqual(utils.getParamNames(function() {}), []);
       assert.deepEqual(utils.getParamNames(function(key1) {
         console.log(key1);
@@ -43,7 +51,9 @@ describe('test/function.test.ts', () => {
         console.log('foo');
         console.log(key1, key2, key3, key4, callback);
       }), [ 'key1', 'key2', 'key3', 'key4', 'callback' ]);
+    });
 
+    it('should return parameter names for utils functions', () => {
       assert.deepEqual(utils.getParamNames(utils.getParamNames), [ 'func', 'cache' ]);
       assert.deepEqual(utils.getParamNames(utils.getParamNames, false), [ 'func', 'cache' ]);
       assert.deepEqual(utils.getParamNames(utils.md5), [ 's', 'format' ]);

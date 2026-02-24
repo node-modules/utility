@@ -4,6 +4,10 @@ import * as utility from '../src/index.js';
 import * as utils from '../src/index.js';
 import { YYYYMMDDHHmmss, logDate, getDateStringParts } from '../src/index.js';
 
+function buildDateString(m: number, d: number, h: number, ss: number) {
+  return `2013-${m}-${d} ${h}:${ss}:${ss}`;
+}
+
 describe('test/date.test.ts', () => {
   describe('getDateStringParts()', () => {
     it('should work', () => {
@@ -20,7 +24,7 @@ describe('test/date.test.ts', () => {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(YYYYMMDDHHmmss(n), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}$/);
           }
@@ -42,7 +46,7 @@ describe('test/date.test.ts', () => {
     });
 
     it('should work with timestamp', () => {
-      // timezone GMT+0800
+      // Timezone GMT+0800
       assert.match(utility.YYYYMMDDHHmmss(new Date('2014-02-14 01:02:03'), {}), /^2014\-02\-14 01:02:03$/);
     });
 
@@ -53,7 +57,7 @@ describe('test/date.test.ts', () => {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(utils.YYYYMMDDHHmmss(n), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}$/);
           }
@@ -83,7 +87,7 @@ describe('test/date.test.ts', () => {
     });
 
     it('should work with timestamp', () => {
-      // timezone GMT+0800
+      // Timezone GMT+0800
       assert.match(utils.YYYYMMDDHHmmss(1428894236645, {}), /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]$)/);
     });
   });
@@ -96,7 +100,7 @@ describe('test/date.test.ts', () => {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(utility.YYYYMMDD(n), /^\d{4}\-\d{2}\-\d{2}$/);
           }
@@ -111,7 +115,7 @@ describe('test/date.test.ts', () => {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(utility.YYYYMMDD(n, ''), /^\d{4}\d{2}\d{2}$/);
           }
@@ -126,7 +130,7 @@ describe('test/date.test.ts', () => {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(utils.YYYYMMDD(n), /^\d{4}\-\d{2}\-\d{2}$/);
           }
@@ -141,7 +145,7 @@ describe('test/date.test.ts', () => {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(utils.YYYYMMDD(n, ''), /^\d{4}\d{2}\d{2}$/);
           }
@@ -151,16 +155,19 @@ describe('test/date.test.ts', () => {
   });
 
   describe('logDate()', () => {
-    it('logDate() should return an log format date string', () => {
+    it('logDate() should return log format with custom separator', () => {
       assert.match(utility.logDate(','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
       assert.match(utility.logDate(','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
       assert.match(logDate(','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
       assert.match(utility.logDate(new Date(1372062988014)), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+    });
+
+    it('logDate() should return correct format for all dates', () => {
       for (let m = 1; m <= 12; m++) {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(utility.logDate(n), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
             assert.match(utility.logDate(n, ','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
@@ -169,17 +176,20 @@ describe('test/date.test.ts', () => {
       }
     });
 
-    it('logDate() should return an log format date string', () => {
+    it('logDate() should work with null and undefined', () => {
       assert.match(utils.logDate(), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
       assert.match(utils.logDate(','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
       assert.match(utils.logDate(null, ','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
       assert.match(utils.logDate(undefined, ','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
       assert.match(utils.logDate(new Date(1372062988014)), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
+    });
+
+    it('logDate() should return correct format for all dates (utils)', () => {
       for (let m = 1; m <= 12; m++) {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.match(utils.logDate(n), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}$/);
             assert.match(utils.logDate(n, ','), /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2},\d{3}$/);
@@ -198,7 +208,7 @@ describe('test/date.test.ts', () => {
         for (let d = 1; d <= 28; d++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
+            const ds = buildDateString(m, d, h, ss);
             const n = new Date(ds);
             assert.equal(moment(n).format('DD/MMM/YYYY:HH:mm:ss ZZ'), utility.accessLogDate(n), ds);
           }
@@ -208,15 +218,18 @@ describe('test/date.test.ts', () => {
   });
 
   describe('datestruct()', () => {
-    it('datestruct() should return an date struct', () => {
-      const d = utility.datestruct();
-      assert.equal(d.YYYYMMDD.toString(), moment().format('YYYYMMDD'));
+    it('datestruct() should return current date struct', () => {
+      const ds = utility.datestruct();
+      assert.equal(ds.YYYYMMDD.toString(), moment().format('YYYYMMDD'));
+    });
+
+    it('datestruct() should return correct struct for all dates', () => {
       for (let m = 1; m <= 12; m++) {
-        for (let d = 1; d <= 28; d++) {
+        for (let day = 1; day <= 28; day++) {
           for (let h = 0; h < 24; h++) {
             const ss = parseInt(String(Math.random() * 60), 10);
-            const ds = '2013-' + m + '-' + d + ' ' + h + ':' + ss + ':' + ss;
-            const n = new Date(ds);
+            const dateStr = buildDateString(m, day, h, ss);
+            const n = new Date(dateStr);
             const struct = utility.datestruct(n);
             assert.equal(struct.YYYYMMDD.toString(), moment(n).format('YYYYMMDD'));
             assert.equal(struct.H.toString(), moment(n).format('H'));
@@ -242,8 +255,8 @@ describe('test/date.test.ts', () => {
   describe('dateToUnixTimestamp()', () => {
     it('should convert Date object to Unix timestamp in seconds', () => {
       const date = new Date('2023-10-01T00:00:00Z');
-      const timestamp = utility.dateToUnixTimestamp(date);
-      assert.equal(timestamp, 1696118400);
+      const ts = utility.dateToUnixTimestamp(date);
+      assert.equal(ts, 1696118400);
     });
   });
 

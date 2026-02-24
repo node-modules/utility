@@ -5,7 +5,6 @@ export class TimeoutError extends Error {
     super(`Timed out after ${timeout}ms`);
     this.name = this.constructor.name;
     this.timeout = timeout;
-    Error.captureStackTrace(this, this.constructor);
   }
 }
 

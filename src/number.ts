@@ -1,5 +1,5 @@
-// http://www.2ality.com/2013/10/safe-integers.html
-// http://es6.ruanyifeng.com/#docs/number
+// Http://www.2ality.com/2013/10/safe-integers.html
+// Http://es6.ruanyifeng.com/#docs/number
 export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1;
 export const MIN_SAFE_INTEGER = -MAX_SAFE_INTEGER;
 export const MAX_SAFE_INTEGER_STR = String(MAX_SAFE_INTEGER);
@@ -11,11 +11,9 @@ const MAX_SAFE_INTEGER_STR_LENGTH = MAX_SAFE_INTEGER_STR.length;
  * @param {String} s number format string, like `"123"`, `"-1000123123123123123123"`
  */
 export function isSafeNumberString(s: string) {
-  if (s[0] === '-') {
-    s = s.substring(1);
-  }
-  if (s.length < MAX_SAFE_INTEGER_STR_LENGTH ||
-    (s.length === MAX_SAFE_INTEGER_STR_LENGTH && s <= MAX_SAFE_INTEGER_STR)) {
+  const str = s[0] === '-' ? s.substring(1) : s;
+  if (str.length < MAX_SAFE_INTEGER_STR_LENGTH ||
+    (str.length === MAX_SAFE_INTEGER_STR_LENGTH && str <= MAX_SAFE_INTEGER_STR)) {
     return true;
   }
   return false;
@@ -43,21 +41,12 @@ export function toSafeNumber(s: string | number): number | string {
  * @return {Number} Returns the random number.
  */
 export function random(lower?: number, upper?: number): number {
-  // random()
+  // Random()
   if (lower === undefined) {
     return 0;
   }
-  // random(lower) => random(0, lower)
-  if (upper === undefined) {
-    upper = lower;
-    lower = 0;
-  }
-  let temp: number;
-  // random(upper, lower)
-  if (lower > upper) {
-    temp = lower;
-    lower = upper;
-    upper = temp;
-  }
-  return Math.floor(lower + Math.random() * (upper - lower));
+  // Random(lower) => random(0, lower)
+  const lo = upper === undefined ? 0 : Math.min(lower, upper);
+  const hi = upper === undefined ? lower : Math.max(lower, upper);
+  return Math.floor(lo + Math.random() * (hi - lo));
 }

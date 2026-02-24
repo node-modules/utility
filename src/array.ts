@@ -23,20 +23,13 @@ export function randomSlice<T = any>(arr: T[], num?: number): T[] {
  * @return {Array} the array instance
  */
 export function spliceOne<T = any>(arr: T[], index: number): T[] {
-  if (index < 0) {
-    index = arr.length + index;
-    // still negative, not found element
-    if (index < 0) {
-      return arr;
-    }
-  }
-
-  // don't touch
-  if (index >= arr.length) {
+  const idx = index < 0 ? arr.length + index : index;
+  // Not found or out of bounds
+  if (idx < 0 || idx >= arr.length) {
     return arr;
   }
 
-  for (let i = index, k = i + 1, n = arr.length; k < n; i += 1, k += 1) {
+  for (let i = idx, k = i + 1, n = arr.length; k < n; i += 1, k += 1) {
     arr[i] = arr[k];
   }
   arr.pop();

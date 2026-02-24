@@ -26,11 +26,11 @@ export interface JSONStringifyOptions {
 
 export function writeJSONSync(filepath: string, content: string | object, options: JSONStringifyOptions = {}) {
   options.space = options.space ?? 2;
-  if (typeof content === 'object') {
-    content = JSON.stringify(content, options.replacer, options.space) + '\n';
-  }
+  const data = typeof content === 'object'
+    ? `${JSON.stringify(content, options.replacer, options.space)}\n`
+    : content;
   mkdirSync(dirname(filepath), { recursive: true });
-  writeFileSync(filepath, content);
+  writeFileSync(filepath, data);
 }
 
 export async function readJSON<T = any>(filepath: string): Promise<T> {
@@ -40,9 +40,9 @@ export async function readJSON<T = any>(filepath: string): Promise<T> {
 
 export async function writeJSON(filepath: string, content: string | object, options: JSONStringifyOptions = {}) {
   options.space = options.space ?? 2;
-  if (typeof content === 'object') {
-    content = JSON.stringify(content, options.replacer, options.space) + '\n';
-  }
+  const data = typeof content === 'object'
+    ? `${JSON.stringify(content, options.replacer, options.space)}\n`
+    : content;
   await mkdir(dirname(filepath), { recursive: true });
-  await writeFile(filepath, content, 'utf8');
+  await writeFile(filepath, data, 'utf8');
 }

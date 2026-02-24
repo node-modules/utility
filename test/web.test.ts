@@ -33,7 +33,8 @@ describe('test/web.test.ts', () => {
       const texts = [
         'foo', '中文', '数字',
         '%',
-        String.fromCharCode(0xDFFF), // http://cnodejs.org/topic/4fd6b7ba839e1e581407aac8
+        // Http://cnodejs.org/topic/4fd6b7ba839e1e581407aac8
+        String.fromCharCode(0xDFFF),
         123, 0, 1, Math.pow(2, 53),
         null, undefined,
         Buffer.from('中文水电费'), Buffer.alloc(100),

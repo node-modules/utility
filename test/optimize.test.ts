@@ -1,6 +1,10 @@
 import { strict as assert } from 'node:assert';
 import * as utility from '../src/index.js';
 
+function getArguments(...args: any[]) {
+  return args;
+}
+
 describe('test/optimize.test.ts', () => {
   describe('tryCatch(), try()', () => {
     it('try() should work when no error', () => {
@@ -75,7 +79,3 @@ describe('test/optimize.test.ts', () => {
     });
   });
 });
-
-function getArguments(...args: any[]) {
-  return args;
-}
