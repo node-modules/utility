@@ -1,5 +1,5 @@
-// Http://www.2ality.com/2013/10/safe-integers.html
-// Http://es6.ruanyifeng.com/#docs/number
+// http://www.2ality.com/2013/10/safe-integers.html
+// http://es6.ruanyifeng.com/#docs/number
 export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1;
 export const MIN_SAFE_INTEGER = -MAX_SAFE_INTEGER;
 export const MAX_SAFE_INTEGER_STR = String(MAX_SAFE_INTEGER);

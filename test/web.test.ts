@@ -33,7 +33,7 @@ describe('test/web.test.ts', () => {
       const texts = [
         'foo', '中文', '数字',
         '%',
-        // Http://cnodejs.org/topic/4fd6b7ba839e1e581407aac8
+        // http://cnodejs.org/topic/4fd6b7ba839e1e581407aac8
         String.fromCharCode(0xDFFF),
         123, 0, 1, Math.pow(2, 53),
         null, undefined,
