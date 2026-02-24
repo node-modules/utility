@@ -5,7 +5,7 @@ import assert from 'node:assert';
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function noop(..._args: any[]): any {
-  // noop
+  // Noop
 }
 
 /**

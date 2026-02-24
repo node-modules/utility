@@ -25,13 +25,13 @@ export function randomSlice<T = any>(arr: T[], num?: number): T[] {
 export function spliceOne<T = any>(arr: T[], index: number): T[] {
   if (index < 0) {
     index = arr.length + index;
-    // still negative, not found element
+    // Still negative, not found element
     if (index < 0) {
       return arr;
     }
   }
 
-  // don't touch
+  // Don't touch
   if (index >= arr.length) {
     return arr;
   }

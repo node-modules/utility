@@ -45,6 +45,20 @@
     "unicorn/prefer-number-properties": "allow",
     "unicorn/prefer-string-slice": "allow",
     "jsdoc/check-tag-names": "allow",
-    "jsdoc/no-defaults": "allow"
+    "jsdoc/no-defaults": "allow",
+    "max-statements": "allow",
+    "no-inline-comments": "allow",
+    "no-param-reassign": "allow",
+    "no-shadow": "allow",
+    "no-use-before-define": "allow",
+    "prefer-template": "allow",
+    "import/no-named-export": "allow",
+    "import/no-nodejs-modules": "allow",
+    "import/no-relative-parent-imports": "allow",
+    "promise/always-return": "allow",
+    "typescript/unified-signatures": "allow",
+    "unicorn/no-useless-error-capture-stack-trace": "allow",
+    "unicorn/prefer-default-parameters": "allow",
+    "unicorn/prefer-ternary": "allow"
   }
 }

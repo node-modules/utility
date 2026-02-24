@@ -43,17 +43,17 @@ export function toSafeNumber(s: string | number): number | string {
  * @return {Number} Returns the random number.
  */
 export function random(lower?: number, upper?: number): number {
-  // random()
+  // Random()
   if (lower === undefined) {
     return 0;
   }
-  // random(lower) => random(0, lower)
+  // Random(lower) => random(0, lower)
   if (upper === undefined) {
     upper = lower;
     lower = 0;
   }
   let temp: number;
-  // random(upper, lower)
+  // Random(upper, lower)
   if (lower > upper) {
     temp = lower;
     lower = upper;

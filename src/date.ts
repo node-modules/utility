@@ -32,7 +32,7 @@ const MONTHS: Record<string, string> = {
 };
 
 /**
- * return `[ YYYY, MM, DD, HH, mm, ss ]` date string array
+ * Return `[ YYYY, MM, DD, HH, mm, ss ]` date string array
  */
 export function getDateStringParts(d?: Date, onlyDate?: boolean) {
   d = d || new Date();
@@ -80,11 +80,11 @@ export function logDate(d?: Date): string;
 export function logDate(d?: Date | null, msSep?: string): string;
 export function logDate(d?: Date | string | null, msSep?: string): string {
   if (typeof d === 'string') {
-    // logDate(msSep)
+    // LogDate(msSep)
     msSep = d;
     d = new Date();
   } else {
-    // logDate(d, msSep)
+    // LogDate(d, msSep)
     d = d || new Date();
   }
   const [ year, month, date, hours, minutes, seconds ] = getDateStringParts(d);
@@ -152,7 +152,7 @@ export interface DateStruct {
 }
 
 /**
- * return datetime struct.
+ * Return datetime struct.
  *
  * @return {Object} date
  *  - {Number} YYYYMMDD, 20130401
@@ -171,8 +171,8 @@ export function datestruct(now?: Date): DateStruct {
  */
 export function timestamp(t?: number | string): number | Date {
   if (t) {
-    // convert timestamp to Date
-    // timestamp(timestampValue)
+    // Convert timestamp to Date
+    // Timestamp(timestampValue)
     let v: number;
     if (typeof t === 'string') {
       v = Number(t);
@@ -184,7 +184,7 @@ export function timestamp(t?: number | string): number | Date {
     }
     return new Date(v);
   }
-  // get current timestamp
+  // Get current timestamp
   return Math.round(Date.now() / 1000);
 }
 

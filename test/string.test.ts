@@ -94,7 +94,7 @@ describe('test/number.test.ts', () => {
       assert.equal(utility.replaceInvalidHttpHeaderChar(s8, '-').val, '1111-1-0');
       assert.equal(utility.replaceInvalidHttpHeaderChar(s8, '-').invalid, true);
 
-      // support replacement function
+      // Support replacement function
       const result = utility.replaceInvalidHttpHeaderChar(s9, function(val) {
         return encodeURIComponent(val);
       });
