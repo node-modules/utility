@@ -166,7 +166,7 @@ export function timestamp(t?: number | string): number | Date {
     // Convert timestamp to Date
     // Timestamp(timestampValue)
     let v = typeof t === 'string' ? Number(t) : t;
-    if (String(v).length === 10 || (v < 0 && String(-v).length === 10)) {
+    if (String(v).length === 10 || (v < 0 && Number.isInteger(v) && String(-v).length === 10)) {
       v *= 1000;
     }
     return new Date(v);
