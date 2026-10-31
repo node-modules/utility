@@ -250,6 +250,25 @@ describe('test/date.test.ts', () => {
       assert.equal((utility.timestamp('1385091596') as Date).getTime(), 1385091596000);
       assert.equal((utility.timestamp('1385091596000') as Date).getTime(), 1385091596000);
     });
+
+    it('should parse negative seconds while preserving existing unit inference', () => {
+      const cases: Array<[number | string, number]> = [
+        [ -1385091596, -1385091596000 ],
+        [ '-1385091596', -1385091596000 ],
+        [ 1385091596000, 1385091596000 ],
+        [ -1385091596000, -1385091596000 ],
+        [ 1385091596, 1385091596000 ],
+        [ -138509159, -138509159000 ],
+        [ '-138509159', -138509159000 ],
+        [ -12345.6789, -12345 ],
+        [ '-12345.6789', -12345 ],
+        [ 12345.6789, 12345678 ],
+        [ '12345.6789', 12345678 ],
+      ];
+      for (const [ input, expected ] of cases) {
+        assert.equal((utility.timestamp(input) as Date).getTime(), expected, String(input));
+      }
+    });
   });
 
   describe('dateToUnixTimestamp()', () => {
