@@ -13,10 +13,11 @@ The `Release` workflow compares the package versions before and after the push
 to `master`. It requires an associated merged PR. Dependency-only changes and
 direct version pushes do not publish a package.
 
-The workflow checks out the exact merged commit, installs dependencies, and runs
-`npm run ci`, including the build and package type checks. It publishes stable
-versions with the `latest` npm tag and prerelease versions with `next`. It then
-creates a `v<version>` tag and a GitHub release with generated notes.
+The workflow checks out the exact merged commit and installs dependencies.
+`npm publish` runs the `prepublishOnly` script to build the package. The release
+workflow relies on the PR's CI checks and does not run them again. It publishes
+stable versions with the `latest` npm tag and prerelease versions with `next`.
+It then creates a `v<version>` tag and a GitHub release with generated notes.
 
 If a release fails, rerun its failed jobs in GitHub Actions. The workflow skips
 versions that already exist on npm and GitHub releases that already exist, so a
