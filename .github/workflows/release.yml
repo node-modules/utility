@@ -3,10 +3,135 @@ name: Release
 on:
   push:
     branches: [ master ]
+    paths: [ package.json ]
+
+permissions:
+  contents: read
 
 jobs:
-  release:
-    name: NPM
-    uses: node-modules/github-actions/.github/workflows/npm-release.yml@master
-    secrets:
-      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+  version:
+    name: Check version PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      changed: ${{ steps.version.outputs.changed }}
+      version: ${{ steps.version.outputs.version }}
+      npm_tag: ${{ steps.version.outputs.npm_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check for a merged version change
+        id: version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execFileSync } = require('node:child_process');
+            const readPackage = ref => JSON.parse(execFileSync(
+              'git', ['show', `${ref}:package.json`], { encoding: 'utf8' }
+            ));
+            const previous = readPackage(context.payload.before);
+            const current = readPackage(context.sha);
+            if (previous.version === current.version) {
+              core.info('The package version did not change.');
+              return;
+            }
+            if (current.name !== previous.name || typeof current.version !== 'string') {
+              throw new Error('The release must keep the package name and specify a version.');
+            }
+            const prs = await github.paginate(github.rest.repos.listPullRequestsAssociatedWithCommit, {
+              ...context.repo,
+              commit_sha: context.sha,
+            });
+            if (!prs.some(pr => pr.merged_at && pr.base.ref === 'master'
+              && pr.base.repo.full_name === `${context.repo.owner}/${context.repo.repo}`)) {
+              core.info('The version change must come from a merged PR into master.');
+              return;
+            }
+            core.setOutput('changed', 'true');
+            core.setOutput('version', current.version);
+            core.setOutput('npm_tag', current.version.includes('-') ? 'next' : 'latest');
+
+  publish:
+    name: Publish to npm
+    needs: version
+    if: needs.version.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    concurrency:
+      group: npm-release
+      cancel-in-progress: false
+    env:
+      RELEASE_VERSION: ${{ needs.version.outputs.version }}
+      NPM_TAG: ${{ needs.version.outputs.npm_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+
+      - name: Use npm with trusted publishing support
+        run: npm install --global npm@11
+
+      - name: Check whether the version is already published
+        id: npm
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { readFileSync } = require('node:fs');
+            const { name, version } = JSON.parse(readFileSync('package.json', 'utf8'));
+            const response = await fetch(
+              `https://registry.npmjs.org/${encodeURIComponent(name)}/${encodeURIComponent(version)}`
+            );
+            if (response.status === 404) {
+              core.setOutput('published', 'false');
+            } else if (response.ok) {
+              core.info(`${name}@${version} is already published.`);
+              core.setOutput('published', 'true');
+            } else {
+              throw new Error(`npm registry check failed: ${response.status}`);
+            }
+
+      - name: Install dependencies
+        if: steps.npm.outputs.published == 'false'
+        run: npm install --no-package-lock --no-fund
+
+      - name: Check, build, and test
+        if: steps.npm.outputs.published == 'false'
+        run: npm run ci
+
+      - name: Publish with npm trusted publishing
+        if: steps.npm.outputs.published == 'false'
+        run: npm publish --provenance --access public --tag "$NPM_TAG"
+
+      - name: Create GitHub release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = `v${process.env.RELEASE_VERSION}`;
+            try {
+              await github.rest.repos.getReleaseByTag({ ...context.repo, tag });
+              core.info(`${tag} already has a GitHub release.`);
+              return;
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+            await github.rest.repos.createRelease({
+              ...context.repo,
+              tag_name: tag,
+              target_commitish: context.sha,
+              name: tag,
+              generate_release_notes: true,
+              prerelease: process.env.NPM_TAG === 'next',
+            });

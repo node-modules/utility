@@ -359,6 +359,11 @@ new Date().toString() x 816,731 ops/sec ±3.46% (93 runs sampled)
 Fastest is utils.datestruct().YYYYMMDD
 ```
 
+## Releasing
+
+See the [release guide](.github/RELEASING.md) for the version PR and npm trusted
+publishing process.
+
 ## License
 
 [MIT](LICENSE.txt)
