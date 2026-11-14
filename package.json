@@ -29,12 +29,17 @@
     "moment": "^2.22.2",
     "object-assign": "^4.1.1",
     "optimized": "^1.2.0",
-    "oxlint": "^1.11.1",
+    "oxlint": "1.11.1",
     "time-require": "^0.1.2",
     "tsd": "^0.28.1",
     "tshy": "^3.0.2",
     "tshy-after": "^1.0.0",
     "typescript": "^5.2.2"
+  },
+  "overrides": {
+    "@arethetypeswrong/core@0.17.4": {
+      "fflate": "0.8.2"
+    }
   },
   "homepage": "https://github.com/node-modules/utility",
   "repository": {
