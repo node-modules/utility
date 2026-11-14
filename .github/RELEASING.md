@@ -10,10 +10,11 @@ trigger automatic version bumps or npm releases.
 4. Merge the PR after its CI checks pass.
 
 The `Release` workflow compares the package versions before and after the push
-to `master`. It requires an associated merged PR. Dependency-only changes and
-direct version pushes do not publish a package.
+to `master` and publishes when the version changes. Dependency-only changes do
+not publish a package. The workflow does not check whether the push came from a
+PR; branch protection can enforce that repository policy.
 
-The workflow checks out the exact merged commit and installs dependencies.
+The workflow checks out the exact pushed commit and installs dependencies.
 `npm publish` runs the `prepublishOnly` script to build the package. The release
 workflow relies on the PR's CI checks and does not run them again. It publishes
 stable versions with the `latest` npm tag and prerelease versions with `next`.
