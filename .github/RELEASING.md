@@ -19,6 +19,12 @@ The workflow checks out the exact pushed commit and installs dependencies.
 workflow relies on the PR's CI checks and does not run them again. It publishes
 stable versions with the `latest` npm tag and prerelease versions with `next`.
 It then creates a `v<version>` tag and a GitHub release with generated notes.
+Release jobs run one at a time, with up to 100 pending jobs queued.
+
+Stable releases use npm's default `latest` tag without an explicit `--tag` option.
+If a newer stable version is already published, npm rejects an older unpublished
+version instead of moving `latest` backward. This also applies when retrying an
+older release job.
 
 If a release fails, rerun its failed jobs in GitHub Actions. The workflow skips
 versions that already exist on npm and GitHub releases that already exist, so a
