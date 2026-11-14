@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.5.1](https://github.com/node-modules/utility/compare/v2.5.0...v2.5.1) (2026-11-14)
+
+### Bug Fixes
+
+* Correct `accessLogDate` UTC offsets across daylight saving time changes and in negative fractional-hour timezones ([#73](https://github.com/node-modules/utility/pull/73)).
+
 ## [2.5.0](https://github.com/node-modules/utility/compare/v2.4.0...v2.5.0) (2025-01-14)
 
 
