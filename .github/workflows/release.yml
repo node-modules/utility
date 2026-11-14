@@ -17,14 +17,14 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       npm_tag: ${{ steps.version.outputs.npm_tag }}
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           persist-credentials: false
 
       - name: Compare package versions
         id: version
-        uses: actions/github-script@v9.0.0
+        uses: actions/github-script@v9
         with:
           script: |
             const { execFileSync } = require('node:child_process');
@@ -60,12 +60,12 @@ jobs:
       RELEASE_VERSION: ${{ needs.version.outputs.version }}
       NPM_TAG: ${{ needs.version.outputs.npm_tag }}
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
 
-      - uses: actions/setup-node@v7.1.0
+      - uses: actions/setup-node@v7
         with:
           node-version: '24'
           registry-url: https://registry.npmjs.org
@@ -76,7 +76,7 @@ jobs:
 
       - name: Check whether the version is already published
         id: npm
-        uses: actions/github-script@v9.0.0
+        uses: actions/github-script@v9
         with:
           script: |
             const { readFileSync } = require('node:fs');
@@ -108,7 +108,7 @@ jobs:
           fi
 
       - name: Create GitHub release
-        uses: actions/github-script@v9.0.0
+        uses: actions/github-script@v9
         with:
           script: |
             const tag = `v${process.env.RELEASE_VERSION}`;
