@@ -200,6 +200,63 @@ describe('test/date.test.ts', () => {
   });
 
   describe('accessLogDate()', () => {
+    describe('timezone offsets', () => {
+      let originalTimezone: string | undefined;
+
+      beforeEach(() => {
+        originalTimezone = process.env.TZ;
+      });
+
+      afterEach(() => {
+        if (originalTimezone === undefined) {
+          delete process.env.TZ;
+        } else {
+          process.env.TZ = originalTimezone;
+        }
+      });
+
+      const transitions = [
+        {
+          name: 'spring forward',
+          dates: [ '2026-03-08T06:59:59Z', '2026-03-08T07:00:00Z' ],
+          expected: [ '08/Mar/2026:01:59:59 -0500', '08/Mar/2026:03:00:00 -0400' ],
+        },
+        {
+          name: 'fall back',
+          dates: [ '2026-11-01T05:30:00Z', '2026-11-01T06:30:00Z' ],
+          expected: [ '01/Nov/2026:01:30:00 -0400', '01/Nov/2026:01:30:00 -0500' ],
+        },
+      ];
+
+      for (const { name, dates, expected } of transitions) {
+        for (const order of [ [ 0, 1 ], [ 1, 0 ] ]) {
+          it(`should use each date's offset during ${name} in order ${order}`, () => {
+            process.env.TZ = 'America/New_York';
+            for (const index of order) {
+              const date = new Date(dates[index]);
+              assert.equal(utility.accessLogDate(date), expected[index]);
+              assert.equal(utility.getDateFromMilliseconds(date.getTime(), utility.DateFormat.DateTimeWithTimeZone), expected[index]);
+            }
+          });
+        }
+      }
+
+      const timezones = [
+        [ 'America/St_Johns', '15/Jan/2026:08:30:00 -0330' ],
+        [ 'Pacific/Marquesas', '15/Jan/2026:02:30:00 -0930' ],
+        [ 'Asia/Kolkata', '15/Jan/2026:17:30:00 +0530' ],
+        [ 'Asia/Kathmandu', '15/Jan/2026:17:45:00 +0545' ],
+        [ 'UTC', '15/Jan/2026:12:00:00 +0000' ],
+      ];
+
+      for (const [ timezone, expected ] of timezones) {
+        it(`should format the offset in ${timezone}`, () => {
+          process.env.TZ = timezone;
+          assert.equal(utility.accessLogDate(new Date('2026-01-15T12:00:00Z')), expected);
+        });
+      }
+    });
+
     it('accessLogDate() should return an access log format date string', () => {
       // 16/Apr/2013:16:40:09 +0800
       assert.match(utility.accessLogDate(new Date()), /^(0[1-9]|[12]\d|3[01])\/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\/\d{4}:\d{2}:\d{2}:\d{2} [+-](0[0-9]|1[0-3])\d{2}$/);

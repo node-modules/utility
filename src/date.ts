@@ -3,15 +3,12 @@ import { LRU } from 'ylru';
 const lru = new LRU(1000);
 
 export function resetTimezone(date: Date) {
-  let TIMEZONE: string = '';
   const offsetInMinutes = date.getTimezoneOffset();
-  const _hourOffset: number = Math.floor(-offsetInMinutes / 60);
-  const _minuteOffset: number = Math.abs(offsetInMinutes % 60);
-
-  TIMEZONE += _hourOffset >= 0 ? '+' : '-';
-  TIMEZONE += `${String(Math.abs(_hourOffset)).padStart(2, '0')}${String(_minuteOffset).padStart(2, '0')}`;
-
-  return TIMEZONE;
+  const sign = offsetInMinutes <= 0 ? '+' : '-';
+  const absoluteOffset = Math.abs(offsetInMinutes);
+  const hours = Math.floor(absoluteOffset / 60);
+  const minutes = absoluteOffset % 60;
+  return `${sign}${String(hours).padStart(2, '0')}${String(minutes).padStart(2, '0')}`;
 }
 
 const MONTHS: Record<string, string> = {
@@ -33,7 +30,8 @@ const MONTHS: Record<string, string> = {
 };
 
 export function getTimezone(d: Date) {
-  const key = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  // The offset can change within a day, including during a repeated local hour.
+  const key = d.getTimezoneOffset();
   const timeZone = lru.get(key);
   if (timeZone === undefined) {
     // Cache for 24 hours
